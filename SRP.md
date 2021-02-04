@@ -10,13 +10,11 @@ Let's say we want to gather some data from a file, we might create a script whic
         
     # open file
 
-    # read through file and collect data into arrays
+    # read through file and collect data into arrays, converting the data from kN to N at the same time
 
-    # convert into appropriate units (Say from kN to N)
+    # Work with the data to solve a problem
 
-    # do some processing, e.g. sort data, filter, normalise values etc etc
-
-    # plot data
+    # Process (sort/filter/normalise) values and plot data
     
 
 If this is just a quick experiment/prototype then this might be acceptable, but:
