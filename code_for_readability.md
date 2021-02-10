@@ -62,6 +62,33 @@ which may distract from the main code.
 [Writing functions that do _one thing_, and do that _one thing_ well]() can help 
 to reduce such name collisions, though. 
 
+### Indentation
+Indentation is another form of whitespace that can be used to help readability. 
+Indeed, languages like Python enforce correct use of indentation and will throw
+errors if incorrect.
+Consider the difference between:
+
+    if (a > b){
+    int another_var = 5;
+    for(int i = 0; i < a; i++){
+    my_function(i, a, another_var);
+    if (i == 3){
+    print("Fourth iteration")
+    }
+    }
+    }
+
+and:
+
+    if (a > b){
+        int another_var = 5;
+        for(int i = 0; i < a; i++){
+            my_function(i, a, another_var);
+            if (i == 3){
+                print("Fourth iteration")
+            }
+        }
+    }
 
 ## Function and variable naming
 
