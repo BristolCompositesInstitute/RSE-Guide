@@ -1,6 +1,15 @@
 # Write code for readability, maintainability, and clarity
-There is a 
 
+It is generally accepted that reading code is harder than writing code (even 
+when reading our own code). This is because when we write code we have some 
+amount of contextual information in our brain's 'working' memory; When we read 
+code, particularly code that isn't ours, this context isn't available, making 
+it harder to connect the dots.
+This is why we write comments to help explain the context, or the _why_. 
+
+When writing code, it is helpful to bear readability in mind, so that we can 
+make small tweaks now, e.g. variable names, comments, code layout etc, that 
+will help save time in the future.
 
 
 ## Whitespace and parentheses
