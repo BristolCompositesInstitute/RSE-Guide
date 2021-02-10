@@ -92,9 +92,14 @@ and:
 
 ## Comments and docstrings
 As mentioned above, comments should describe "why" the code is the way it is, 
-not simply describe "what" the code does - the "what" should be obvious from the
-code (If it isn't, then it is a sign that the code needs re-structuring or 
-variable/function names rethinking). 
+not simply describe "what" the code does. 
+
+We should strive to write self-documenting code where possible, that is, the 
+"what" should be obvious from the code itself. 
+If it isn't, then it is a sign that the code needs re-structuring or variable/function names rethinking. 
+Of course, this is not always possible and these inherently complex/confusing 
+sections of code should be commented with the 'what' to make the job of reading 
+easier.
 
 Comments that describe the "what" often simply duplicate our reading, and are 
 "lies waiting to happen":
@@ -125,9 +130,10 @@ Rather, it is better to include contextual comments, for example:
 
 Although this is a contrived example, it shows that now I understand _why_ we
 are switching between different functions. It is, of course, still possible that
-the comment's `5` becomes out of sync with the if statement value, however, 
+the comment becomes out of sync with the if statement value, however, 
 because I know _why_ we switching I can more easily work out which value is 
 correct (and update the wrong value).
+
 
 ## Miscellaneous
 
