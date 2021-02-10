@@ -214,6 +214,19 @@ elsewhere when using [version control (TODO LINK TO VERSION CONTROL)] and so
 adding this information at the top of a file is mostly optional.
 
 
+## Style Guides
+Style guides help developers be consistent within a project. By adopting a 
+uniform style, it becomes easier to read other people's code.
+Although the particular style guide that you adopt (or create!) does not matter, 
+it is important that all developers within the project agree to the same guide. 
+
+Various languages have their own recommended style and these should be adopted
+in the first instance, unless there is good motivation to deviate. 
+
+See 
+TODO: add links to language specific pages 
+for more information on each language.
+
 ## Miscellaneous
 As well as the main points of guidence above, there are a few other things that
 can help make software development more straightforward
