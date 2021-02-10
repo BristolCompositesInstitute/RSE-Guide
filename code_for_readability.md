@@ -90,11 +90,44 @@ and:
         }
     }
 
-## Function and variable naming
-
-
 ## Comments and docstrings
+As mentioned above, comments should describe "why" the code is the way it is, 
+not simply describe "what" the code does - the "what" should be obvious from the
+code (If it isn't, then it is a sign that the code needs re-structuring or 
+variable/function names rethinking). 
 
+Comments that describe the "what" often simply duplicate our reading, and are 
+"lies waiting to happen":
+
+    # loop from 1 to 10  -- this is obvious and unnecessary
+    for i = 1:10
+        # if i is less than 5, do something, otherwise do other thing
+        if i < 5:
+            do_something
+        else:
+            do_other_thing
+
+Not only is the comment adding nothing that isn't clear from the code, but if we
+later change the threshold from, say, 5 to 7, then we need to be careful to also
+update the comment.
+Otherwise the comment and the code no longer agree and it can be extremely 
+difficult, and often impossible, to work out which is the 'correct' value. 
+
+Rather, it is better to include contextual comments, for example:
+
+    for i = 1:10
+        # when i is below 5, some physical property <...> is different and so we
+        # need to solve the problem in a different way
+        if i < 5:
+            do_something
+        else:
+            do_other_thing
+
+Although this is a contrived example, it shows that now I understand _why_ we
+are switching between different functions. It is, of course, still possible that
+the comment's `5` becomes out of sync with the if statement value, however, 
+because I know _why_ we switching I can more easily work out which value is 
+correct (and update the wrong value).
 
 ## Miscellaneous
 
