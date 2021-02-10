@@ -134,6 +134,84 @@ the comment becomes out of sync with the if statement value, however,
 because I know _why_ we switching I can more easily work out which value is 
 correct (and update the wrong value).
 
+### Docstrings
+As well as comments at the line-level, it is incredibly helpful to have comments
+at the function-level too. 
+These are often referred to as "Docstrings".
+
+A Docstring gives information about:
+
+* what the function does
+* what inputs it expects, and in what format
+* what will be returned
+* An example of usage
+* Any other relevant information - extra reading, computational complexity, related functions, etc
+
+There is no one particular format that works best for docstrings, and any format
+which makes the above details clear is fine. 
+With that being said, it can be helpful to format such docstrings in a 
+particular way, to allow for automated documentation tools (e.g. 
+[DoxyGen](https://www.doxygen.nl/index.html) 
+or 
+[Sphinx](https://www.sphinx-doc.org/en/master/)) 
+to parse them and automatically create pretty docs. 
+
+Sticking to such formats, particularly within a project, can be useful to make
+documentation easier. A popular format in Python is the 
+[Numpy](https://numpydoc.readthedocs.io/en/latest/format.html) 
+format, which looks like:
+
+    def my_function(quantity, price):
+        """ One line summary of function
+
+        More verbose/extended description of function
+
+        Parameters
+        ----------
+        quantity : int
+            The first argument. Describe acceptable values and units.
+            The quantity of units to process, must be integral and >= 0.
+        price : float
+            The price per item in GBP
+        
+        Returns 
+        -------
+        float
+            The total cost to buy `quantity` items at `price` per item. 
+
+        See Also
+        --------
+        Link to a document/paper that the function is based on
+
+        Examples
+        --------
+        >>> quant = 5
+        >>> price = 1.54
+        >>> my_function(quant, price)
+        7.7
+        """
+
+A more complete example can be found [here](https://numpydoc.readthedocs.io/en/latest/example.html#example)
+
+The other benefit to using an existing format is that you can install plugins 
+to your editor to fill out the boilerplate for you. This makes the process of 
+documenting your code much, much, quicker. 
+
+Using Docstrings in a particular format can also allow your editor to read them
+and provide helpful tooltips while coding. 
+Rather than having to find the file the function is in, find the function, 
+and then spend some time trying to work out what format the inputs should be, 
+you can have the editor prompt you as you type. 
+
+See [TODO ADD LINK TO IDE AUTOMATION] for more.
+
+
+When writing modules of code which are passed around as a single file, rather 
+than as part of a larger project, it is often common to also include information
+such as developer name and contact details, version number, and a changelog. 
+Although this can be helpful, this information is already contained 
+elsewhere when using [version control (TODO LINK TO VERSION CONTROL)] and so
+adding this information at the top of a file is mostly optional.
 
 ## Miscellaneous
 
