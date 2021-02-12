@@ -22,3 +22,6 @@
 
 * Version control
 
+* Training
+    * [RSE Training Courses](https://www.bristol.ac.uk/acrc/research-software-engineering/training/)
+
