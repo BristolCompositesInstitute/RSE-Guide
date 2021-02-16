@@ -2,25 +2,25 @@
 
 ## Core principles
 
-1. Write code for readability, maintainability, and clarity
+1. [Write code for readability, maintainability, and clarity](code_for_readability.md)
 
-2. Write small functions that do _one thing_, and do that _one thing_ well
+2. [Write small functions that do _one thing_, and do that _one thing_ well](SRP.md)
 
 3. Don't assume your code does what you think - test it.
 
 4. Use IDEs, debuggers, and automatic tools and documentation
 
+## Languages
 
+* [Python](python_style.md)
 
-* Python
+* [MATLAB](matlab_style.md)
 
-* MATLAB
+* [FORTRAN](fortran_style.md)
 
-* FORTRAN
+* [C++](cpp_style.md)
 
-* C++
-
-* Version control
+* [Version control](version_control.md)
 
 * Training
     * [RSE Training Courses](https://www.bristol.ac.uk/acrc/research-software-engineering/training/)
