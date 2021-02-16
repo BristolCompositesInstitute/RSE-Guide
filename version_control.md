@@ -130,6 +130,46 @@ version contains new functionality, but old code should still work as expected.
 
 
 ## Version Control
+Version control, on the other hand, deals with how such multiple versions are 
+handled and tracked in an convenient way - rather than ending up with a file 
+called `my_file_version_3_supervisor_edits_bug_fix_3`. 
+In addition to preventing long and error prone filenames, Version Control 
+tools make collaborative code development much, much, easier.
+
+There are many Version Control tools out there, however, by far the most 
+popular now is [Git](https://git-scm.com/about). 
+
+Building on top of Git, there are now many online platforms that make publically
+sharing and distributing our code significantly easier, such as 
+[GitHub](https://github.com/) and [GitLab](https://about.gitlab.com/).
+
+Although Git may seem complex and daunting at first, once you have learnt the
+basics you will realise that 95\% of using git relies on just a handful of 
+commands, which essentially boil down to
+* Select which modifications you would like to save
+* Describe the modifications
+* Commit (save) the changes
+* Push (upload) the changes to a service like GitHub or GitLab (optional)
+
+There are many Git tutorials out there, however, we recommend following the 
+course created by the Bristol Research Software Engineering team, 
+[here](https://chryswoods.com/introducing_git/).
+
+**\*\*_All new code projects should use Git to track versions_\*\***
+
+Within ACCIS we have access to both GitHub and GitLab services. 
+The [GitHub](https://github.com/ACCIS) organisation makes publishing code more
+straightforward (although private projects are still possible), however, might 
+be hosted on international servers. 
+
+The GitLab server is locally hosted within the University which gives us 
+greater control over issues such as Export Control. 
+
+For information about the GitLab server (e.g. how to access it), or for any
+queries relating to Git in general, please contact 
+Matt Edwards ([m.edwards@bristol.ac.uk](mailto:m.edwards@bristol.ac.uk))
+or
+Stephen Hallett ([Stephen.Hallett@bristol.ac.uk](mailto:Stephen.Hallett@bristol.ac.uk))
 
 
 
