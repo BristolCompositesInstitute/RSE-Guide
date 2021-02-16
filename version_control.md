@@ -41,7 +41,7 @@ An interface is as simply as a function signature, for example:
 
         Returns
         -------
-        floar
+        float
             The adjusted price
         """
         return price * (1 - discount)
@@ -74,7 +74,7 @@ discount and a percentage discount:
 
         Returns
         -------
-        floar
+        float
             The adjusted price
         """
         return (price - abs_discount) * (1 - rel_discount)
@@ -116,7 +116,7 @@ compatible. For example,
 
         Returns
         -------
-        floar
+        float
             The adjusted price
         """
         return (price - abs_discount) * (1 - rel_discount)
