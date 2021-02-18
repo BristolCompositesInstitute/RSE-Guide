@@ -53,7 +53,7 @@ particular format, it is easier to create some dummy data and test the just
 this function, than it is to find a bug in a large script where loading data
 is just one small section.
 
-Likewise, it is easy to verify that a function which, for example, 
+Likewise, it is relatively easy to verify that a function which, for example, 
 calculates gradients, inverts a matrix, or sorts some data is working as 
 expected.
 
@@ -93,10 +93,11 @@ Test frameworks and [Version Control](version_control.md) work exceptionally
 well together, and are the key componenents of the popular software engineering
 buzz-term "Continuous Integration". 
 
-Since all of our tests can now be run with a single command, it is easy to get
-a computer to do this automatically for us before we release a new version of 
-the software. This means that we never forget to run the tests, and that we 
-don't release code that breaks previous functionality. 
+Since all of our tests can now be run with a single command, it is possible 
+to get a computer to do this automatically for us before we release a new 
+version of the software. 
+This means that we never forget to run the tests, and don't release code that 
+breaks previous functionality. 
 
 
 
