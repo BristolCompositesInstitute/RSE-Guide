@@ -6,7 +6,7 @@
 
 2. [Write small functions that do _one thing_, and do that _one thing_ well](SRP.md)
 
-3. Don't assume your code does what you think - test it.
+3. [Don't assume your code does what you think - test it.](testing.md)
 
 4. Use IDEs, debuggers, and automatic tools and documentation
 
