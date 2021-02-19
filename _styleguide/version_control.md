@@ -1,4 +1,7 @@
-# Version Control
+---
+title: "Version Control"
+---
+
 Keeping track of different versions of software is incredibly important and 
 beneficial, particularly as other people start to use our work. 
 

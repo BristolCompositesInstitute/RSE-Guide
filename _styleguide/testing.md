@@ -1,4 +1,7 @@
-# Don't assume your code does what you think - test it.
+---
+title: "Don't assume your code does what you think - test it."
+---
+
 Testing our code is an incredibly important part of software development, as it
 allows us to be confident that it is doing what is expected. Most people are 
 probably already doing some form of testing or checking to ensure correct 

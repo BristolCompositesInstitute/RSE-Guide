@@ -1,4 +1,6 @@
-# Write code for readability, maintainability, and clarity
+---
+title: "Write code for readability, maintainability, and clarity"
+---
 
 It is generally accepted that reading code is harder than writing code (even 
 when reading our own code). This is because when we write code we have some 

@@ -1,4 +1,6 @@
-# Write small functions that do _one thing_, and do that _one thing_ well
+---
+title: "Write small functions that do _one thing_, and do that _one thing_ well"
+---
 
 Also known as the [Single Responsibility Principle (SRP)](https://en.wikipedia.org/wiki/Single-responsibility_principle) and closely related to [Separation of Concerns (SoC)](https://en.wikipedia.org/wiki/Separation_of_concerns).
 

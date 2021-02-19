@@ -1,4 +1,7 @@
-# IDEs, Debuggers, and automatic tools
+---
+title: "IDEs and automatic tools"
+---
+
 The key message of this section is that you should use a good editor to write 
 code and, furthermore, you should spend time learning how to use the editor 
 effectively.
