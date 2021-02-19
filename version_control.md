@@ -4,6 +4,7 @@ beneficial, particularly as other people start to use our work.
 
 When talking about 'version control' there are two subtly different topics 
 which are important to differentiate
+
 * Versioning
 * Version control
 

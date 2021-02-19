@@ -10,6 +10,8 @@
 
 4. [Use IDEs and automatic tools](IDEs_and_tools.md)
 
+5. [Use Version Control](version_control.md)
+
 ## Languages
 
 * [Python](python_style.md)
@@ -19,8 +21,6 @@
 * [FORTRAN](fortran_style.md)
 
 * [C++](cpp_style.md)
-
-* [Version control](version_control.md)
 
 * Training
     * [RSE Training Courses](https://www.bristol.ac.uk/acrc/research-software-engineering/training/)
