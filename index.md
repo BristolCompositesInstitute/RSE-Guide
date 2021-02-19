@@ -12,16 +12,10 @@
 
 5. [Use Version Control](version_control.md)
 
-## Languages
+## Miscellaneous
 
-* [Python](python_style.md)
+* [RSE Training Courses](https://www.bristol.ac.uk/acrc/research-software-engineering/training/)
 
-* [MATLAB](matlab_style.md)
+* [Language Specifics](languages.md)
 
-* [FORTRAN](fortran_style.md)
-
-* [C++](cpp_style.md)
-
-* Training
-    * [RSE Training Courses](https://www.bristol.ac.uk/acrc/research-software-engineering/training/)
 
