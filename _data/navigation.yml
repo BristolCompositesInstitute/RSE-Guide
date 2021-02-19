@@ -1,0 +1,16 @@
+docs:
+  - title: Home
+    url: index.html
+  - title: Style Guide
+    url: /styleguide/
+    children:
+      - title: "Code for Readability"
+        url: /styleguide/code_for_readability/
+      - title: "Do one thing, and do it well"
+        url: /styleguide/SRP/
+      - title: "Test your code"
+        url: /styleguide/testing
+      - title: "IDEs and tools"
+        url: /styleguide/IDEs_and_tools/
+      - title: "Version Control"
+        url: /styleguide/version_control/
