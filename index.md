@@ -8,7 +8,7 @@
 
 3. [Don't assume your code does what you think - test it.](testing.md)
 
-4. Use IDEs, debuggers, and automatic tools and documentation
+4. [Use IDEs and automatic tools](IDEs_and_tools.md)
 
 ## Languages
 
