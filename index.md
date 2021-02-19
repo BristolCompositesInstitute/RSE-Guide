@@ -1,4 +1,4 @@
-# Writing good software - contents
+# Software Development Best Practices and Style Guide
 
 ## Core principles
 
