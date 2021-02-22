@@ -19,7 +19,7 @@ file_order = [
 # delete contents of tmp file if it exists
 open('tmp_output.md', 'w').close()
 
-for i, file in enumerate(file_order):
+for file in file_order:
     with open(file, 'r') as f:
         ftext = f.read()
         matches = re.split("---\\ntitle: \"(.*?)\"(.|\n)*?---", ftext)
