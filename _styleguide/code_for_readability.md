@@ -19,7 +19,7 @@ will help save time in the future.
 Whitespace can be a really helpful tool to improve readability as it helps to 
 demonstrate _intent_. 
 
-Consider the following expression, taken from the one Dimensional 
+Consider the following expression, taken from the one dimensional 
 [DefGen model](https://github.com/ACCIS/DefGen_1D), without whitespace:
 
 ```python
