@@ -22,7 +22,9 @@ demonstrate _intent_.
 Consider the following expression, taken from the one Dimensional 
 [DefGen model](https://github.com/ACCIS/DefGen_1D), without whitespace:
 
-    value = 2*xsi_l**0.5*(h/h0)*k*((k/(xsi_f**0.5*(h/h0)-k))**2+3)
+```python
+value = 2*xsi_l**0.5*(h/h0)*k*((k/(xsi_f**0.5*(h/h0)-k))**2+3)
+```
 
 Not only is this hard to read, but is prone to errors, for example, 
 parentheses in the wrong place or incorrect 
@@ -31,40 +33,49 @@ If `value` is wrong, it will be hard to diagnose the problem.
 
 At the very least, adding whitespace to the expression can help.
 
-    value = 2*xsi_l**0.5 * (h/h0) * k * ((k / (xsi_f**0.5 * (h/h0) - k) )**2 + 3)
-
+```python
+value = 2*xsi_l**0.5 * (h/h0) * k * ((k / (xsi_f**0.5 * (h/h0) - k) )**2 + 3)
+```
 
 This can be taken one step further by using line continuation to spread the 
 expression over several lines, as it is 
 [in practice](https://github.com/ACCIS/DefGen_1D/blob/main/src/defgen/defgen.py#L301):
 
-    value = ( 2*xsi_l**0.5 * 
-             (h/h0) * 
-             k * ( 
-               (k / (xsi_f**0.5 * (h/h0) - k) )**2 + 3
-             ))
+```python
+value = ( 2*xsi_l**0.5 * 
+         (h/h0) * 
+         k * ( 
+         (k / (xsi_f**0.5 * (h/h0) - k) )**2 + 3
+        ))
+```
 
 It is now more clear what was _intended_, and so errors can be fixed more easily. 
 Consider if we had forgotten to add the parentheses around the 4th term, such 
 that rather than `a * (b + 3)` we had `a * b + 3` 
 (which evaluates as `(a * b) + 3`)
 
-    value = ( 2*xsi_l**0.5 * 
-             (h/h0) * 
-             k * 
-             (k / (xsi_f**0.5 * (h/h0) - k) )**2 + 3
-             )
+```python
+value = ( 2*xsi_l**0.5 * 
+         (h/h0) * 
+         k * 
+         (k / (xsi_f**0.5 * (h/h0) - k) )**2 + 3
+        )
+```
 
 Is much easier to diagnose than:
 
-    value = 2*xsi_l**0.5 * (h/h0) * k * (k / (xsi_f**0.5 * (h/h0) - k) )**2 + 3
+```python
+value = 2*xsi_l**0.5 * (h/h0) * k * (k / (xsi_f**0.5 * (h/h0) - k) )**2 + 3
+```
 
 
 Another option for improving readability, is to introduce intermediate 
 variables like:
 
-    tmp = (k / (xsi_f**0.5 * (h/h0) - k) )**2  
-    value = (2*xsi_l**0.5) * (h/h0) * k * (tmp + 3)    
+```python
+tmp = (k / (xsi_f**0.5 * (h/h0) - k) )**2  
+value = (2*xsi_l**0.5) * (h/h0) * k * (tmp + 3)    
+```
 
 Most of the time, this is perfectly OK, however, it is important to be careful 
 with variable naming here as `tmp` may already be used (and still needed) 
@@ -85,27 +96,32 @@ Some languages, like Python, enforce correct use of indentation and will not
 run if incorrect.
 Consider the difference between:
 
-    if (a > b){
-    int another_var = 5;
-    for(int i = 0; i < a; i++){
-    my_function(i, a, another_var);
-    if (i == 3){
-    print("Fourth iteration")
-    }
-    }
-    }
+```c++
+if (a > b){
+int another_var = 5;
+for(int i = 0; i < a; i++){
+my_function(i, a, another_var);
+if (i == 3){
+print("Fourth iteration")
+}
+}
+}
+```
 
 and:
 
-    if (a > b){
-        int another_var = 5;
-        for(int i = 1; i < a; i++){
-            my_function(i, a, another_var);
-            if (i == 3){
-                print("Third iteration")
-            }
+```c++
+if (a > b){
+    int another_var = 5;
+    for(int i = 1; i < a; i++){
+        my_function(i, a, another_var);
+        if (i == 3){
+            print("Third iteration")
         }
     }
+}
+```
+
 
 **Best Practice:** Use indentation to visually show nesting
 {: .notice--info}
@@ -128,13 +144,15 @@ easier.
 Comments that describe the "what" often simply duplicate our reading, and are 
 "lies waiting to happen":
 
-    # loop from 1 to 10  -- this is 'obvious' and unnecessary
-    for i = 1:10
-        # if i is less than 5, do something, otherwise do other thing
-        if i < 5:
-            do_something
-        else:
-            do_other_thing
+```python
+# loop from 1 to 10  -- this is 'obvious' and unnecessary
+for i = 1:10
+    # if i is less than 5, do something, otherwise do other thing
+    if i < 5:
+        do_something
+    else:
+        do_other_thing
+```
 
 If we later change the threshold then we need to be careful to also update the 
 comment.
@@ -145,13 +163,15 @@ difficult, and often impossible, without more context to work out which is the
 
 Rather, it is better to include contextual comments, for example:
 
-    for i = 1:10
-        # when i is below 5, some physical property <...> is different and so we
-        # need to solve the problem in a different way
-        if i < 5:
-            do_something
-        else:
-            do_other_thing
+```python
+for i = 1:10
+    # when i is below 5, some physical property <...> is different and so we
+    # need to solve the problem in a different way
+    if i < 5:
+        do_something
+    else:
+        do_other_thing
+```
 
 Although this is a contrived example, it shows that now I understand _why_ we
 are switching between different functions. It is, of course, still possible that
@@ -192,35 +212,37 @@ an easier task. A popular format in Python is the
 [Numpy](https://numpydoc.readthedocs.io/en/latest/format.html) 
 format, which looks like:
 
-    def my_function(quantity, price):
-        """ One line summary of function
+```python
+def my_function(quantity, price):
+    """ One line summary of function
 
-        More verbose/extended description of function
+    More verbose/extended description of function
 
-        Parameters
-        ----------
-        quantity : int
-            The first argument. Describe acceptable values and units.
-            The quantity of units to process, must be integral and >= 0.
-        price : float
-            The price per item in GBP
-        
-        Returns 
-        -------
-        float
-            The total cost to buy `quantity` items at `price` per item. 
+    Parameters
+    ----------
+    quantity : int
+        The first argument. Describe acceptable values and units.
+        The quantity of units to process, must be integral and >= 0.
+    price : float
+        The price per item in GBP
+    
+    Returns 
+    -------
+    float
+        The total cost to buy `quantity` items at `price` per item. 
 
-        See Also
-        --------
-        Link to a document/paper that the function is based on
+    See Also
+    --------
+    Link to a document/paper that the function is based on
 
-        Examples
-        --------
-        >>> quant = 5
-        >>> price = 1.54
-        >>> my_function(quant, price)
-        7.7
-        """
+    Examples
+    --------
+    >>> quant = 5
+    >>> price = 1.54
+    >>> my_function(quant, price)
+    7.7
+    """
+```
 
 A more complete example can be found 
 [here](https://numpydoc.readthedocs.io/en/latest/example.html#example)

@@ -35,23 +35,25 @@ API stands for 'Application Programming Interface' and describes how different
 bits of code, internally _or_ externally, interact with each other. 
 An interface is as simple as a function signature, for example:
 
-    def apply_discount(price, discount):
-        """Applies a discount to a price
+```python
+def apply_discount(price, discount):
+    """Applies a discount to a price
 
-        Parameters
-        ----------
-        price : float
-            The original price of the item, in gbp
-        discount : float
-            The discount to apply as a percentage, expressed as a decimal
-            e.g. 0.1 for a 10% discount
+    Parameters
+    ----------
+    price : float
+        The original price of the item, in gbp
+    discount : float
+        The discount to apply as a percentage, expressed as a decimal
+        e.g. 0.1 for a 10% discount
 
-        Returns
-        -------
-        float
-            The adjusted price
-        """
-        return price * (1 - discount)
+    Returns
+    -------
+    float
+        The adjusted price
+    """
+    return price * (1 - discount)
+```
 
 Here, the interface for `apply_discount` specifies that it must receive the 
 `price` and then the `discount` and it will return the adjusted price. 
@@ -65,27 +67,29 @@ interface.
 Later, we may decide to modify the functionality to be able to apply a fixed
 discount and a percentage discount:
 
-    def apply_discount(price, abs_discount, rel_discount):
-        """Applies a discount to a price
+```python
+def apply_discount(price, abs_discount, rel_discount):
+    """Applies a discount to a price
 
-        Parameters
-        ----------
-        price : float
-            The original price of the item, in gbp
-        abs_discount : float
-            A fixed discount to remove from the price
-            This is applied _before_ the relative discount
-        rel_discount : float
-            A proportional discount to apply as a percentage, expressed as a decimal
-            e.g. 0.1 for a 10% discount
-            Applied after the fixed discount is applied
+    Parameters
+    ----------
+    price : float
+        The original price of the item, in gbp
+    abs_discount : float
+        A fixed discount to remove from the price
+        This is applied _before_ the relative discount
+    rel_discount : float
+        A proportional discount to apply as a percentage, expressed as a decimal
+        e.g. 0.1 for a 10% discount
+        Applied after the fixed discount is applied
 
-        Returns
-        -------
-        float
-            The adjusted price
-        """
-        return (price - abs_discount) * (1 - rel_discount)
+    Returns
+    -------
+    float
+        The adjusted price
+    """
+    return (price - abs_discount) * (1 - rel_discount)
+```
 
 Now we have changed the interface to thr function in a _breaking_ way. Anywhere
 that uses the function `apply_discount(price, discount)` will need modifying, 
@@ -105,29 +109,31 @@ documentation or changelog.
 ### Non-breaking change
 Where possible, prioritise code modifications that are backwards compatible. 
 For example, 
-    
-    def apply_discount(price, rel_discount, abs_discount=0):
-        """Applies a discount to a price
 
-        Parameters
-        ----------
-        price : float
-            The original price of the item, in gbp
-        rel_discount : float
-            A proportional discount to apply as a percentage, expressed as a decimal
-            e.g. 0.1 for a 10% discount
-            Applied after the fixed discount is applied
-        abs_discount : float, optional
-            A fixed discount to remove from the price
-            This is applied _before_ the relative discount
-            Default = 0
+```python
+def apply_discount(price, rel_discount, abs_discount=0):
+    """Applies a discount to a price
 
-        Returns
-        -------
-        float
-            The adjusted price
-        """
-        return (price - abs_discount) * (1 - rel_discount)
+    Parameters
+    ----------
+    price : float
+        The original price of the item, in gbp
+    rel_discount : float
+        A proportional discount to apply as a percentage, expressed as a decimal
+        e.g. 0.1 for a 10% discount
+        Applied after the fixed discount is applied
+    abs_discount : float, optional
+        A fixed discount to remove from the price
+        This is applied _before_ the relative discount
+        Default = 0
+
+    Returns
+    -------
+    float
+        The adjusted price
+    """
+    return (price - abs_discount) * (1 - rel_discount)
+```
 
 We have added the ability to apply an absolute discount, however, the default
 is 0 such that any previous calls to `apply_discount(price, discount)` will
