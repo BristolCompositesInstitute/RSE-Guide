@@ -1,8 +1,9 @@
 # Software Development Best Practices and Style Guide
 
-This repository provides the website accis.github.io/StyleGuide which discus a
-range of software development best practices written for the Bristol 
-Composites Institute.
+This repository provides the website 
+[accis.github.io/StyleGuide](https://accis.github.io/StyleGuide/) 
+which discus a range of software development best practices written for the 
+Bristol Composites Institute.
 The guide covers a range of topics including, writing readable code, using 
 version control, and writing tests to assert code is behaving correctly.
 
