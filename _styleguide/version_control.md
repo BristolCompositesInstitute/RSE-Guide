@@ -33,7 +33,7 @@ A simple and popular versioning system is called
 What is an API?  
 API stands for 'Application Programming Interface' and describes how different
 bits of code, internally _or_ externally, interact with each other. 
-An interface is as simply as a function signature, for example:
+An interface is as simple as a function signature, for example:
 
     def apply_discount(price, discount):
         """Applies a discount to a price
@@ -99,13 +99,13 @@ _which will now break_.
 In this case, we should increment the `MAJOR` version to signal to users that
 if they want to update to the latest version, some old stuff may break.
 
-It is also *_CRITICAL_* that you convey this information in the release 
+It is also ***CRITICAL*** that you convey this information in the release 
 documentation or changelog. 
 
 ### Non-breaking change
 Where possible, you should prioritise code modifications that are backwards 
 compatible. For example, 
-
+    
     def apply_discount(price, rel_discount, abs_discount=0):
         """Applies a discount to a price
 
@@ -169,7 +169,7 @@ There are many Git tutorials out there, however, we recommend following the
 course created by the Bristol Research Software Engineering team, 
 [here](https://chryswoods.com/introducing_git/).
 
-**\*\*_All new code projects should use Git to track versions_\*\***
+***ALL NEW CODE PROJECTS SHOULD USE GIT TO TRACK VERSIONS***
 
 Within ACCIS we have access to both GitHub and GitLab services. 
 The [GitHub](https://github.com/ACCIS) organisation makes publishing code more
