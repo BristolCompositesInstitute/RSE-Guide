@@ -16,22 +16,27 @@ will help save time in the future.
 
 ## Whitespace and parentheses
 
-When programming, whitespace can be a really helpful tool to improve readability as it helps to demonstrate _intent_. 
+Whitespace can be a really helpful tool to improve readability as it helps to 
+demonstrate _intent_. 
 
-Consider the following expression, taken from the one Dimensional [DefGen model](https://github.com/ACCIS/DefGen_1D), without any whitespace:
+Consider the following expression, taken from the one Dimensional 
+[DefGen model](https://github.com/ACCIS/DefGen_1D), without whitespace:
 
     value = 2*xsi_l**0.5*(h/h0)*k*((k/(xsi_f**0.5*(h/h0)-k))**2+3)
 
-Not only is this incredibly hard to read, but is prone to errors, for example, parentheses in the wrong place or incorrect [order of operations](https://en.wikipedia.org/wiki/Order_of_operations). 
-If value is wrong, it will be hard to diagnose the problem. 
+Not only is this hard to read, but is prone to errors, for example, 
+parentheses in the wrong place or incorrect 
+[order of operations](https://en.wikipedia.org/wiki/Order_of_operations). 
+If `value` is wrong, it will be hard to diagnose the problem. 
 
-At the very least, adding whitespace to separate sections of the expression can help readability.
+At the very least, adding whitespace to the expression can help.
 
     value = 2*xsi_l**0.5 * (h/h0) * k * ((k / (xsi_f**0.5 * (h/h0) - k) )**2 + 3)
 
-This can help to identify mistakes such as those mentioned above. 
 
-This can be taken one step further by using line continuation to spread the expression over several lines, as it is [in practice](https://github.com/ACCIS/DefGen_1D/blob/main/src/defgen/defgen.py#L301):
+This can be taken one step further by using line continuation to spread the 
+expression over several lines, as it is 
+[in practice](https://github.com/ACCIS/DefGen_1D/blob/main/src/defgen/defgen.py#L301):
 
     value = ( 2*xsi_l**0.5 * 
              (h/h0) * 
@@ -39,7 +44,10 @@ This can be taken one step further by using line continuation to spread the expr
                (k / (xsi_f**0.5 * (h/h0) - k) )**2 + 3
              ))
 
-It is now clear what was _intended_, and so errors can be fixed more easily. Consider if we had forgotten to add the parentheses around the 4th term, such that rather than `a * (b + 3)` we were evaluating as `(a * b) + 3`. 
+It is now more clear what was _intended_, and so errors can be fixed more easily. 
+Consider if we had forgotten to add the parentheses around the 4th term, such 
+that rather than `a * (b + 3)` we had `a * b + 3` 
+(which evaluates as `(a * b) + 3`)
 
     value = ( 2*xsi_l**0.5 * 
              (h/h0) * 
@@ -52,22 +60,29 @@ Is much easier to diagnose than:
     value = 2*xsi_l**0.5 * (h/h0) * k * (k / (xsi_f**0.5 * (h/h0) - k) )**2 + 3
 
 
-Another option for improving readability, would be to introduce intermediate variables such as:
+Another option for improving readability, is to introduce intermediate 
+variables like:
 
     tmp = (k / (xsi_f**0.5 * (h/h0) - k) )**2  
     value = (2*xsi_l**0.5) * (h/h0) * k * (tmp + 3)    
 
-However, it is important to be careful and clear with variable naming here as
-`tmp` may already be used (and still needed) elsewhere in the code, and may also
-cause the reader to think "Why are we holding on to this value? Is it important?"
-which may distract from the main code. 
-[Writing functions that do _one thing_, and do that _one thing_ well]() can help 
-to reduce such name collisions, though. 
+Most of the time, this is perfectly OK, however, it is important to be careful 
+with variable naming here as `tmp` may already be used (and still needed) 
+elsewhere in the code ([Writing small functions](SRP.md) can help with this, 
+though). 
+Additionally, this may add distract the reader ("Why are we holding on to this 
+value? Is it important?") and can even sometimes affect the performance of code. 
+
+
+**Best Practice:** Use whitespace to make code easier to read
+{: .notice--info}
+
+
 
 ### Indentation
 Indentation is another form of whitespace that can be used to help readability. 
-Indeed, languages like Python enforce correct use of indentation and will throw
-errors if incorrect.
+Some languages, like Python, enforce correct use of indentation and will not
+run if incorrect.
 Consider the difference between:
 
     if (a > b){
@@ -84,29 +99,36 @@ and:
 
     if (a > b){
         int another_var = 5;
-        for(int i = 0; i < a; i++){
+        for(int i = 1; i < a; i++){
             my_function(i, a, another_var);
             if (i == 3){
-                print("Fourth iteration")
+                print("Third iteration")
             }
         }
     }
 
-## Comments and docstrings
+**Best Practice:** Use indentation to visually show nesting
+{: .notice--info}
+
+## Comments
 As mentioned above, comments should describe "why" the code is the way it is, 
 not simply describe "what" the code does. 
 
-We should strive to write self-documenting code where possible, that is, the 
-"what" should be obvious from the code itself. 
-If it isn't, then it is a sign that the code needs re-structuring or variable/function names rethinking. 
-Of course, this is not always possible and these inherently complex/confusing 
+Ideally, code should be self-documenting where possible, i.e. the "what" should 
+be obvious from the code structure and variable names itself. 
+Often, code which doesn't make sense without a comment is a sign that the code 
+needs refactoring. 
+Of course this is not always possible and these inherently complex/confusing 
 sections of code should be commented with the 'what' to make the job of reading 
 easier.
+
+**Best Practice:** Try to write code that is 'self-documenting'
+{: .notice--info}
 
 Comments that describe the "what" often simply duplicate our reading, and are 
 "lies waiting to happen":
 
-    # loop from 1 to 10  -- this is obvious and unnecessary
+    # loop from 1 to 10  -- this is 'obvious' and unnecessary
     for i = 1:10
         # if i is less than 5, do something, otherwise do other thing
         if i < 5:
@@ -114,11 +136,12 @@ Comments that describe the "what" often simply duplicate our reading, and are
         else:
             do_other_thing
 
-Not only is the comment adding nothing that isn't clear from the code, but if we
-later change the threshold from, say, 5 to 7, then we need to be careful to also
-update the comment.
+If we later change the threshold then we need to be careful to also update the 
+comment.
 Otherwise the comment and the code no longer agree and it can be extremely 
-difficult, and often impossible, to work out which is the 'correct' value. 
+difficult, and often impossible, without more context to work out which is the 
+'correct' value. 
+
 
 Rather, it is better to include contextual comments, for example:
 
@@ -132,11 +155,16 @@ Rather, it is better to include contextual comments, for example:
 
 Although this is a contrived example, it shows that now I understand _why_ we
 are switching between different functions. It is, of course, still possible that
-the comment becomes out of sync with the if statement value, however, 
-because I know _why_ we switching I can more easily work out which value is 
-correct (and update the wrong value).
+the comment becomes out of sync with the code, however, because I know _why_ 
+we are switching (thanks to the comment) I can more easily work out which value 
+is correct, and update the wrong value. 
 
-### Docstrings
+**Best Practice:** Use comments to explain _why_ you are doing something or add
+extra context. Only use comments to explain "what" the code is doing when it 
+isn't obvious from the code itself.
+{: .notice--info}
+
+## Docstrings
 As well as comments at the line-level, it is incredibly helpful to have comments
 at the function-level too. 
 These are often referred to as "Docstrings".
@@ -147,7 +175,8 @@ A Docstring gives information about:
 * what inputs it expects, and in what format
 * what will be returned
 * An example of usage
-* Any other relevant information - extra reading, computational complexity, related functions, etc
+* Any other relevant information - extra reading, computational complexity, 
+  related functions, etc
 
 There is no one particular format that works best for docstrings, and any format
 which makes the above details clear is fine. 
@@ -158,8 +187,8 @@ or
 [Sphinx](https://www.sphinx-doc.org/en/master/)) 
 to parse them and automatically create pretty docs. 
 
-Sticking to such formats, particularly within a project, can be useful to make
-documentation easier. A popular format in Python is the 
+Sticking to such formats, particularly within a project, can make documentation 
+an easier task. A popular format in Python is the 
 [Numpy](https://numpydoc.readthedocs.io/en/latest/format.html) 
 format, which looks like:
 
@@ -193,41 +222,23 @@ format, which looks like:
         7.7
         """
 
-A more complete example can be found [here](https://numpydoc.readthedocs.io/en/latest/example.html#example)
+A more complete example can be found 
+[here](https://numpydoc.readthedocs.io/en/latest/example.html#example)
 
 The other benefit to using an existing format is that you can install plugins 
 to your editor to fill out the boilerplate for you. This makes the process of 
 documenting your code much, much, quicker. 
+See [IDEs and tools](IDEs_and_tools.md) for more.
 
-Using Docstrings in a particular format can also allow your editor to read them
-and provide helpful tooltips while coding. 
-Rather than having to find the file the function is in, find the function, 
-and then spend some time trying to work out what format the inputs should be, 
-you can have the editor prompt you as you type. 
+Using Docstrings can also enable your editor to provide helpful tooltips while 
+coding. 
+Rather than having to search for the function and then spend some time 
+working out how to use it, you can have the editor prompt you as you type. 
 
-See [TODO ADD LINK TO IDE AUTOMATION] for more.
+**Best Practice:** Write docstrings that explain what a function does and how
+to use it. Configure your editor to automate parts of this process.
+{: .notice--info}
 
-
-When writing modules of code which are passed around as a single file, rather 
-than as part of a larger project, it is often common to also include information
-such as developer name and contact details, version number, and a changelog. 
-Although this can be helpful, this information is already contained 
-elsewhere when using [version control (TODO LINK TO VERSION CONTROL)] and so
-adding this information at the top of a file is mostly optional.
-
-
-## Style Guides
-Style guides help developers be consistent within a project. By adopting a 
-uniform style, it becomes easier to read other people's code.
-Although the particular style guide that you adopt (or create!) does not matter, 
-it is important that all developers within the project agree to the same guide. 
-
-Various languages have their own recommended style and these should be adopted
-in the first instance, unless there is good motivation to deviate. 
-
-See 
-TODO: add links to language specific pages 
-for more information on each language.
 
 ## Miscellaneous
 As well as the main points of guidence above, there are a few other things that
@@ -241,6 +252,12 @@ can help make software development more straightforward
     * If you include other code in your project, consider an `include` folder
     * Add a README.md file at the top level that tells users how to install, 
     run, and get started with your code.
+* Consistent coding style
+    * Style guides, like this document, help developers be consistent within a 
+    project. By adopting a consistent style it becomes easier to read other 
+    people's code, as there is less to 'work out'.
+    * The particular style that you choose tends to matter less than having 
+    all developers on a project adhering to the guidelines. 
 * Variable scope
     * Reducing the scope of your variables can make it easier to read and debug
     code. If I declare a variable, `my_var`, at the start of a script, and then

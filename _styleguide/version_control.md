@@ -133,7 +133,7 @@ In this case we should increment `MINOR` to signal to users that the newer
 version contains new functionality, but old code should still work as expected. 
 
 
-## Version Control
+## Version Control (Git)
 Version control, on the other hand, deals with how such multiple versions are 
 handled and tracked in an convenient way - rather than ending up with a file 
 called `my_file_version_3_supervisor_edits_bug_fix_3`. 

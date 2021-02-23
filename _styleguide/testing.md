@@ -6,8 +6,8 @@ Testing our code is an incredibly important part of software development, as it
 allows us to be confident that it is doing what is expected. Most people are 
 probably already doing some form of testing or checking to ensure correct 
 behaviour; perhaps by visually inspecting the resulting plot, or checking for
-non physical behaviour, command line experimentation, or comparing against 
-previous results. 
+non-physical behaviour, command line/interpretter experimentation, or 
+comparing against previous results. 
 
 This is a great start, but we can make our lives easier in the long run by 
 going a step or two further. Consider the following sections in order of 
