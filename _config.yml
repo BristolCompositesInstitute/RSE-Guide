@@ -28,6 +28,8 @@ defaults:
     values:
       layout: single
       classes: wide
+      toc: true
+      read_time: true
       sidebar:
         nav: "docs"
   - scope:
