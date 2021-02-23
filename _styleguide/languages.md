@@ -7,6 +7,9 @@ Python code should conform to [Pep-8](https://www.python.org/dev/peps/pep-0008/)
 
 Many IDEs provide automatic linting of code to identify violations of PEP-8.
 
+An excellent, extensive, guide to writing good Python code can be found at
+[The Hitchhikers Guide to Python](https://docs.python-guide.org/)
+
 ## MATLAB
 A good style guide for Matlab, used by RR engineers, is available on the 
 [Mathworks file exchange](https://uk.mathworks.com/matlabcentral/fileexchange/46056-matlab-style-guidelines-2-0).
