@@ -2,9 +2,10 @@
 title: "IDEs and automatic tools"
 ---
 
-The key message of this section is that you should use a good editor to write 
-code and, furthermore, you should spend time learning how to use the editor 
-effectively.
+The key message of this section is that using a good editor, and spending time
+to learn its features effectively, will make developing code more 
+straightforward, quicker, and less error-prone as less effort must be spent on
+mundane or tedious tasks.
 
 Useful features such as keyboard shortcuts, auto-completion, linting, and
 quick 'jump-to' navigation, may seem like trivial bonus features, but using 

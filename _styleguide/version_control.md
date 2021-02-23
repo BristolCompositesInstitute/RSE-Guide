@@ -103,8 +103,8 @@ It is also ***CRITICAL*** that you convey this information in the release
 documentation or changelog. 
 
 ### Non-breaking change
-Where possible, you should prioritise code modifications that are backwards 
-compatible. For example, 
+Where possible, prioritise code modifications that are backwards compatible. 
+For example, 
     
     def apply_discount(price, rel_discount, abs_discount=0):
         """Applies a discount to a price
