@@ -2,69 +2,88 @@
 title: "Write small functions that do _one thing_, and do that _one thing_ well"
 ---
 
-Also known as the [Single Responsibility Principle (SRP)](https://en.wikipedia.org/wiki/Single-responsibility_principle) and closely related to [Separation of Concerns (SoC)](https://en.wikipedia.org/wiki/Separation_of_concerns).
+Also known as the 
+[Single Responsibility Principle (SRP)](https://en.wikipedia.org/wiki/Single-responsibility_principle) 
+and closely related to 
+[Separation of Concerns (SoC)](https://en.wikipedia.org/wiki/Separation_of_concerns).
 
-Writing small functions with a single responsibility makes it significantly easier to verify that it is doing what you expect, modify behaviours, as well as re-use the function later - all saving significant amounts of time.
+Writing small functions with a _single responsibility_ makes it significantly 
+easier to verify that it is doing what you expect, modify behaviours, and/or 
+re-use the function later - all of which save significant amounts of time.
 
-Let's say we want to solve some problem, which needs some data loaded from a file. We could write a script that does this.
+It is important to note that this _single responsibility_ might be something 
+fairly complex and can change over time. 
+Consider the code underneath a `plot()` function.
+To the user, `plot()` does only one thing - "plots some data" - but underneath 
+there are lots of steps, each potentially quite complex, which need to take 
+place; axes need determining and drawing, data needs drawing, labels need 
+printing, etc.
+Therefore, `plot()`'s single responsibility is simply to coordinate, or act 
+as 'glue' between, these steps. 
+It would process the inputs and then call sub-functions which themselves have a 
+single responsibilty - `draw_axes()`, `plot_data()`, `print_labels()`, or 
+`plot_linear_trendline()` and so on. 
+These might also be broken down further: `plot_data()` may likely need 
+separate sub functions to `plot_data_points()` and `plot_interpolating_line()`. 
+This way, when working with `print_labels()` I don't need to concern or distract
+myself with the details of `draw_axes()` or `plot_data()`. 
 
-    # check filename is valid and open file   
-    (a few lines)
+**Best Practice:** Break code down into functions which do _one thing_ and do 
+that _one thing_ well. When the _one thing_ is particularly complex, use sub
+functions to break problems down into small manageable chunks.
+{: .notice--info}
 
-    # read through file and collect data into arrays, converting the data at 
-    # the same time, e.g. from ft to M and fahrenheit to C 
-    (possibly tens of lines)
+Thinking of a meaningful function name can help us to recognise when we are 
+trying to do too much at once. 
+If we find ourselves wanting to use the word 'and' in a function name, 
+e.g. `do_x_and_y()`, `load_and_process()`, `solve_and_output()`, this is often
+the first indication that we should stop and think about breaking the function
+into smaller chunks.
 
-    # Work with the data to solve a problem according to some settings 
-    (possibly hundreds of lines)
-
-    # Process (sort/filter/normalise) values and plot data 
-    (possibly tens of lines)
+**Best Practice:** Functions which need 'and' to describe what they do are 
+possibly doing too much.
+{: .notice--info}
 
 
-If this is just a quick experiment/prototype then this might be acceptable, but the code will be difficult (slower and more prone to mistakes) to debug/validate, modify or extend, or re-use elsewhere. 
-
-## Best practice
-
-Write small functions that do one thing, and do that one thing well. 
-These functions should ideally have enough documentation to describe what they do, 
-
-    filename = ...
-    filetype = ...
-    file = open_file(filename)
-
-    data = load_from_file(file, filetype)
-    data.temperature = f_to_c(data.temperature)
-    data.distance = ft_to_m(data.distance)
-
-    settings = configure_settings(method, timestep, constants, etc)
-    solution = solve_problem(data, settings)
-
-    processed_solution = filter_data(solution)
-
-    axis_handle = plot(processed_solution)
-
-This approach has a number of benefits. 
+## Benefits
 
 * Validation and testing
-    * I can easily verify that a function, e.g. `filter_data`, is correct by creating some mock data, calling the function, and checking the output is expected - I don't need to wait for a possibly slow code to run to find out I made a mistake.
+    * I can easily verify that a function, e.g. `sort_data()`, is correct by 
+    creating some mock data, calling the function, and checking the output is 
+    expected. 
+    * We don't have to endure the painful experience of a long running code, 
+    taking hours or even days, failing at the last step because of a simple 
+    mistake in the code. 
     * Debugging is much easier, for example: 
-        * Since each function is doing less, I can more easily spot when assumptions or implementation details are incorrect.
-        * If I know that a function behaves as expected, then I know the problem lies with the input data - I have narrowed my search.
-        * Because functions have their own local variables, I don't have to worry about name collisions, i.e. a bug caused by accidentally overwriting another variable (which can be incredibly hard to notice). 
-        This is because the code is less [_coupled_](https://en.wikipedia.org/wiki/Coupling_(computer_programming))
+        * Since each function is doing less, I can more easily spot when 
+        assumptions or implementation details are incorrect.
+        * If I know that a function behaves as expected with a simple example, 
+        but the function is not giving me the right answer, then we now know 
+        the problem lies with the input data, narrowing the search for the bug.
+        * Because functions have their own local variables, I don't have to 
+        worry about name collisions, i.e. a bug caused by accidentally 
+        overwriting another variable (which can be incredibly hard to notice). 
+        This is because the code is less 
+        [_coupled_](https://en.wikipedia.org/wiki/Coupling_(computer_programming))
 * Re-use
-    * Once I have verified that `f_to_c` or `ft_to_m` works correctly; I can use the functions anywhere, without having to modify any code or risk mis-typing the conversion factors.
-    * I can document precisely what a function does and what it expects (i.e. inputs and outputs), which makes it easier to
-    * I don't have to worry about changing variable names when reusing the function, 
+    * Once I have verified that my function works correctly; I can use it 
+    anywhere, without having to modify any code or risk mis-typing something.
+    * I can document precisely what a function does and what it expects 
+    (i.e. inputs and outputs), which makes it easier to
+    * I don't have to worry about changing variable names when reusing the 
+    function, 
 * Code extension
-    * I can relatively easily allow different filetypes by modifying `load_from_file`, as long as it still returns the data in the format needed by `solve_problem`. 
-    (Rather than duplicating the script, and changing the section which loads the file)
-    * I can relatively easily extend the code to process multiple files, by wrapping the code in a loop. 
-    (Rather than duplicating the script, and changing the filename)
+    * I can relatively easily add new functionality, for example adding a 
+    `plot_polynomial_trendline()` function that can be used instead of a linear
+    trendline, rather than duplicating and editing one big single function
 * Re-factoring 
-    * If I realise there is a more efficient way to, for example, filter the data, I can change the implementation of the function; Provided the output is still the same, all code that relies on `filter_data` will now benefit from the performance improvements.
+    * If I realise there is a more efficient way to, for example, draw the 
+    axes, I can easily change the implementation, ensuring it still returns a 
+    set of axes, and let all code using `draw_axes()` share the benefits.
 * cognitive load
-    * Humans only have a certain amount of 'working memory' - if you fill this with the details of _how_ the data is being converted, or _how_ the solution is being plotted, then you have less capacity to work out why what is causing the bug, or how to add some new feature.
+    * Humans only have a certain amount of 'working memory' - if you fill this 
+    with the details of _how_ the labels are printed, or _how_ the data 
+    is being plotted, then you have less capacity to work out what is causing 
+    a bug or add new feature.
 
 
