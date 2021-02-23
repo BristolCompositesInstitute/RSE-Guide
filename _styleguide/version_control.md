@@ -27,6 +27,9 @@ A simple and popular versioning system is called
 * MINOR version when you add functionality in a backwards compatible manner
 * PATCH version when you make backwards compatible bug fixes
 
+**Best Practice:** Use a version numbering system such as Semantic Versioning.
+{: .notice--info}
+
 What is an API?  
 API stands for 'Application Programming Interface' and describes how different
 bits of code, internally _or_ externally, interact with each other. 
@@ -55,6 +58,7 @@ Here, the interface for `apply_discount` specifies that it must receive the
 
 Other sections of the code will eventually use/rely on this function and its
 interface. 
+
 
 ### Breaking Change 
 
@@ -132,6 +136,9 @@ still behave in the same way. The code is _backwards compatible_.
 In this case we should increment `MINOR` to signal to users that the newer 
 version contains new functionality, but old code should still work as expected. 
 
+**Best Practice:** Prefer code modifications that wont break existing code.
+{: .notice--info}
+
 
 ## Version Control (Git)
 Version control, on the other hand, deals with how such multiple versions are 
@@ -139,6 +146,9 @@ handled and tracked in an convenient way - rather than ending up with a file
 called `my_file_version_3_supervisor_edits_bug_fix_3`. 
 In addition to preventing long and error prone filenames, Version Control 
 tools make collaborative code development much, much, easier.
+
+**Best Practice:** Use Git as a version control tool when developing software.
+{: .notice--info}
 
 There are many Version Control tools out there, however, by far the most 
 popular now is [Git](https://git-scm.com/about). 

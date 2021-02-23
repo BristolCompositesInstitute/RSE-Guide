@@ -20,6 +20,9 @@ Although the course focuses on PyCharm and VSCode, the principles remain fairly
 general to most IDEs. 
 [RSE Course on IDEs and Debugging](https://milliams.com/courses/ides_debugging/)
 
+**Best Practice:** Use a good editor and spend time familiarising yourself with
+the features and keyboard shortcuts available. 
+{: .notice--info}
 
 * Syntax highlighting
     * Perhaps the most visually obvious difference when using a more advanced
