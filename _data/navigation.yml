@@ -9,7 +9,7 @@ docs:
       - title: "Do one thing, and do it well"
         url: /styleguide/SRP/
       - title: "Test your code"
-        url: /styleguide/testing
+        url: /styleguide/testing/
       - title: "IDEs and tools"
         url: /styleguide/IDEs_and_tools/
       - title: "Version Control"

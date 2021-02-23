@@ -12,13 +12,14 @@ plugins:
 include:
   - _pages
 
+url: https://accis.github.io
+baseurl: /StyleGuide/
+
+
 collections:
   styleguide:
     output: true
     permalink: /:collection/:path/
-    order:
-      - code_for_readability.md
-      - IDEs_and_tools.md
 
 
 defaults:
