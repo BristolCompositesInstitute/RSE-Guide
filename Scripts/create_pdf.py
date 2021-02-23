@@ -16,19 +16,20 @@ file_order = [
     "_styleguide/languages.md",
 ]
 
-# delete contents of tmp file if it exists
-open('tmp_output.md', 'w').close()
+output_text = ""
 
 for file in file_order:
     with open(file, 'r') as f:
         ftext = f.read()
         matches = re.split("---\\ntitle: \"(.*?)\"(.|\n)*?---", ftext)
 
+        output_text += "# " + matches[1]
+        output_text += matches[-1] + "\n\n"
 
-        with open(f"tmp_output.md", 'a') as tmp_output:
-            tmp_output.write("# " + matches[1])
-            tmp_output.write(matches[-1])
-            tmp_output.write("\n\n")
+output_text = re.sub("{: .notice--info}", "", output_text)
+
+with open("tmp_output.md", "w") as out_file:
+    out_file.write(output_text)
 
 command = ("pandoc " +
            "-V urlcolor=blue " +
