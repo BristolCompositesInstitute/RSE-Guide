@@ -158,6 +158,7 @@ options menu.
 {: .notice--info}
 
 Here are a few useful shortcuts, in VS Code, for writing software:
+
 * Jump to function definition (`F12`)
 * Move to start/end of line (`home/end`)
 * Move cursor to next word (`ctrl + left/right`)
