@@ -166,6 +166,7 @@ sharing and distributing our code significantly easier, such as
 Although Git may seem complex and daunting at first, once you have learnt the
 basics you will realise that 95\% of using git relies on just a handful of 
 commands, which essentially boil down to
+
 * Select which modifications you would like to save
 * Describe the modifications
 * Commit (save) the changes

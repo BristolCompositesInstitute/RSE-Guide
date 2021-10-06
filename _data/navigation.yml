@@ -16,3 +16,5 @@ docs:
         url: /styleguide/version_control/
       - title: "Language Specifics"
         url: /styleguide/languages/
+      - title: "Getting Started with Git"
+        url: /styleguide/getting_started_with_git/

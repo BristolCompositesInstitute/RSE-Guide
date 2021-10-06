@@ -25,12 +25,14 @@ It should be noted that this document is from 1996, and so some aspects may
 no longer be considered best practice. 
 
 Some other useful documents:
+
 * [Fortran90.org best practices](https://www.fortran90.org/src/best-practices.html)
     * Community driven
 * [Fortran FOSS best practices](https://github.com/Fortran-FOSS-Programmers/Best_Practices#explicit)
     * Also community driven, fairly concise and with good examples.
 * [Compact F95 Language Summary](https://www.csee.umbc.edu/~squire/fortranclass/summary.shtml)
     * Very good as a quick reference
+    
 ## C++
 
 A widely regarded, including by RR, style guide to follow is the 
