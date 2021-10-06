@@ -24,4 +24,4 @@ sidebar:
 
 * [Language Specifics](/StyleGuide/styleguide/languages/)
 
-
+* [Getting started with Git](/StyleGuide/styleguide/getting_started_with_git)
