@@ -92,4 +92,17 @@ It is helpful to create a local branch or tag to denote which commit relates
 to which internal version. 
 
 
+## Adding a new page
 
+1. Create the new `.md` file under `/_styleguide`.
+2. Add the title for the md file at the top with the following syntax. This will set the page title, and what is shown on the collections page.
+
+    ```
+    ---
+    title: "Title here"  
+    ---
+    ```
+
+3. Add the link on the home page (`index.md`)
+4. Add the link to the side bar nav (`_data/navigation.yml`)
+5. Add the content.
