@@ -2,7 +2,7 @@
 title: "Getting started with Git"
 ---
 
-# Getting started
+## Getting started
 If you're relatively new to Git, have never heard of Git, or just want a 
 refresher on the basics, then the first thing to do is to follow the 
 [Bristol RSE](https://www.bristol.ac.uk/acrc/research-software-engineering/)
@@ -26,7 +26,7 @@ Matt Edwards ([m.edwards@bristol.ac.uk](mailto:m.edwards@bristol.ac.uk))
 or the 
 Ask-RSE mailbox ([ask-rse@bristol.ac.uk](mailto:ask-rse@bristol.ac.uk)).
 
-## Optional Pre-requisite
+### Optional Pre-requisite
 Note that Git is commonly used as a command line tool, and so it helps (though is
 not necessary) to have a basic understanding of the Command Line Interface (CLI).
 The Bristol RSE team also provide a workshop introducing the CLI for unix (i.e
@@ -47,7 +47,7 @@ completely new to Git then
 is a safe option.
 
 
-# Next Steps
+## Next Steps
 Once you are more comfortable using Git for the day-to-day tasks of tracking 
 changes through commits, it is helpful to learn how to use Git in a 
 collaborative manner, using services such as GitHub and GitLab. 
@@ -63,7 +63,7 @@ This workshop is also designed to be taught at a reasonably quick pace in a
 possible, but it will definitely take longer to go through at your own pace.
 
 
-# Support
+## Support
 The Bristol RSE group provide _free_ training to UoB Staff and Postgrads on Git
 roughly once per term. Please visit the 
 [training schedule](https://www.bristol.ac.uk/acrc/acrc-training/)
