@@ -79,14 +79,15 @@ value = (2*xsi_l**0.5) * (h/h0) * k * (tmp + 3)
 
 Most of the time, this is perfectly OK, however, it is important to be careful 
 with variable naming here as `tmp` may already be used (and still needed) 
-elsewhere in the code ([Writing small functions](SRP.md) can help with this, 
+elsewhere in the code ([Writing small functions](./single-responsibility) can help with this, 
 though). 
 Additionally, this may add distract the reader ("Why are we holding on to this 
 value? Is it important?") and can even sometimes affect the performance of code. 
 
 
-**Best Practice:** Use whitespace to make code easier to read
-{: .notice--info}
+```{admonition} Best Practice
+Use whitespace to make code easier to read
+```
 
 
 
@@ -122,9 +123,10 @@ if (a > b){
 }
 ```
 
+```{admonition} Best Practice
+Use indentation to visually show nesting
+```
 
-**Best Practice:** Use indentation to visually show nesting
-{: .notice--info}
 
 ## Comments
 As mentioned above, comments should describe "why" the code is the way it is, 
@@ -138,8 +140,9 @@ Of course this is not always possible and these inherently complex/confusing
 sections of code should be commented with the 'what' to make the job of reading 
 easier.
 
-**Best Practice:** Try to write code that is 'self-documenting'
-{: .notice--info}
+```{admonition} Best Practice
+Try to write code that is 'self-documenting'
+```
 
 Comments that describe the "what" often simply duplicate our reading, and are 
 "lies waiting to happen":
@@ -179,10 +182,11 @@ the comment becomes out of sync with the code, however, because I know _why_
 we are switching (thanks to the comment) I can more easily work out which value 
 is correct, and update the wrong value. 
 
-**Best Practice:** Use comments to explain _why_ you are doing something or add
+```{admonition} Best Practice
+Use comments to explain _why_ you are doing something or add
 extra context. Only use comments to explain "what" the code is doing when it 
 isn't obvious from the code itself.
-{: .notice--info}
+```
 
 ## Docstrings
 As well as comments at the line-level, it is incredibly helpful to have comments
@@ -250,16 +254,17 @@ A more complete example can be found
 The other benefit to using an existing format is that you can install plugins 
 to your editor to fill out the boilerplate for you. This makes the process of 
 documenting your code much, much, quicker. 
-See [IDEs and tools](IDEs_and_tools.md) for more.
+See [IDEs and tools](IDEs-and-tools) for more.
 
 Using Docstrings can also enable your editor to provide helpful tooltips while 
 coding. 
 Rather than having to search for the function and then spend some time 
 working out how to use it, you can have the editor prompt you as you type. 
 
-**Best Practice:** Write docstrings that explain what a function does and how
+```{admonition} Best Practice
+Write docstrings that explain what a function does and how
 to use it. Configure your editor to automate parts of this process.
-{: .notice--info}
+```
 
 
 ## Miscellaneous

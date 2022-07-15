@@ -22,9 +22,7 @@ the day-to-day tasks are fairly simple; there are really only ~6-7 commands
 that will be used on a regular basis. 
 
 If you have any questions, no matter how trivial it may seem, please contact 
-Matt Edwards ([m.edwards@bristol.ac.uk](mailto:m.edwards@bristol.ac.uk))
-or the 
-Ask-RSE mailbox ([ask-rse@bristol.ac.uk](mailto:ask-rse@bristol.ac.uk)).
+the Ask-RSE mailbox ([ask-rse@bristol.ac.uk](mailto:ask-rse@bristol.ac.uk)).
 
 ### Optional Pre-requisite
 Note that Git is commonly used as a command line tool, and so it helps (though is
@@ -70,9 +68,7 @@ roughly once per term. Please visit the
 to find out when the next course is and sign up.
 
 If you have other questions in the meantime, no matter how trivial it may seem,
-please contact 
-Matt Edwards ([m.edwards@bristol.ac.uk](mailto:m.edwards@bristol.ac.uk))
-or the 
+please contact the 
 Ask-RSE mailbox ([ask-rse@bristol.ac.uk](mailto:ask-rse@bristol.ac.uk)).
 
 Finally, the best way to learn Git is to experiment for yourself. 

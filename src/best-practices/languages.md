@@ -1,5 +1,5 @@
 ---
-title: "Language Specifics"
+title: "Language Specific Styles"
 ---
 
 ## Python
@@ -17,21 +17,18 @@ A good style guide for Matlab, used by RR engineers, is available on the
 A quick-reference version of this style guide can be found 
 [here](https://uk.mathworks.com/matlabcentral/mlc-downloads/downloads/e5a683fc-4a80-11e4-9553-005056977bd0/f8c4e908-a5b6-4ffb-a36a-9ee47990dfd3/images/screenshot.png)
 
-## FORTRAN
-The guide recommended by RR is the 
-[European Standards for Writing and Documenting Exchangeable Fortran 90 Code](https://wiki.c2sm.ethz.ch/pub/COSMO/CosmoRules/europ_sd.pdf).
+## Fortran
 
-It should be noted that this document is from 1996, and so some aspects may
-no longer be considered best practice. 
+See the [Fortran Style Guide](../abaqus-user-subroutines/fortran-style-guidelines) for Abaqus user subroutines.
 
-Some other useful documents:
+Some other useful resources:
 
+* [Fortran-Lang Quickstart Tutorial](https://fortran-lang.org/learn/quickstart)
+* [Fortran-Lang Discourse Forum](https://fortran-lang.discourse.group/)
 * [Fortran90.org best practices](https://www.fortran90.org/src/best-practices.html)
-    * Community driven
-* [Fortran FOSS best practices](https://github.com/Fortran-FOSS-Programmers/Best_Practices#explicit)
-    * Also community driven, fairly concise and with good examples.
+* [Fortran Wiki](https://fortranwiki.org/)
 * [Compact F95 Language Summary](https://www.csee.umbc.edu/~squire/fortranclass/summary.shtml)
-    * Very good as a quick reference
+
     
 ## C++
 

@@ -27,8 +27,9 @@ A simple and popular versioning system is called
 * MINOR version when you add functionality in a backwards compatible manner
 * PATCH version when you make backwards compatible bug fixes
 
-**Best Practice:** Use a version numbering system such as Semantic Versioning.
-{: .notice--info}
+```{admonition} Best Practice
+Use a version numbering system such as Semantic Versioning.
+```
 
 What is an API?  
 API stands for 'Application Programming Interface' and describes how different
@@ -142,8 +143,9 @@ still behave in the same way. The code is _backwards compatible_.
 In this case we should increment `MINOR` to signal to users that the newer 
 version contains new functionality, but old code should still work as expected. 
 
-**Best Practice:** Prefer code modifications that wont break existing code.
-{: .notice--info}
+```{admonition} Best Practice
+Prefer code modifications that wont break existing code.
+```
 
 
 ## Version Control (Git)
@@ -153,8 +155,9 @@ called `my_file_version_3_supervisor_edits_bug_fix_3`.
 In addition to preventing long and error prone filenames, Version Control 
 tools make collaborative code development much, much, easier.
 
-**Best Practice:** Use Git as a version control tool when developing software.
-{: .notice--info}
+```{admonition} Best Practice
+Use Git as a version control tool when developing software.
+```
 
 There are many Version Control tools out there, however, by far the most 
 popular now is [Git](https://git-scm.com/about). 
@@ -186,10 +189,7 @@ be hosted on international servers.
 The GitLab server is locally hosted within the University which gives us 
 greater control over issues such as Export Control. 
 
-For information about the GitLab server (e.g. how to access it), or for any
-queries relating to Git in general, please contact 
-Matt Edwards ([m.edwards@bristol.ac.uk](mailto:m.edwards@bristol.ac.uk))
-or
+For information about the GitLab server (e.g. how to access it), please contact 
 Stephen Hallett ([Stephen.Hallett@bristol.ac.uk](mailto:Stephen.Hallett@bristol.ac.uk))
 
 

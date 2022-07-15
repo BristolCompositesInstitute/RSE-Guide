@@ -28,10 +28,11 @@ separate sub functions to `plot_data_points()` and `plot_interpolating_line()`.
 This way, when working with `print_labels()` I don't need to concern or distract
 myself with the details of `draw_axes()` or `plot_data()`. 
 
-**Best Practice:** Break code down into functions which do _one thing_ and do 
+```{admonition} Best Practice
+Break code down into functions which do _one thing_ and do 
 that _one thing_ well. When the _one thing_ is particularly complex, use sub
 functions to break problems down into small manageable chunks.
-{: .notice--info}
+```
 
 Thinking of a meaningful function name can help us to recognise when we are 
 trying to do too much at once. 
@@ -40,9 +41,10 @@ e.g. `do_x_and_y()`, `load_and_process()`, `solve_and_output()`, this is often
 the first indication that we should stop and think about breaking the function
 into smaller chunks.
 
-**Best Practice:** Functions which need 'and' to describe what they do are 
+```{tip}
+Functions which need 'and' to describe what they do are 
 possibly doing too much.
-{: .notice--info}
+```
 
 
 ## Benefits

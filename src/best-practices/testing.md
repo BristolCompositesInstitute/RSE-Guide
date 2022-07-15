@@ -41,9 +41,10 @@ We don't need to try to remember the steps we took to prove the method worked,
 and if we run the test and all is normal then we have very quickly narrowed 
 our search for the bug. 
 
-**Best Practice:** Recreate interactive testing/exploration sessions in a script
+```{admonition} Best Practice
+Recreate interactive testing/exploration sessions in a script
 that can be easily run in the future.
-{: .notice--info}
+```
 
 ## Test small bits of code at a time
 Everyone is guilty of sometimes writing 10s or 100s of lines of code without 
@@ -72,9 +73,10 @@ required to re-test the behaviour in the future, we will naturally start to
 build a catalogue of test cases which can be easily run when trying to debug
 our code. 
 
-**Best Practice:** Work iteratively by breaking large tasks into small ones, 
+```{admonition} Best Practice
+Work iteratively by breaking large tasks into small ones, 
 and testing each small unit as it is written.
-{: .notice--info}
+```
 
 
 ## Use test frameworks to simplify the process
@@ -96,11 +98,11 @@ For an example of how to use PyTest, see the
 [UoB RSE course](https://milliams.com/courses/software_engineering_best_practices/)
 
 If you need help getting started with a test framework, please get in touch 
-with Matt Edwards ([m.edwards@bristol.ac.uk](mailto:m.edwards@bristol.ac.uk))
-or the RSE team ([ask-rse@bristol.ac.uk](mailto:ask-rse@bristol.ac.uk))
+with the RSE team ([ask-rse@bristol.ac.uk](mailto:ask-rse@bristol.ac.uk))
 
-**Best Practice:** Use test frameworks to make testing code easier.
-{: .notice--info}
+```{admonition} Best Practice
+Use test frameworks to make testing code easier.
+```
 
 ## Other benefits of testing
 Test frameworks and [Version Control](version_control.md) work exceptionally 

@@ -21,9 +21,10 @@ Although the course focuses on PyCharm and VSCode, the principles remain fairly
 general to most IDEs. 
 [RSE Course on IDEs and Debugging](https://milliams.com/courses/ides_debugging/)
 
-**Best Practice:** Use a good editor and spend time familiarising yourself with
+```{admonition} Best Practice
+Use a good editor and spend time familiarising yourself with
 the features and keyboard shortcuts available. 
-{: .notice--info}
+```
 
 ## Syntax Highlighting and Linting
 Syntax highlighting is perhaps the most visually obvious difference when using 
@@ -55,8 +56,9 @@ By using different colours to represent different types of word or term, it is
 easier to visually separate sections of code and spot errors. There are many 
 different colour themes out there - pick the one that works best for you.
 
-**Best Practice:** Use syntax highlighting to ephasise key features in code
-{: .notice--info}
+```{admonition} Best Practice
+Use syntax highlighting to ephasise key features in code
+```
 
 
 Code linting is very similar to the spelling and grammar checks (and squiggly 
@@ -65,8 +67,9 @@ A linter will look through your code for grammatical mistakes and/or formatting
 issues, such as typos and missing semi-colons, using functions incorrectly, or
 even just that the code layout could be better.
 
-**Best Practice:** Configure code linting in your IDE.
-{: .notice--info}
+```{admonition} Best Practice
+Configure code linting in your IDE.
+```
 
 ## Auto completion (Intellisense), Snippets, and Auto Documentation
 Auto completion is a fantastically helpful tool for writing code, as it makes 
@@ -94,8 +97,9 @@ std::cout << "" << std::endl;
 
 and places the cursor between the quotes, ready to type. 
 
-**Best Practice:** Write snippets for commonly used boiler plate code.
-{: .notice--info}
+```{admonition} Best Practice
+Write snippets for commonly used boiler plate code.
+```
 
 We can also apply snippets for helping us to write documentation in a 
 consistent format.
@@ -138,10 +142,11 @@ that automatically configure these snippets for us.
 In addition, many will even attempt to fill certain parts in automatically - 
 such as parameter names and types. 
 
-**Best Practice:** Use automatic documentation plugins to make writing docs 
+```{admonition} Best Practice
+Use automatic documentation plugins to make writing docs 
 more straightforward. If plugins aren't available, create snippets that do 
 most of the heavy lifting for us.
-{: .notice--info}
+```
 
 
 ## Keyboard shortcuts
@@ -154,8 +159,9 @@ For example, most people would prefer to use `ctrl + c` and `ctrl + v`, as it
 is far less distracting, and more subconcious, than having to click through an 
 options menu. 
 
-**Best Practice:** Spend time learning the keyboard shortcuts for your editor. 
-{: .notice--info}
+```{admonition} Best Practice
+Spend time learning the keyboard shortcuts for your editor. 
+```
 
 Here are a few useful shortcuts, in VS Code, for writing software:
 
@@ -182,8 +188,9 @@ will make this painful task that much easier.
 For a good resource on using a debugger, please see the UoB RSE 
 [Course on IDEs and Debugging](https://milliams.com/courses/ides_debugging/).
 
-**Best Practice:** Learn how to use debugging tools in your IDE.
-{: .notice--info}
+```{admonition} Best Practice
+Learn how to use debugging tools in your IDE.
+```
 
 
 
