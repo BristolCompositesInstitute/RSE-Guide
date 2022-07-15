@@ -19,8 +19,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'RSE Guide'
-copyright = 'Laurence Kedward 2022'
-author = 'Laurence Kedward'
+copyright = 'University of Bristol 2022'
+author = 'Bristol Composites Institute Research Software Engineering Team'
 
 
 # -- General configuration ---------------------------------------------------
@@ -47,8 +47,8 @@ language = 'en'
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-html_logo = '../abaci.png'
-html_favicon = '../abaci.ico'
+html_logo = '../BCI-RSE.png'
+html_favicon = '../BCI-RSE.ico'
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -62,6 +62,8 @@ html_theme = 'sphinx_book_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+
+html_title = 'Research Software Engineering Guide'
 
 # -- Extension configuration -------------------------------------------------
 
