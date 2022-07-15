@@ -9,6 +9,7 @@ maxdepth: 2
 caption: "Contents:"
 ---
 best-practices/index
+abaqus-user-subroutines/index
 guides/index
 ```
 
