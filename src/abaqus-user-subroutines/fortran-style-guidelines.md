@@ -2,6 +2,14 @@
 title: "Fortran Guidelines"
 ---
 
+
+```{contents}
+---
+
+---
+```
+
+
 ## Visual Layout
 
 The visual layout of code heavily influences how easy it is to read by those
