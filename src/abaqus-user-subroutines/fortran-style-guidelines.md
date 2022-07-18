@@ -1,5 +1,5 @@
 ---
-title: "Fortran Style Guidelines"
+title: "Fortran Guidelines"
 ---
 
 ## Visual Layout
@@ -144,6 +144,8 @@ visible upon reading through.
 ```
 
 
+## Style
+
 ### Naming & Capitalisation
 
 The naming of variables and procedures is important for conveying the
@@ -187,7 +189,32 @@ proper syntax highlighting.
 ```
 
 
-[^all-caps-readability]: <https://en.wikipedia.org/wiki/All_caps#Readability>
+### Comments
+
+Code should ideally be as self-documenting as possible, not requiring
+excessive comments to explain it. This means:
+- Using informative names for variables and functions
+- Break code into self-contained functions/subroutines that each have
+  a single clearly defined task
+
+```{admonition} Recommendation
+Write clear code that does not need excessive comments to explain
+```
+
+```{seealso}
+See <a href="../best-practices/code-for-readability.html#comments">Comments</a> in the best practices guide.
+```
+
+There are some scenarios where the use of comments is recommended:
+
+- Use comments to concisely explain the purpose and methodology of each
+  function or subroutine in your code
+  (see <a href="../best-practices/code-for-readability.html#docstrings">Docstrings</a>)
+
+- Use comments to explain obscure bug-fixes or workarounds that have no
+  obvious interpretation alone
+
+- Use comments to label the end of loops for nested loops
 
 
 
