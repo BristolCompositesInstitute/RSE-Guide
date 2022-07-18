@@ -358,3 +358,66 @@ Using the full end statement makes it easier to navigate files with many procedu
 </details>
 
 ```
+
+
+
+## Banned Features
+
+```{admonition} Background
+Backwards-compatibility is very important for the Fortran standard due to the
+age of the language and consequently large amount of legacy code still in use.
+This means that many legacy features remain in the language standard despite
+their use being strongly discouraged or them being made obsolete.
+```
+
+The following features of Fortran __should not be used:__
+
+### `goto` statement
+
+`goto` statements are universally acknowledged as bad programming practice
+since they obscure the control flow of the program and are highly error-prone.
+Moreover, they have been entirely superseded by
+structured programming constructs[^structured_programming]
+which includes familiar concepts such as conditional blocks (`if/else`), loops
+and functions.
+
+```{hint}
+The following statements __can be__ used instead of `goto` for common scenarios:
+
+- __`return`__ - return from a function or subroutine early
+- __`cycle`__ - jump straight to the next loop iteration, skipping the rest of the loop body
+- __`exit`__ - exit out of a loop, skipping all remaining iterations
+```
+
+
+### `common` block
+
+A common block defines an area of memory which is globally accessible by all
+functions and subroutines and which persists between invocations thereof.
+
+Commmon blocks __should not be used__ since their definition is allowed to
+vary between different functions, which can permit subtle errors to occur
+without an obvious symptom.
+
+```{admonition} Recommendation
+Use modules for persistent variables, that need to be accessible from multiple
+functions.
+```
+
+
+### `equivalence` statement
+
+Equivalence statement __should not be used__, they are complex and error-prone.
+Pointers or derived types should be used instead.
+
+
+### Labelled `do` loop
+
+Use an `end do` statement instead.
+
+
+
+
+[^all-caps-readability]: <https://en.wikipedia.org/wiki/All_caps#Readability>
+
+[^structured_programming]: <https://en.wikipedia.org/wiki/Structured_programming>
