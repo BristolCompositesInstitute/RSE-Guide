@@ -226,6 +226,92 @@ There are some scenarios where the use of comments is recommended:
 
 
 
+### Variable Declarations
+
+```{admonition} Recommendation
+Use the full double-colon syntax for all parameter and variable declarations.
+
+<details>
+<summary>Rationale</summary>
+Using the double-colon syntax everywhere improves
+readability and ensures all declarations are consistent with those
+that include attribuates.
+</details>
+```
+
+__Examples:__
+```fortran
+integer, parameter :: n = 100
+integer :: m
+real :: tolerance
+real :: parameters(n)
+```
+
+
+## Numerical
+
+
+### Declaring Double Precision Reals
+
+```{admonition} Recommendation
+Define a parameter `dp` at the top of your module and use it
+to declare double precision reals.
+
+<details>
+<summary>Rationale</summary>
+Other forms of double precision declaration are not portable across
+different platforms and compilers.
+</details>
+```
+
+
+__Option 1 (recommended):__ *Use the intrinsic 64 bit (double precision) floating point kind*
+```fortran
+  use iso_fortran_env, only: dp=>real64
+```
+
+__Option 2:__ *Request a specific (minimum) precision `p` and exponent range `r`*
+```fortran
+  integer, parameter, private :: dp = selected_real_kind(p=15, r=307)
+```
+
+__Example usage:__
+```fortran
+module demo
+  use iso_fortran_env, only: sp=>real32, dp=>real64
+  implicit none
+
+  real(sp), parameter :: pi_sp = 3.141593_sp
+  real(dp), parameter :: pi_dp = 3.14159265358979_dp
+
+end module demo
+```
+
+
+```{caution}
+You must use a precision __suffix__ when writing double precision constants
+anywhere within your code, otherwise they will be truncated to single precision.
+
+__Example:__ `real(dp), parameter :: a1 = 0.588375419731621_dp`
+
+```
+
+
+
+### Integer Division
+
+
+```{caution}
+Be careful when performing division with integer variables:
+- If all variables in the expression are integers, then an integer division
+will occur which will return the result rounded-down to the nearest integer.
+
+Floating-point division will occur if at least one of the variables in the
+expression is a `real`:
+- You can use the `real()` function to convert an integer to a real, *e.g.* `real(N,dp)`
+
+```
+
 
 ## Program Units
 
@@ -347,7 +433,7 @@ __Example:__
 ```fortran
 subroutine intent_example(a,b)
 
-  ! We read from a but not modify it
+  ! We can read from a but not modify it
   integer, intent(in) :: a
 
   ! We can modify b, but it is not defined initially
