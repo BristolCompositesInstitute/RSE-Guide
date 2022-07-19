@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_deploy:
+  html:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -35,3 +35,27 @@ jobs:
           branch: gh-pages
           folder: build/html/
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  pdf:
+    runs-on: ubuntu-latest
+    env:
+      APT_DEPS: texlive-latex-recommended texlive-latex-extra texlive-extra-utils latexmk
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Ubuntu Dependencies
+        run: sudo apt install ${{ env.APT_DEPS }}
+
+      - name: Create Conda environment
+        run: conda env create --file environment.yml
+
+      - name: Build documentation
+        run: conda run --name rse-guide sphinx-build -M latexpdf src build -W --keep-going
+
+      - name: Upload built pdf documentation artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: rse-guide-pdf
+          path: build/latex/
