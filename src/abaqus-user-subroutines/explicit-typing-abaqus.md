@@ -80,7 +80,8 @@ typed module which extracts this information from Abaqus. We can then use
 this module in the rest of our code, which will be explicitly typed.
 
 __Step 1:__
-See the `Abaqus_Definitions.f` file printed below and add it to your source files
+See the `Abaqus_Definitions.f` file printed below and save it as a new file
+in the same folder as your main user subroutine file.
 
 __Step 2:__
 Include the `Abaqus_Definitions.f` file at the beginning of your top-level

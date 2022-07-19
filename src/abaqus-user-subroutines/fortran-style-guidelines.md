@@ -53,6 +53,8 @@ __Abaqus:__ see [this guide](free-form-fortran-abaqus) for how to use free-form 
 Always indent the body of functions, subroutines, loops,
 if/else blocks and similar such constructs.
 
+Be consistent with the number of spaces used per indentation level.
+
 <details>
 <summary>Rationale</summary>
 Indentation is a standard technique for visually communicating the structure of code
@@ -171,7 +173,9 @@ functions:
 - All lowercase
 - Separate words with underscores
 
-__Examples:__ `linear_tolerance`, `calculate_damage()`
+__Examples:__
+- `linear_tolerance`
+- `calculate_damage()`
 
 <details>
 <summary>Rationale</summary>
@@ -210,7 +214,7 @@ Write clear code that does not need excessive comments to explain
 ```
 
 ```{seealso}
-See <a href="../best-practices/code-for-readability.html#comments">Comments</a> in the best practices guide.
+See the <a href="../best-practices/code-for-readability.html#comments">Best Practices Guide on Comments</a>.
 ```
 
 There are some scenarios where the use of comments is recommended:
@@ -235,7 +239,7 @@ Use the full double-colon syntax for all parameter and variable declarations.
 <summary>Rationale</summary>
 Using the double-colon syntax everywhere improves
 readability and ensures all declarations are consistent with those
-that include attribuates.
+that include attributes.
 </details>
 ```
 
@@ -296,6 +300,7 @@ __Example:__ `real(dp), parameter :: a1 = 0.588375419731621_dp`
 
 ```
 
+__Further reading:__ Learn more about Fortran variable kinds in *"It Takes All KINDS"*[^dr_fortran_kinds]
 
 
 ### Integer Division
@@ -424,7 +429,7 @@ Always specify the `intent` of procedure arguments:
 
 __Rationale:__
 Specifying argument intent has two important benefits:
-- It is self-documenting, providing vital information to readers of the code
+- It is self-documenting, providing important information to readers of the code
 - It is enforced by compile-time checks to avoid common errors
 ```
 
@@ -528,7 +533,7 @@ functions.
 
 ### `equivalence` statement
 
-Equivalence statement __should not be used__, they are complex and error-prone.
+Equivalence statements __should not be used__, they are complex and error-prone.
 Pointers or derived types should be used instead.
 
 
@@ -542,3 +547,5 @@ Use an `end do` statement instead.
 [^all-caps-readability]: <https://en.wikipedia.org/wiki/All_caps#Readability>
 
 [^structured_programming]: <https://en.wikipedia.org/wiki/Structured_programming>
+
+[^dr_fortran_kinds]: <https://stevelionel.com/drfortran/2017/03/27/doctor-fortran-in-it-takes-all-kinds/>
