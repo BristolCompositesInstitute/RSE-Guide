@@ -1,0 +1,8 @@
+name: rse-guide
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - sphinx>=4.4.0
+  - sphinx-book-theme
+  - myst-parser>=0.17.0

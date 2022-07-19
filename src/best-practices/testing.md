@@ -51,7 +51,7 @@ Everyone is guilty of sometimes writing 10s or 100s of lines of code without
 even compiling/running the code, let alone test for correct behaviour. Sometimes
 this is unavoidable - half-finished code is often unlikely to run. This, 
 however, is often a sign that we are trying to do too much (with the code) at
-once and should consider [breaking sections down](SRP.md). 
+once and should consider [breaking sections down](single-responsibility.md). 
 
 It is easier to test small sections of code, simply because there are less 
 things that can go wrong. 
@@ -105,7 +105,7 @@ Use test frameworks to make testing code easier.
 ```
 
 ## Other benefits of testing
-Test frameworks and [Version Control](version_control.md) work exceptionally 
+Test frameworks and [Version Control](version-control.md) work exceptionally 
 well together, and are the key componenents of the popular software engineering
 buzz-term "Continuous Integration". 
 

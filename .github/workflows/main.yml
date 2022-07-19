@@ -1,0 +1,37 @@
+name: Build and Deploy
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create Conda environment
+        run: conda env create --file environment.yml
+
+      - name: Build documentation
+        run: conda run --name rse-guide sphinx-build -M html src build -W --keep-going
+
+      - name: Upload built HTML documentation artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: rse-guide-html
+          path: build/html/
+
+      - name: Create .nojekyll
+        run: touch build/html//.nojekyll
+      
+      - name: Deploy to Github pages branch
+        if: github.event_name == 'push'
+        uses: JamesIves/github-pages-deploy-action@v4.3.0
+        with:
+          branch: gh-pages
+          folder: build/html/
+          token: ${{ secrets.GITHUB_TOKEN }}
