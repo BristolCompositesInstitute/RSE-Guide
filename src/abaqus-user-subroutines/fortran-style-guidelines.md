@@ -232,16 +232,8 @@ There are some scenarios where the use of comments is recommended:
 
 ### Variable Declarations
 
-```{admonition} Recommendation
+````{admonition} Recommendation
 Use the full double-colon syntax for all parameter and variable declarations.
-
-<details>
-<summary>Rationale</summary>
-Using the double-colon syntax everywhere improves
-readability and ensures all declarations are consistent with those
-that include attributes.
-</details>
-```
 
 __Examples:__
 ```fortran
@@ -250,6 +242,42 @@ integer :: m
 real :: tolerance
 real :: parameters(n)
 ```
+
+<details>
+<summary>Rationale</summary>
+Using the double-colon syntax everywhere improves
+readability and ensures all declarations are consistent with those
+that include attributes.
+</details>
+````
+
+
+````{caution}
+
+__Do NOT assign to variables in the declaration statement:__
+
+```fortran
+integer :: iter = 10  ! NOT RECOMMENDED
+```
+
+This is not normal initialisation, it implies the `save` attribute which
+means that the variable retains its value between procedure calls.
+
+Good practice is to initialise your variables separately to their declaration:
+
+```fortran
+integer :: iter
+iter = 10
+```
+
+This does not affect assignment to parameters at declaration which is okay:
+
+```fortran
+integer, parameter :: N_MAX = 1E6    ! This is okay
+```
+
+````
+
 
 
 ## Numerical

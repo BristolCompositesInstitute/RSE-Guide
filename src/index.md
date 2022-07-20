@@ -12,6 +12,3 @@ best-practices/index
 abaqus-user-subroutines/index
 guides/index
 ```
-
-
-## Introduction
