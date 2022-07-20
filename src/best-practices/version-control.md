@@ -31,7 +31,7 @@ A simple and popular versioning system is called
 Use a version numbering system such as Semantic Versioning.
 ```
 
-What is an API?  
+### What is an API? 
 API stands for 'Application Programming Interface' and describes how different
 bits of code, internally _or_ externally, interact with each other. 
 An interface is as simple as a function signature, for example:
@@ -92,7 +92,7 @@ def apply_discount(price, abs_discount, rel_discount):
     return (price - abs_discount) * (1 - rel_discount)
 ```
 
-Now we have changed the interface to thr function in a _breaking_ way. Anywhere
+Now we have changed the interface to the function in a _breaking_ way. Anywhere
 that uses the function `apply_discount(price, discount)` will need modifying, 
 e.g. to `apply_discount(price, 0, discount)`, such that code still works. 
 
@@ -144,7 +144,7 @@ In this case we should increment `MINOR` to signal to users that the newer
 version contains new functionality, but old code should still work as expected. 
 
 ```{admonition} Best Practice
-Prefer code modifications that wont break existing code.
+Prefer code modifications that won't break existing code.
 ```
 
 
@@ -152,7 +152,7 @@ Prefer code modifications that wont break existing code.
 Version control, on the other hand, deals with how such multiple versions are 
 handled and tracked in an convenient way - rather than ending up with a file 
 called `my_file_version_3_supervisor_edits_bug_fix_3`. 
-In addition to preventing long and error prone filenames, Version Control 
+In addition to preventing long and error prone filenames, version control 
 tools make collaborative code development much, much, easier.
 
 ```{admonition} Best Practice
@@ -181,7 +181,7 @@ course created by the Bristol Research Software Engineering team,
 
 ***ALL NEW CODE PROJECTS SHOULD USE GIT TO TRACK VERSIONS***
 
-Within ACCIS we have access to both GitHub and GitLab services. 
+Within the Bristol Composites Institute we have access to both GitHub and GitLab services. 
 The [GitHub](https://github.com/ACCIS) organisation makes publishing code more
 straightforward (although private projects are still possible), however, might 
 be hosted on international servers. 

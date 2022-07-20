@@ -57,7 +57,7 @@ It is easier to test small sections of code, simply because there are less
 things that can go wrong. 
 
 For example, if I have a function that loads some data into a 
-particular format, it is easier to create some dummy data and test the just 
+particular format, it is easier to create some dummy data and test just 
 this function, than it is to find a bug in a large script where loading data
 is just one small section.
 

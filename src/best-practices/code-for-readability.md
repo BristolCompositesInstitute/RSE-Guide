@@ -291,5 +291,4 @@ can help make software development more straightforward
     don't use it until 10's or 100's of lines later, I may need to check all 
     these lines of code to make sure none have modified `my_var` when looking
     for a bug. Conversely, if I declare the variable and then immediately use 
-    it, then I don't need to spend time checking the other code. This is, 
-    unfortunately, not possible when using Fortran
+    it, then I don't need to spend time checking the other code.

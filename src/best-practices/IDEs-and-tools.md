@@ -11,9 +11,9 @@ Useful features such as keyboard shortcuts, auto-completion, linting, and
 quick 'jump-to' navigation, may seem like trivial bonus features, but using 
 them will make software development significantly easier. 
 
-Firstly, these features reduce the time we need to spend on mundane tasks and 
+First, these features reduce the time we need to spend on mundane tasks and 
 boilerplate code, and are much less error prone at doing so. 
-Secondly, by reducing the mental cost of these mundane tasks it is easier to 
+Second, by reducing the mental cost of these mundane tasks it is easier to 
 focus on the problem at hand.
 
 There is a course on the topic of IDEs and debugging run by the UoB RSE group. 
@@ -30,7 +30,7 @@ the features and keyboard shortcuts available.
 Syntax highlighting is perhaps the most visually obvious difference when using 
 a more advanced editor. Consider the difference between:
 
-```
+```text
 def apply_discount(price, rel_discount, abs_discount=0):
     """Applies a discount to a price
     """
@@ -40,6 +40,7 @@ my_values = np.arange(10)
 for value in my_values:
     print(f"Original price: {value}. 10% off: {apply_discount(value, 0.1)}"))
 ```
+
 ```python
 def apply_discount(price, rel_discount, abs_discount=0):
     """Applies a discount to a price
@@ -57,7 +58,7 @@ easier to visually separate sections of code and spot errors. There are many
 different colour themes out there - pick the one that works best for you.
 
 ```{admonition} Best Practice
-Use syntax highlighting to ephasise key features in code
+Use syntax highlighting to emphasise key features in code
 ```
 
 
@@ -173,6 +174,7 @@ Here are a few useful shortcuts, in VS Code, for writing software:
 * Delete a line (`shift + del`)
 * Copy a line up or down (`shift + alt + up/down`)
 * un-indent (`shift + tab`)
+* multi-line edit (`ctrl + alt + up/down`)
 
 ## Debugging
 A good IDE will make debugging code significantly easier, as they make it

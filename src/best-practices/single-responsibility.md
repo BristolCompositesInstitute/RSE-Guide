@@ -82,7 +82,7 @@ possibly doing too much.
     * If I realise there is a more efficient way to, for example, draw the 
     axes, I can easily change the implementation, ensuring it still returns a 
     set of axes, and let all code using `draw_axes()` share the benefits.
-* cognitive load
+* Cognitive load
     * Humans only have a certain amount of 'working memory' - if you fill this 
     with the details of _how_ the labels are printed, or _how_ the data 
     is being plotted, then you have less capacity to work out what is causing 
