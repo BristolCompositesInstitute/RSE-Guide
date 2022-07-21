@@ -63,7 +63,7 @@ html_theme = 'sphinx_book_theme'
 html_static_path = []
 
 
-html_title = 'Research Software Engineering Guide'
+html_title = 'BCI Research Software Engineering Guide'
 
 # -- Extension configuration -------------------------------------------------
 
