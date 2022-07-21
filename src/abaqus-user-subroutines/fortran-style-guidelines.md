@@ -2,6 +2,11 @@
 title: "Fortran Guidelines"
 ---
 
+This section provides general guidelines for Fortran code developed in the
+Bristol Composites Institute. These guidelines have been developed to encourage
+best-practices that avoid common pitfalls and to ensure consistency across all
+projects.
+
 
 ```{contents}
 ---
@@ -350,71 +355,13 @@ expression is a `real`:
 
 ### Modules
 
-Fortran modules contain definitions that are made accessible to programs, procedures,
-and other modules through the `use` statement.
-They can contain parameters, variables, type definitions, procedures, and interfaces.
-
-Placing variables and procedures into modules has several important benefits:
-
-1. Modules provide a scoped namespace for related variables and procedures
-   which have to be explicitly imported
-2. Modules automatically generate explicit interfaces which are required for
-   modern procedures and which allow for better compile-time error detection
-
-```{admonition} Recommendation
-
-It is __strongly recommended__ that all auxilliary procedures and shared
-variables are stored in modules.
-
-<details>
-<summary>Rationale</summary>
-Modules enable the use of modern Fortran features and provide automatic
-compile-time checking of procedure interfaces.
-
-Module variables are shared
-but do not suffer from the same problems as common block variables.
-</details>
+```{seealso}
+See the [Using Fortran Modules](using-fortran-modules) for more information
+on how to modularise your user subroutine code.
 ```
 
-__Example:__
-*Modules allow the use of __assumed-shape__ array arguments,*
-*which do not need their dimensions to be passed in separately*
-
-```fortran
-module example_mod
-! Everything in this module will be explicitly typed
-implicit none
-
-  integer, parameter :: dim = 3          ! shared constant
-  integer, allocatable :: buckets(:)     ! shared dynamic array
-
-contains
-
-  ! Print matrix A to screen
-  subroutine print_matrix(A)
-    real, intent(in) :: A(:,:)  ! An assumed-shape dummy argument
-
-    integer :: i
-
-    do i = 1, size(A,1)
-      print *, A(i,:)
-    end do
-
-  end subroutine print_matrix
-
-end module example_mod
+```{include} include/fortran-modules.md
 ```
-
-```{admonition} Further Recommendations
-
-- Always use explicit typing in modules by adding the `implicit none`
-  statement at the top. (See [Explicit Typing with Abaqus](./explicit-typing-abaqus))
-
-- Only store one module per file, and keep the module name and filename
-  the same.
-
-```
-
 
 ### Subroutines and Functions
 
