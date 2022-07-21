@@ -29,18 +29,18 @@ In this case we will have two Fortran source files:
 
 1. __The main user subroutine file:__ this is the top-level file that gets
    passed to Abaqus with `user=<file>`. It only contains the user subroutine
-   interface, which calls functions in our module.
+   interface, which calls procedures in our module.
 
 2. __The Fortran module file:__ this source file contains a Fortran
    module where we will place all the functionality of our user subroutine
-   broken up into functions and procedures.
+   broken up into functions and subroutines.
 
 In this example we will call these `usub.f` and `elastic_mod.f` respectively.
 
 
 ```{important}
 All source files should be placed in the same folder. It is convention to
-call this folder `src`.
+call this folder `src`
 ```
 
 
@@ -87,9 +87,9 @@ subroutine umat(stress,statev,ddsdde,sse,spd,scd, &
 end subroutine umat
 ```
 
-Note how the top-level user subroutine does very little of itself, but
-rather all the functionality has been put into subroutines that are contained
-within the module `elastic_mod.f`.
+Note how the top-level user subroutine does very little itself, but
+rather all the functionality has been organised into subroutines that are
+contained within the module `elastic_mod.f`.
 
 There are two important steps required to access the subroutines defined
 in the module:
@@ -104,7 +104,7 @@ file in order for it to be compiled when Abaqus is run.*
       the same module more than once
     - We use the preprocessor syntax `#include`, instead of `include`, since this
       allows us to easily generate a single self-contained source file by running
-      the processor
+      the preprocessor
 
 2. __`Line 11` : use the module to access its members --__
 *We must add a `use` statement to any module, subroutine or function that needs
