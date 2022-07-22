@@ -1,0 +1,1249 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Fortran Guidelines &#8212; BCI Research Software Engineering Guide</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="shortcut icon" href="../_static/BCI-RSE.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using Fortran Modules" href="using-fortran-modules.html" />
+    <link rel="prev" title="Abaqus User Subroutines" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/BCI-RSE.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">BCI Research Software Engineering Guide</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../best-practices/index.html">
+   RSE Best Practices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/code-for-readability.html">
+     Write code for readability, maintainability, and clarity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/single-responsibility.html">
+     Write small functions that do
+     <em>
+      one thing
+     </em>
+     , and do that
+     <em>
+      one thing
+     </em>
+     well
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/testing.html">
+     Don’t assume your code does what you think - test it.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/IDEs-and-tools.html">
+     IDEs and automatic tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/version-control.html">
+     Version Control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/languages.html">
+     Language Specific Styles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Abaqus User Subroutines
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Fortran Guidelines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="using-fortran-modules.html">
+     Using Fortran Modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="free-form-fortran-abaqus.html">
+     Free-form Fortran with Abaqus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="explicit-typing-abaqus.html">
+     Explicit Typing with Abaqus
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../guides/index.html">
+   RSE Guides
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guides/getting-started-with-git.html">
+     Getting started with Git
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/abaqus-user-subroutines/fortran-style-guidelines.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visual-layout">
+   Visual Layout
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#format">
+     Format
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indentation">
+     Indentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#blank-lines">
+     Blank lines
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#line-length">
+     Line Length
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#style">
+   Style
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naming-capitalisation">
+     Naming &amp; Capitalisation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comments">
+     Comments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variable-declarations">
+     Variable Declarations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerical">
+   Numerical
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#declaring-double-precision-reals">
+     Declaring Double Precision Reals
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#integer-division">
+     Integer Division
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#program-units">
+   Program Units
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modules">
+     Modules
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subroutines-and-functions">
+     Subroutines and Functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#procedure-arguments">
+     Procedure Arguments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#end-statements">
+     End Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#banned-features">
+   Banned Features
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goto-statement">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       goto
+      </span>
+     </code>
+     statement
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#common-block">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       common
+      </span>
+     </code>
+     block
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equivalence-statement">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       equivalence
+      </span>
+     </code>
+     statement
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#labelled-do-loop">
+     Labelled
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       do
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Fortran Guidelines</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visual-layout">
+   Visual Layout
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#format">
+     Format
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indentation">
+     Indentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#blank-lines">
+     Blank lines
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#line-length">
+     Line Length
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#style">
+   Style
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naming-capitalisation">
+     Naming &amp; Capitalisation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comments">
+     Comments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variable-declarations">
+     Variable Declarations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerical">
+   Numerical
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#declaring-double-precision-reals">
+     Declaring Double Precision Reals
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#integer-division">
+     Integer Division
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#program-units">
+   Program Units
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modules">
+     Modules
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subroutines-and-functions">
+     Subroutines and Functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#procedure-arguments">
+     Procedure Arguments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#end-statements">
+     End Statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#banned-features">
+   Banned Features
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goto-statement">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       goto
+      </span>
+     </code>
+     statement
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#common-block">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       common
+      </span>
+     </code>
+     block
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equivalence-statement">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       equivalence
+      </span>
+     </code>
+     statement
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#labelled-do-loop">
+     Labelled
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       do
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="fortran-guidelines">
+<h1><a class="toc-backref" href="#id4">Fortran Guidelines</a><a class="headerlink" href="#fortran-guidelines" title="Permalink to this headline">#</a></h1>
+<p>This section provides general guidelines for Fortran code developed in the
+Bristol Composites Institute. These guidelines have been developed to encourage
+best-practices that avoid common pitfalls and to ensure consistency across all
+projects.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#fortran-guidelines" id="id4">Fortran Guidelines</a></p>
+<ul>
+<li><p><a class="reference internal" href="#visual-layout" id="id5">Visual Layout</a></p>
+<ul>
+<li><p><a class="reference internal" href="#format" id="id6">Format</a></p></li>
+<li><p><a class="reference internal" href="#indentation" id="id7">Indentation</a></p></li>
+<li><p><a class="reference internal" href="#blank-lines" id="id8">Blank lines</a></p></li>
+<li><p><a class="reference internal" href="#line-length" id="id9">Line Length</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#style" id="id10">Style</a></p>
+<ul>
+<li><p><a class="reference internal" href="#naming-capitalisation" id="id11">Naming &amp; Capitalisation</a></p></li>
+<li><p><a class="reference internal" href="#comments" id="id12">Comments</a></p></li>
+<li><p><a class="reference internal" href="#variable-declarations" id="id13">Variable Declarations</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#numerical" id="id14">Numerical</a></p>
+<ul>
+<li><p><a class="reference internal" href="#declaring-double-precision-reals" id="id15">Declaring Double Precision Reals</a></p></li>
+<li><p><a class="reference internal" href="#integer-division" id="id16">Integer Division</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#program-units" id="id17">Program Units</a></p>
+<ul>
+<li><p><a class="reference internal" href="#modules" id="id18">Modules</a></p></li>
+<li><p><a class="reference internal" href="#subroutines-and-functions" id="id19">Subroutines and Functions</a></p></li>
+<li><p><a class="reference internal" href="#procedure-arguments" id="id20">Procedure Arguments</a></p></li>
+<li><p><a class="reference internal" href="#end-statements" id="id21">End Statements</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#banned-features" id="id22">Banned Features</a></p>
+<ul>
+<li><p><a class="reference internal" href="#goto-statement" id="id23"><code class="docutils literal notranslate"><span class="pre">goto</span></code> statement</a></p></li>
+<li><p><a class="reference internal" href="#common-block" id="id24"><code class="docutils literal notranslate"><span class="pre">common</span></code> block</a></p></li>
+<li><p><a class="reference internal" href="#equivalence-statement" id="id25"><code class="docutils literal notranslate"><span class="pre">equivalence</span></code> statement</a></p></li>
+<li><p><a class="reference internal" href="#labelled-do-loop" id="id26">Labelled <code class="docutils literal notranslate"><span class="pre">do</span></code> loop</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="visual-layout">
+<h2><a class="toc-backref" href="#id5">Visual Layout</a><a class="headerlink" href="#visual-layout" title="Permalink to this headline">#</a></h2>
+<p>The visual layout of code heavily influences how easy it is to read by those
+unfamiliar with it. Code with a good layout allows you to quickly recognise
+familiar constructs such as functions, loops, if/else blocks, <em>etc.</em>, and where
+they start and end. Code layout is largely governed by whitespace, specifically:</p>
+<ul class="simple">
+<li><p>Indentation</p></li>
+<li><p>Blank lines</p></li>
+<li><p>Spacing around variables and operators</p></li>
+<li><p>Line length</p></li>
+</ul>
+<section id="format">
+<h3><a class="toc-backref" href="#id6">Format</a><a class="headerlink" href="#format" title="Permalink to this headline">#</a></h3>
+<p>Fortran has two standard formats for code layout:</p>
+<ul class="simple">
+<li><p>Fixed-form (legacy)</p></li>
+<li><p>Free-form</p></li>
+</ul>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Where possible, use modern free-form Fortran instead of fixed-form.</p>
+<details>
+<summary>Rationale</summary>
+Fixed-form Fortran is a legacy format that should be avoided for several
+reasons:
+it reduces readability of the code;
+it needlessly increases developer workload and;
+it permits ambiguities that lead to obscure errors.
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><strong>Abaqus:</strong> see <a class="reference internal" href="free-form-fortran-abaqus.html"><span class="doc std std-doc">this guide</span></a> for how to use free-form with Abaqus user subroutines.</p>
+</div>
+</section>
+<section id="indentation">
+<h3><a class="toc-backref" href="#id7">Indentation</a><a class="headerlink" href="#indentation" title="Permalink to this headline">#</a></h3>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Always indent the body of functions, subroutines, loops,
+if/else blocks and similar such constructs.</p>
+<p>Be consistent with the number of spaces used per indentation level.</p>
+<details>
+<summary>Rationale</summary>
+Indentation is a standard technique for visually communicating the structure of code
+</details>
+</div>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Do not use a different indentation for comments; always align comments <strong>with</strong>
+their associated code.</p>
+<details>
+<summary>Rationale</summary>
+Using a different indentation for comments breaks up the indentation of code
+constructs making it difficult to visualise where they start and end.
+Comment visibility is enhanced by using a code editor with proper syntax highlighting.
+</details>
+</div>
+<p><strong>Example:</strong> <em>indent the function body and that of the <code class="docutils literal notranslate"><span class="pre">if</span></code> construct</em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">function </span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dot</span><span class="w"></span>
+<span class="w">  </span>
+<span class="w">  </span><span class="n">dot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dot</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="n">d</span><span class="o">-</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">    </span><span class="n">dot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">  </span><span class="k">end if</span>
+<span class="k">end function</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Use SPACEs, <strong>not TABs</strong>, for indentation. TABs are not valid input characters
+for Fortran.</p>
+</div>
+<p>Choose either 2, 3 or 4 spaces to representation ‘one indentation level’ and be
+consistent throughout your code. Most code editors let you configure how many
+spaces to indent when the TAB key is pressed.</p>
+</section>
+<section id="blank-lines">
+<h3><a class="toc-backref" href="#id8">Blank lines</a><a class="headerlink" href="#blank-lines" title="Permalink to this headline">#</a></h3>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<ul class="simple">
+<li><p>Separate related blocks of code with 1 blank line</p></li>
+<li><p>Separate subroutines and functions with 2 blank lines</p></li>
+</ul>
+<details>
+<summary>Rationale</summary>
+Spacing out code with blank lines improves readability
+</details>
+</div>
+</section>
+<section id="line-length">
+<h3><a class="toc-backref" href="#id9">Line Length</a><a class="headerlink" href="#line-length" title="Permalink to this headline">#</a></h3>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Continue long statements onto newlines. Lines should not exceed 100 characters.</p>
+<details>
+<summary>Rationale</summary>
+Long lines may necessitate horizontal scrolling which obscures code.
+Side-by-side editor configurations, which typically limit editor width to
+half a screen, are increasingly common and useful for code development.
+</details>
+</div>
+<ul class="simple">
+<li><p>In <strong>fixed-form</strong> Fortran, statements are continued onto new lines by placing
+any character in the 6th column of the next line</p></li>
+<li><p>In modern <strong>free-form</strong> Fortran, statements are continued by terminating the line
+with an ampersand <code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p></li>
+</ul>
+<p><strong>Example:</strong> <em>continuing a long statement in <strong>fixed-form</strong> Fortran</em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="w"></span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">a3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">**</span><span class="mi">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">**</span><span class="mi">5</span><span class="w"> </span>
+</pre></div>
+</div>
+<p><strong>Example:</strong> <em>continuing a long statement in <strong>free-form</strong> Fortran</em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="w">  </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">a3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">**</span><span class="mi">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="o">**</span><span class="mi">5</span><span class="w"> </span>
+</pre></div>
+</div>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Do not use semicolons to place multiple statements on the same line.</p>
+<details>
+<summary>Rationale</summary>
+Placing multiple statements on one line reduces the readability of the code
+by obscuring assignments and procedure calls since they are not immediately
+visible upon reading through.
+</details>
+</div>
+</section>
+</section>
+<section id="style">
+<h2><a class="toc-backref" href="#id10">Style</a><a class="headerlink" href="#style" title="Permalink to this headline">#</a></h2>
+<section id="naming-capitalisation">
+<h3><a class="toc-backref" href="#id11">Naming &amp; Capitalisation</a><a class="headerlink" href="#naming-capitalisation" title="Permalink to this headline">#</a></h3>
+<p>The naming of variables and procedures is important for conveying the
+purpose and functionality of your code to those not familiar with it.</p>
+<p>It is therefore important that your names are meaningful and accurately
+describe the variable or procedure. Moreover, you should follow the
+following recommendations for consistency and readability.</p>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Use <a class="reference external" href="https://en.wikipedia.org/wiki/Snake_case"><strong>snake case</strong></a> for variables and
+functions:</p>
+<ul class="simple">
+<li><p>All lowercase</p></li>
+<li><p>Separate words with underscores</p></li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">linear_tolerance</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">calculate_damage()</span></code></p></li>
+</ul>
+<details>
+<summary>Rationale</summary>
+Fortran is case-insensitive, so the same variable or function can be referenced
+differently using different capitalisations. Using all lowercase is therefore
+recommended to encourage consistency and avoid confusion for readers of the code.
+</details>
+</div>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Use <strong>all lowercase</strong> for fortran keywords such as <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">function</span></code> <em>etc.</em>.</p>
+<p><strong>All caps should not be used</strong> for fortran keywords - it is well known that all
+caps has measurably reduced readability<a class="footnote-reference brackets" href="#all-caps-readability" id="id1">1</a></p>
+<details>
+<summary>Rationale</summary>
+There is no need to highlight fortran keywords using case, since Fortran is
+case-insensitive. Keyword visibility is enhanced by using a code editor with
+proper syntax highlighting.
+</details>
+</div>
+</section>
+<section id="comments">
+<h3><a class="toc-backref" href="#id12">Comments</a><a class="headerlink" href="#comments" title="Permalink to this headline">#</a></h3>
+<p>Code should ideally be as self-documenting as possible, not requiring
+excessive comments to explain it. This means:</p>
+<ul class="simple">
+<li><p>Using informative names for variables and functions</p></li>
+<li><p>Break code into self-contained functions/subroutines that each have
+a single clearly defined task</p></li>
+</ul>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Write clear code that does not need excessive comments to explain</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a href="../best-practices/code-for-readability.html#comments">Best Practices Guide on Comments</a>.</p>
+</div>
+<p>There are some scenarios where the use of comments is recommended:</p>
+<ul class="simple">
+<li><p>Use comments to concisely explain the purpose and methodology of each
+function or subroutine in your code
+(see <a href="../best-practices/code-for-readability.html#docstrings">Docstrings</a>)</p></li>
+<li><p>Use comments to explain obscure bug-fixes or workarounds that have no
+obvious interpretation alone</p></li>
+<li><p>Use comments to label the end of loops for nested loops</p></li>
+</ul>
+</section>
+<section id="variable-declarations">
+<h3><a class="toc-backref" href="#id13">Variable Declarations</a><a class="headerlink" href="#variable-declarations" title="Permalink to this headline">#</a></h3>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Use the full double-colon syntax for all parameter and variable declarations.</p>
+<p><strong>Examples:</strong></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">m</span><span class="w"></span>
+<span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">tolerance</span><span class="w"></span>
+<span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">parameters</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<details>
+<summary>Rationale</summary>
+Using the double-colon syntax everywhere improves
+readability and ensures all declarations are consistent with those
+that include attributes.
+</details>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p><strong>Do NOT assign to variables in the declaration statement:</strong></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">  </span><span class="c">! NOT RECOMMENDED</span>
+</pre></div>
+</div>
+<p>This is not normal initialisation, it implies the <code class="docutils literal notranslate"><span class="pre">save</span></code> attribute which
+means that the variable retains its value between procedure calls.</p>
+<p>Good practice is to initialise your variables separately to their declaration:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iter</span><span class="w"></span>
+<span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This does not affect assignment to parameters at declaration which is okay:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">N_MAX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1E6</span><span class="w">    </span><span class="c">! This is okay</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="numerical">
+<h2><a class="toc-backref" href="#id14">Numerical</a><a class="headerlink" href="#numerical" title="Permalink to this headline">#</a></h2>
+<section id="declaring-double-precision-reals">
+<h3><a class="toc-backref" href="#id15">Declaring Double Precision Reals</a><a class="headerlink" href="#declaring-double-precision-reals" title="Permalink to this headline">#</a></h3>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Define a parameter <code class="docutils literal notranslate"><span class="pre">dp</span></code> at the top of your module and use it
+to declare double precision reals.</p>
+<details>
+<summary>Rationale</summary>
+Other forms of double precision declaration are not portable across
+different platforms and compilers.
+</details>
+</div>
+<p><strong>Option 1 (recommended):</strong> <em>Use the intrinsic 64 bit (double precision) floating point kind</em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Option 2:</strong> <em>Request a specific (minimum) precision <code class="docutils literal notranslate"><span class="pre">p</span></code> and exponent range <code class="docutils literal notranslate"><span class="pre">r</span></code></em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="o">=</span><span class="mi">307</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Example usage:</strong></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">demo</span><span class="w"></span>
+<span class="w">  </span><span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">sp</span><span class="o">=&gt;</span><span class="n">real32</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">real</span><span class="p">(</span><span class="n">sp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi_sp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.141593_sp</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi_dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14159265358979_dp</span><span class="w"></span>
+
+<span class="k">end module </span><span class="n">demo</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>You must use a precision <strong>suffix</strong> when writing double precision constants
+anywhere within your code, otherwise they will be truncated to single precision.</p>
+<p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">real(dp),</span> <span class="pre">parameter</span> <span class="pre">::</span> <span class="pre">a1</span> <span class="pre">=</span> <span class="pre">0.588375419731621_dp</span></code></p>
+</div>
+<p><strong>Further reading:</strong> Learn more about Fortran variable kinds in <em>“It Takes All KINDS”</em><a class="footnote-reference brackets" href="#dr-fortran-kinds" id="id2">2</a></p>
+</section>
+<section id="integer-division">
+<h3><a class="toc-backref" href="#id16">Integer Division</a><a class="headerlink" href="#integer-division" title="Permalink to this headline">#</a></h3>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Be careful when performing division with integer variables:</p>
+<ul class="simple">
+<li><p>If all variables in the expression are integers, then an integer division
+will occur which will return the result rounded-down to the nearest integer.</p></li>
+</ul>
+<p>Floating-point division will occur if at least one of the variables in the
+expression is a <code class="docutils literal notranslate"><span class="pre">real</span></code>:</p>
+<ul class="simple">
+<li><p>You can use the <code class="docutils literal notranslate"><span class="pre">real()</span></code> function to convert an integer to a real, <em>e.g.</em> <code class="docutils literal notranslate"><span class="pre">real(N,dp)</span></code></p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="program-units">
+<h2><a class="toc-backref" href="#id17">Program Units</a><a class="headerlink" href="#program-units" title="Permalink to this headline">#</a></h2>
+<section id="modules">
+<h3><a class="toc-backref" href="#id18">Modules</a><a class="headerlink" href="#modules" title="Permalink to this headline">#</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a class="reference internal" href="using-fortran-modules.html"><span class="doc std std-doc">Using Fortran Modules</span></a> for more information
+on how to modularise your user subroutine code.</p>
+</div>
+<p>Fortran modules contain definitions that are made accessible to programs, procedures,
+and other modules through the <code class="docutils literal notranslate"><span class="pre">use</span></code> statement.
+They can contain parameters, variables, type definitions, procedures, and interfaces.</p>
+<p>Placing variables and procedures into modules has several important benefits:</p>
+<ol class="arabic simple">
+<li><p>Modules provide a scoped namespace for related variables and procedures
+which have to be explicitly imported</p></li>
+<li><p>Modules automatically generate explicit interfaces which are required for
+modern procedures and which allow for better compile-time error detection</p></li>
+<li><p>Modules can be used to logical organise code by collecting related procedures
+and variables together in the same module</p></li>
+<li><p>Module code can be easily reused and combined by other subroutines without
+duplication</p></li>
+</ol>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>It is <strong>strongly recommended</strong> that all auxilliary procedures and shared
+variables are stored in modules.</p>
+<details>
+<summary>Rationale</summary>
+Modules enable the use of modern Fortran features and provide automatic
+compile-time checking of procedure interfaces.
+<p>Module variables are shared
+but do not suffer from the same problems as common block variables.</p>
+</details>
+</div>
+<div class="admonition-further-recommendations admonition">
+<p class="admonition-title">Further Recommendations</p>
+<ul class="simple">
+<li><p>Always use explicit typing in modules by adding the <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code>
+statement at the top. (See <a href="explicit-typing-abaqus.html">Explicit Typing with Abaqus<a/>)</p></li>
+<li><p>Only store one module per file, and keep the module name and filename
+the same.</p></li>
+</ul>
+</div>
+</section>
+<section id="subroutines-and-functions">
+<h3><a class="toc-backref" href="#id19">Subroutines and Functions</a><a class="headerlink" href="#subroutines-and-functions" title="Permalink to this headline">#</a></h3>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>It is <strong>strongly recommended</strong> that complex procedures are broken
+down into multiple functions or subroutines to reduce complexity.</p>
+<p><strong>Rationale:</strong></p>
+<ul class="simple">
+<li><p>Breaking up long procedures into smaller ones is a natural way to abstract
+complex functionality and clarify code structure and intent.</p></li>
+<li><p>Small procedures with a clearly defined functionality are:</p>
+<ul>
+<li><p>easier to conceptualise</p></li>
+<li><p>easier to explain to others</p></li>
+<li><p>easier to test and debug</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Possible indications that a procedure is too long include:</p>
+<ul class="simple">
+<li><p>There are a large number of variable declarations are the start</p></li>
+<li><p>The procedure contains duplicated code</p></li>
+<li><p>The procedure spans more than twice the standard screen height</p></li>
+<li><p>The procedure has a large number of input arguments</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is no need to place <code class="docutils literal notranslate"><span class="pre">return</span></code> at the end of a function or subroutine.
+It serves no purpose, except to increase the number of lines of code.</p>
+</div>
+</section>
+<section id="procedure-arguments">
+<h3><a class="toc-backref" href="#id20">Procedure Arguments</a><a class="headerlink" href="#procedure-arguments" title="Permalink to this headline">#</a></h3>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Always specify the <code class="docutils literal notranslate"><span class="pre">intent</span></code> of procedure arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intent(in)</span></code>: <em>read-only within the procedure</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intent(out)</span></code>: <em>modifiable, but undefined on entry to procedure</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intent(inout)</span></code>: <em>modifiable</em></p></li>
+</ul>
+<p><strong>Rationale:</strong>
+Specifying argument intent has two important benefits:</p>
+<ul class="simple">
+<li><p>It is self-documenting, providing important information to readers of the code</p></li>
+<li><p>It is enforced by compile-time checks to avoid common errors</p></li>
+</ul>
+</div>
+<p><strong>Example:</strong></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">intent_example</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="c">! We can read from a but not modify it</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+
+<span class="w">  </span><span class="c">! We can modify b, but it is not defined initially</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">    </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span>
+<span class="k">    </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">  </span><span class="k">end if</span>
+
+<span class="k">end subroutine </span><span class="n">intent_example</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="end-statements">
+<h3><a class="toc-backref" href="#id21">End Statements</a><a class="headerlink" href="#end-statements" title="Permalink to this headline">#</a></h3>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Always use the full end statement for a block instead of just <code class="docutils literal notranslate"><span class="pre">end</span></code> on its own</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">if</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">do</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">block</span></code></p></li>
+</ul>
+<details>
+<summary>Rationale</summary>
+Using the full end statement makes it easier to understand deeply nested code.
+</details>
+</div>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Always include the procedure or module name in the end statement</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">module</span> <span class="pre">&lt;module-name&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">subroutine</span> <span class="pre">&lt;subroutine-name&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">function</span> <span class="pre">&lt;function-name&gt;</span></code></p></li>
+</ul>
+<details>
+<summary>Rationale</summary>
+Using the full end statement makes it easier to navigate files with many procedures.
+</details>
+</div>
+</section>
+</section>
+<section id="banned-features">
+<h2><a class="toc-backref" href="#id22">Banned Features</a><a class="headerlink" href="#banned-features" title="Permalink to this headline">#</a></h2>
+<div class="admonition-background admonition">
+<p class="admonition-title">Background</p>
+<p>Backwards-compatibility is very important for the Fortran standard due to the
+age of the language and consequently large amount of legacy code still in use.
+This means that many legacy features remain in the language standard despite
+their use being strongly discouraged or them being made obsolete.</p>
+</div>
+<p>The following features of Fortran <strong>should not be used:</strong></p>
+<section id="goto-statement">
+<h3><a class="toc-backref" href="#id23"><code class="docutils literal notranslate"><span class="pre">goto</span></code> statement</a><a class="headerlink" href="#goto-statement" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">goto</span></code> statements are universally acknowledged as bad programming practice
+since they obscure the control flow of the program and are highly error-prone.
+Moreover, they have been entirely superseded by
+structured programming constructs<a class="footnote-reference brackets" href="#structured-programming" id="id3">3</a>
+which includes familiar concepts such as conditional blocks (<code class="docutils literal notranslate"><span class="pre">if/else</span></code>), loops
+and functions.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The following statements <strong>can be</strong> used instead of <code class="docutils literal notranslate"><span class="pre">goto</span></code> for common scenarios:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">return</span></code></strong> - return from a function or subroutine early</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">cycle</span></code></strong> - jump straight to the next loop iteration, skipping the rest of the loop body</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">exit</span></code></strong> - exit out of a loop, skipping all remaining iterations</p></li>
+</ul>
+</div>
+</section>
+<section id="common-block">
+<h3><a class="toc-backref" href="#id24"><code class="docutils literal notranslate"><span class="pre">common</span></code> block</a><a class="headerlink" href="#common-block" title="Permalink to this headline">#</a></h3>
+<p>A common block defines an area of memory which is globally accessible by all
+functions and subroutines and which persists between invocations thereof.</p>
+<p>Commmon blocks <strong>should not be used</strong> since their definition is allowed to
+vary between different functions, which can permit subtle errors to occur
+without an obvious symptom.</p>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>Use modules for persistent variables, that need to be accessible from multiple
+functions.</p>
+</div>
+</section>
+<section id="equivalence-statement">
+<h3><a class="toc-backref" href="#id25"><code class="docutils literal notranslate"><span class="pre">equivalence</span></code> statement</a><a class="headerlink" href="#equivalence-statement" title="Permalink to this headline">#</a></h3>
+<p>Equivalence statements <strong>should not be used</strong>, they are complex and error-prone.
+Pointers or derived types should be used instead.</p>
+</section>
+<section id="labelled-do-loop">
+<h3><a class="toc-backref" href="#id26">Labelled <code class="docutils literal notranslate"><span class="pre">do</span></code> loop</a><a class="headerlink" href="#labelled-do-loop" title="Permalink to this headline">#</a></h3>
+<p>Use an <code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">do</span></code> statement instead.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="all-caps-readability"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/All_caps#Readability">https://en.wikipedia.org/wiki/All_caps#Readability</a></p>
+</dd>
+<dt class="label" id="dr-fortran-kinds"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://stevelionel.com/drfortran/2017/03/27/doctor-fortran-in-it-takes-all-kinds/">https://stevelionel.com/drfortran/2017/03/27/doctor-fortran-in-it-takes-all-kinds/</a></p>
+</dd>
+<dt class="label" id="structured-programming"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Structured_programming">https://en.wikipedia.org/wiki/Structured_programming</a></p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Abaqus User Subroutines</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="using-fortran-modules.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Using Fortran Modules</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Bristol Composites Institute Research Software Engineering Team<br/>
+  
+      &copy; Copyright University of Bristol 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

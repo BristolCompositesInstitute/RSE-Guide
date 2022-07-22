@@ -1,0 +1,605 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Explicit Typing with Abaqus &#8212; BCI Research Software Engineering Guide</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="shortcut icon" href="../_static/BCI-RSE.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RSE Guides" href="../guides/index.html" />
+    <link rel="prev" title="Free-form Fortran with Abaqus" href="free-form-fortran-abaqus.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/BCI-RSE.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">BCI Research Software Engineering Guide</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../best-practices/index.html">
+   RSE Best Practices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/code-for-readability.html">
+     Write code for readability, maintainability, and clarity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/single-responsibility.html">
+     Write small functions that do
+     <em>
+      one thing
+     </em>
+     , and do that
+     <em>
+      one thing
+     </em>
+     well
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/testing.html">
+     Don’t assume your code does what you think - test it.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/IDEs-and-tools.html">
+     IDEs and automatic tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/version-control.html">
+     Version Control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best-practices/languages.html">
+     Language Specific Styles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Abaqus User Subroutines
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="fortran-style-guidelines.html">
+     Fortran Guidelines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="using-fortran-modules.html">
+     Using Fortran Modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="free-form-fortran-abaqus.html">
+     Free-form Fortran with Abaqus
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Explicit Typing with Abaqus
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../guides/index.html">
+   RSE Guides
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guides/getting-started-with-git.html">
+     Getting started with Git
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/abaqus-user-subroutines/explicit-typing-abaqus.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implicit-typing">
+   Implicit Typing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#explicit-typing">
+   Explicit Typing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Explicit Typing with Abaqus
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abaqus-definitions-f">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Abaqus_Definitions.f
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-usage">
+     Example Usage
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Explicit Typing with Abaqus</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implicit-typing">
+   Implicit Typing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#explicit-typing">
+   Explicit Typing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Explicit Typing with Abaqus
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abaqus-definitions-f">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Abaqus_Definitions.f
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-usage">
+     Example Usage
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="explicit-typing-with-abaqus">
+<h1>Explicit Typing with Abaqus<a class="headerlink" href="#explicit-typing-with-abaqus" title="Permalink to this headline">#</a></h1>
+<section id="implicit-typing">
+<h2>Implicit Typing<a class="headerlink" href="#implicit-typing" title="Permalink to this headline">#</a></h2>
+<p>Backwards-compatibility is very important for the Fortran standard due to the
+age of the language and consequently large amount of legacy code still in use.
+This means that many legacy features remain in the language standard despite
+their use being discouraged or them being made obsolete.</p>
+<p>One such legacy feature that is strongly discouraged is <em>implicit typing</em> which
+describes a feature where variables need not have their type declared
+explicitly, but rather it is implicitly inferred based on the first
+letter of the variable.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default rules of implicit typing are that variables with names beginning
+with the letters <code class="docutils literal notranslate"><span class="pre">i</span></code>,<code class="docutils literal notranslate"><span class="pre">j</span></code>,<code class="docutils literal notranslate"><span class="pre">k</span></code>,<code class="docutils literal notranslate"><span class="pre">l</span></code>,<code class="docutils literal notranslate"><span class="pre">m</span></code>,<code class="docutils literal notranslate"><span class="pre">n</span></code> are <code class="docutils literal notranslate"><span class="pre">integer</span></code> and all other variables
+are <code class="docutils literal notranslate"><span class="pre">real</span></code>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>The use of implicit typing is strongly discouraged since it easily leads to
+errors which are difficult to detect.</strong></p>
+</div>
+<p>Abaqus user subroutines are usually implicitly typed, this guide will explain
+how to write Abaqus user subroutines with explicit typing.</p>
+</section>
+<section id="explicit-typing">
+<h2>Explicit Typing<a class="headerlink" href="#explicit-typing" title="Permalink to this headline">#</a></h2>
+<div class="admonition-info admonition">
+<p class="admonition-title">Info</p>
+<p>When implicit typing is disabled, all variables must have their type explicitly
+declared - this is <strong>explicit typing</strong>.</p>
+</div>
+<p>Implicit typing is disabled by adding the following statement to the beginning
+of all program units:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">implicit none</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The statement is placed after any module <code class="docutils literal notranslate"><span class="pre">use</span></code> statements but before any
+variable declarations.</p>
+<p><strong>Example:</strong> <em>explicit typing in a subroutine</em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="w">  </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0d0</span><span class="o">*</span><span class="n">a</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">test</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h2>Explicit Typing with Abaqus<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>Abaqus uses implicit typing to define the floating point (real) precision
+to be used; this allows it to switch between single precision and double
+precision. The implicit precision is defined in the include files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">aba_param.inc</span></code> for Abaqus/Standard</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vaba_param.inc</span></code> for Abaqus/Explicit</p></li>
+</ul>
+<p>The precision in these files depends one whether you are running Abaqus
+in single precision or double precision, and it determines the precision
+of real variables that are passed into your user subroutine.</p>
+<hr class="docutils" />
+<p>Instead of including these files directly in our code, we can define an implicitly
+typed module which extracts this information from Abaqus. We can then use
+this module in the rest of our code, which will be explicitly typed.</p>
+<p><strong>Step 1:</strong>
+See the <code class="docutils literal notranslate"><span class="pre">Abaqus_Definitions.f</span></code> file printed below and save it as a new file
+in the same folder as your main user subroutine file.</p>
+<p><strong>Step 2:</strong>
+Include the <code class="docutils literal notranslate"><span class="pre">Abaqus_Definitions.f</span></code> file at the beginning of your top-level
+user subroutine file.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="cp">#include &#39;Abaqus_Definitions.f&#39;</span>
+</pre></div>
+</div>
+<p><strong>Step 3:</strong>
+Import the module in your explicitly typed modules/subroutines and define the
+<em>working precision</em> (<code class="docutils literal notranslate"><span class="pre">wp</span></code>) with the following syntax:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use </span><span class="n">Abaqus_Definitions</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">wp</span><span class="o">=&gt;</span><span class="n">abaqus_real_kind</span><span class="w"></span>
+<span class="k">implicit none</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Step 4:</strong>
+Define real variables that come from Abaqus with the following syntax:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">stateNew</span><span class="p">(:,:)</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="abaqus-definitions-f">
+<h3><code class="docutils literal notranslate"><span class="pre">Abaqus_Definitions.f</span></code><a class="headerlink" href="#abaqus-definitions-f" title="Permalink to this headline">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!DIR$ FREEFORM</span>
+<span class="k">module </span><span class="n">Abaqus_Definitions</span><span class="w"></span>
+<span class="w">  </span><span class="c">! This module exports a kind parameter &quot;abaqus_real_kind&quot; that defines</span>
+<span class="w">  </span><span class="c">! the real kind (precision) currently in use by Abaqus.</span>
+<span class="w">  </span><span class="c">! This allows explict typing in Fortran user subroutines.</span>
+
+<span class="c">!DIR$ NOFREEFORM</span>
+<span class="c">!DIR$ FIXEDFORMLINESIZE:132</span>
+<span class="w">      </span><span class="k">include</span><span class="w"> </span><span class="s2">&quot;vaba_param.inc&quot;</span><span class="w">     </span><span class="c">! Abaqus/Explicit</span>
+<span class="c">!DIR$ FREEFORM</span>
+
+<span class="w">  </span><span class="k">private</span><span class="w"></span>
+
+<span class="w">  </span><span class="c">! Detect and export the Abaqus real kind precision</span>
+<span class="w">  </span><span class="k">parameter</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">abaqus_real_kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"></span>
+
+<span class="k">end module </span><span class="n">Abaqus_Definitions</span><span class="w"></span>
+<span class="c">!DIR$ NOFREEFORM</span>
+<span class="c">!DIR$ FIXEDFORMLINESIZE:132</span>
+</pre></div>
+</div>
+</section>
+<section id="example-usage">
+<h3>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this headline">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">demo</span><span class="w"></span>
+<span class="w">  </span><span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">sp</span><span class="o">=&gt;</span><span class="n">real32</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span><span class="w"></span>
+<span class="w">  </span><span class="k">use </span><span class="n">Abaqus_Definitions</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">wp</span><span class="o">=&gt;</span><span class="n">abaqus_real_kind</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  contains</span>
+
+<span class="k">  subroutine </span><span class="n">check_precision</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">sp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi_sp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.0</span><span class="o">*</span><span class="nb">atan</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span><span class="w">      </span><span class="c">! single precision</span>
+<span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi_dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.0d0</span><span class="o">*</span><span class="nb">atan</span><span class="p">(</span><span class="mf">1.0d0</span><span class="p">)</span><span class="w">  </span><span class="c">! double precision</span>
+<span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi_wp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.0d0</span><span class="o">*</span><span class="nb">atan</span><span class="p">(</span><span class="mf">1.0d0</span><span class="p">)</span><span class="w">  </span><span class="c">! working precision</span>
+
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Single precision: &quot;</span><span class="p">,</span><span class="n">pi_sp</span><span class="w"></span>
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Double precision: &quot;</span><span class="p">,</span><span class="n">pi_dp</span><span class="w"></span>
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Abaqus precision: &quot;</span><span class="p">,</span><span class="n">pi_wp</span><span class="w"></span>
+<span class="w">  </span><span class="k">end subroutine </span><span class="n">check_precision</span><span class="w"></span>
+
+<span class="k">end module </span><span class="n">demo</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="free-form-fortran-abaqus.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Free-form Fortran with Abaqus</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../guides/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">RSE Guides</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Bristol Composites Institute Research Software Engineering Team<br/>
+  
+      &copy; Copyright University of Bristol 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

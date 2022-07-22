@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Write small functions that do one thing, and do that one thing well &#8212; BCI Research Software Engineering Guide</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="shortcut icon" href="../_static/BCI-RSE.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Don’t assume your code does what you think - test it." href="testing.html" />
+    <link rel="prev" title="Write code for readability, maintainability, and clarity" href="code-for-readability.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/BCI-RSE.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">BCI Research Software Engineering Guide</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   RSE Best Practices
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="code-for-readability.html">
+     Write code for readability, maintainability, and clarity
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Write small functions that do
+     <em>
+      one thing
+     </em>
+     , and do that
+     <em>
+      one thing
+     </em>
+     well
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="testing.html">
+     Don’t assume your code does what you think - test it.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="IDEs-and-tools.html">
+     IDEs and automatic tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="version-control.html">
+     Version Control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="languages.html">
+     Language Specific Styles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../abaqus-user-subroutines/index.html">
+   Abaqus User Subroutines
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../abaqus-user-subroutines/fortran-style-guidelines.html">
+     Fortran Guidelines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../abaqus-user-subroutines/using-fortran-modules.html">
+     Using Fortran Modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../abaqus-user-subroutines/free-form-fortran-abaqus.html">
+     Free-form Fortran with Abaqus
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../abaqus-user-subroutines/explicit-typing-abaqus.html">
+     Explicit Typing with Abaqus
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../guides/index.html">
+   RSE Guides
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guides/getting-started-with-git.html">
+     Getting started with Git
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/best-practices/single-responsibility.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#benefits">
+   Benefits
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Write small functions that do one thing, and do that one thing well</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#benefits">
+   Benefits
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="write-small-functions-that-do-one-thing-and-do-that-one-thing-well">
+<h1>Write small functions that do <em>one thing</em>, and do that <em>one thing</em> well<a class="headerlink" href="#write-small-functions-that-do-one-thing-and-do-that-one-thing-well" title="Permalink to this headline">#</a></h1>
+<p>Also known as the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Single-responsibility_principle">Single Responsibility Principle (SRP)</a>
+and closely related to
+<a class="reference external" href="https://en.wikipedia.org/wiki/Separation_of_concerns">Separation of Concerns (SoC)</a>.</p>
+<p>Writing small functions with a <em>single responsibility</em> makes it significantly
+easier to verify that it is doing what you expect, modify behaviours, and/or
+re-use the function later - all of which save significant amounts of time.</p>
+<p>It is important to note that this <em>single responsibility</em> might be something
+fairly complex and can change over time.
+Consider the code underneath a <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function.
+To the user, <code class="docutils literal notranslate"><span class="pre">plot()</span></code> does only one thing - “plots some data” - but underneath
+there are lots of steps, each potentially quite complex, which need to take
+place; axes need determining and drawing, data needs drawing, labels need
+printing, etc.
+Therefore, <code class="docutils literal notranslate"><span class="pre">plot()</span></code>’s single responsibility is simply to coordinate, or act
+as ‘glue’ between, these steps.
+It would process the inputs and then call sub-functions which themselves have a
+single responsibilty - <code class="docutils literal notranslate"><span class="pre">draw_axes()</span></code>, <code class="docutils literal notranslate"><span class="pre">plot_data()</span></code>, <code class="docutils literal notranslate"><span class="pre">print_labels()</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">plot_linear_trendline()</span></code> and so on.
+These might also be broken down further: <code class="docutils literal notranslate"><span class="pre">plot_data()</span></code> may likely need
+separate sub functions to <code class="docutils literal notranslate"><span class="pre">plot_data_points()</span></code> and <code class="docutils literal notranslate"><span class="pre">plot_interpolating_line()</span></code>.
+This way, when working with <code class="docutils literal notranslate"><span class="pre">print_labels()</span></code> I don’t need to concern or distract
+myself with the details of <code class="docutils literal notranslate"><span class="pre">draw_axes()</span></code> or <code class="docutils literal notranslate"><span class="pre">plot_data()</span></code>.</p>
+<div class="admonition-best-practice admonition">
+<p class="admonition-title">Best Practice</p>
+<p>Break code down into functions which do <em>one thing</em> and do
+that <em>one thing</em> well. When the <em>one thing</em> is particularly complex, use sub
+functions to break problems down into small manageable chunks.</p>
+</div>
+<p>Thinking of a meaningful function name can help us to recognise when we are
+trying to do too much at once.
+If we find ourselves wanting to use the word ‘and’ in a function name,
+e.g. <code class="docutils literal notranslate"><span class="pre">do_x_and_y()</span></code>, <code class="docutils literal notranslate"><span class="pre">load_and_process()</span></code>, <code class="docutils literal notranslate"><span class="pre">solve_and_output()</span></code>, this is often
+the first indication that we should stop and think about breaking the function
+into smaller chunks.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Functions which need ‘and’ to describe what they do are
+possibly doing too much.</p>
+</div>
+<section id="benefits">
+<h2>Benefits<a class="headerlink" href="#benefits" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Validation and testing</p>
+<ul>
+<li><p>I can easily verify that a function, e.g. <code class="docutils literal notranslate"><span class="pre">sort_data()</span></code>, is correct by
+creating some mock data, calling the function, and checking the output is
+expected.</p></li>
+<li><p>We don’t have to endure the painful experience of a long running code,
+taking hours or even days, failing at the last step because of a simple
+mistake in the code.</p></li>
+<li><p>Debugging is much easier, for example:</p>
+<ul>
+<li><p>Since each function is doing less, I can more easily spot when
+assumptions or implementation details are incorrect.</p></li>
+<li><p>If I know that a function behaves as expected with a simple example,
+but the function is not giving me the right answer, then we now know
+the problem lies with the input data, narrowing the search for the bug.</p></li>
+<li><p>Because functions have their own local variables, I don’t have to
+worry about name collisions, i.e. a bug caused by accidentally
+overwriting another variable (which can be incredibly hard to notice).
+This is because the code is less
+<a class="reference external" href="https://en.wikipedia.org/wiki/Coupling_(computer_programming)"><em>coupled</em></a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Re-use</p>
+<ul>
+<li><p>Once I have verified that my function works correctly; I can use it
+anywhere, without having to modify any code or risk mis-typing something.</p></li>
+<li><p>I can document precisely what a function does and what it expects
+(i.e. inputs and outputs), which makes it easier to</p></li>
+<li><p>I don’t have to worry about changing variable names when reusing the
+function,</p></li>
+</ul>
+</li>
+<li><p>Code extension</p>
+<ul>
+<li><p>I can relatively easily add new functionality, for example adding a
+<code class="docutils literal notranslate"><span class="pre">plot_polynomial_trendline()</span></code> function that can be used instead of a linear
+trendline, rather than duplicating and editing one big single function</p></li>
+</ul>
+</li>
+<li><p>Re-factoring</p>
+<ul>
+<li><p>If I realise there is a more efficient way to, for example, draw the
+axes, I can easily change the implementation, ensuring it still returns a
+set of axes, and let all code using <code class="docutils literal notranslate"><span class="pre">draw_axes()</span></code> share the benefits.</p></li>
+</ul>
+</li>
+<li><p>Cognitive load</p>
+<ul>
+<li><p>Humans only have a certain amount of ‘working memory’ - if you fill this
+with the details of <em>how</em> the labels are printed, or <em>how</em> the data
+is being plotted, then you have less capacity to work out what is causing
+a bug or add new feature.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="code-for-readability.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Write code for readability, maintainability, and clarity</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="testing.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Don’t assume your code does what you think - test it.</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Bristol Composites Institute Research Software Engineering Team<br/>
+  
+      &copy; Copyright University of Bristol 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
