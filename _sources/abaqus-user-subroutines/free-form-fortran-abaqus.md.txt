@@ -41,6 +41,11 @@ There are two approaches to using free-form Fortran with Abaqus:
 The second approach is recommended here since it does not introduce reliance
 of the user subroutine on the contents of the `abaqus_v6.env` file.
 
+```{seealso}
+See the [__sample repository__](https://github.com/BristolCompositesInstitute/abaqus-modern-fortran)
+on Github which gives a complete working example of the concepts presented
+in this guide.
+```
 
 ### Indicating Free-form with Compiler Directives
 
