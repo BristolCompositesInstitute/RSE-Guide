@@ -79,6 +79,12 @@ Instead of including these files directly in our code, we can define an implicit
 typed module which extracts this information from Abaqus. We can then use
 this module in the rest of our code, which will be explicitly typed.
 
+```{seealso}
+See the [__sample repository__](https://github.com/BristolCompositesInstitute/abaqus-modern-fortran)
+on Github which gives a complete working example of the concepts presented
+in this guide.
+```
+
 __Step 1:__
 See the `Abaqus_Definitions.f` file printed below and save it as a new file
 in the same folder as your main user subroutine file.

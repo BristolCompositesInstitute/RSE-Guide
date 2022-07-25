@@ -43,6 +43,11 @@ All source files should be placed in the same folder. It is convention to
 call this folder `src`
 ```
 
+```{seealso}
+See the [__sample repository__](https://github.com/BristolCompositesInstitute/abaqus-modern-fortran)
+on Github which gives a complete working example of the concepts presented
+in this guide.
+```
 
 ### `usub.f`
 
