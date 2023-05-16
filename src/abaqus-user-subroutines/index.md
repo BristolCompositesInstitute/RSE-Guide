@@ -17,4 +17,5 @@ fortran-style-guidelines
 using-fortran-modules
 free-form-fortran-abaqus
 explicit-typing-abaqus
+using-named-variables
 ```
