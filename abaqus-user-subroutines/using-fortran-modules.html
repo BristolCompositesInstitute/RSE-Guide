@@ -1,446 +1,329 @@
 
+
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Using Fortran Modules &#8212; BCI Research Software Engineering Guide</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-V4L9PZN5VH"></script>
     <script src="../_static/ga-init.js"></script>
-    <link rel="shortcut icon" href="../_static/BCI-RSE.ico"/>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'abaqus-user-subroutines/using-fortran-modules';</script>
+    <link rel="icon" href="../_static/BCI-RSE.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Free-form Fortran with Abaqus" href="free-form-fortran-abaqus.html" />
     <link rel="prev" title="Fortran Guidelines" href="fortran-style-guidelines.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/BCI-RSE.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">BCI Research Software Engineering Guide</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Contents:
- </span>
-</p>
+    
+    
+    <img src="../_static/BCI-RSE.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/BCI-RSE.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../best-practices/index.html">
-   RSE Best Practices
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../best-practices/code-for-readability.html">
-     Write code for readability, maintainability, and clarity
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../best-practices/single-responsibility.html">
-     Write small functions that do
-     <em>
-      one thing
-     </em>
-     , and do that
-     <em>
-      one thing
-     </em>
-     well
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../best-practices/testing.html">
-     Don’t assume your code does what you think - test it.
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../best-practices/IDEs-and-tools.html">
-     IDEs and automatic tools
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../best-practices/version-control.html">
-     Version Control
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../best-practices/languages.html">
-     Language Specific Styles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   Abaqus User Subroutines
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="fortran-style-guidelines.html">
-     Fortran Guidelines
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Using Fortran Modules
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="free-form-fortran-abaqus.html">
-     Free-form Fortran with Abaqus
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="explicit-typing-abaqus.html">
-     Explicit Typing with Abaqus
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../guides/index.html">
-   RSE Guides
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../guides/getting-started-with-git.html">
-     Getting started with Git
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../best-practices/index.html">RSE Best Practices</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/code-for-readability.html">Write code for readability, maintainability, and clarity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/single-responsibility.html">Write small functions that do <em>one thing</em>, and do that <em>one thing</em> well</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/testing.html">Don’t assume your code does what you think - test it.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/IDEs-and-tools.html">IDEs and automatic tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/version-control.html">Version Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/languages.html">Language Specific Styles</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Abaqus User Subroutines</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fortran-style-guidelines.html">Fortran Guidelines</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Using Fortran Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="free-form-fortran-abaqus.html">Free-form Fortran with Abaqus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explicit-typing-abaqus.html">Explicit Typing with Abaqus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-named-variables.html">Using Named State Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/index.html">RSE Guides</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/getting-started-with-git.html">Getting started with Git</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/abaqus-user-subroutines/using-fortran-modules.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
 
-          
 
 
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/abaqus-user-subroutines/using-fortran-modules.md.txt"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#about-fortran-modules">
-   About Fortran Modules
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modularising-your-user-subroutine">
-   Modularising your User Subroutine
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#usub-f">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       usub.f
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#elastic-mod-f">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       elastic_mod.f
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#running-abaqus-with-modular-code">
-   Running Abaqus with Modular Code
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#generating-a-single-source-version">
-   Generating a Single-Source Version
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Using Fortran Modules</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#about-fortran-modules">
-   About Fortran Modules
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modularising-your-user-subroutine">
-   Modularising your User Subroutine
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#usub-f">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       usub.f
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#elastic-mod-f">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       elastic_mod.f
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#running-abaqus-with-modular-code">
-   Running Abaqus with Modular Code
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#generating-a-single-source-version">
-   Generating a Single-Source Version
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Using Fortran Modules</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-fortran-modules">About Fortran Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modularising-your-user-subroutine">Modularising your User Subroutine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usub-f"><code class="docutils literal notranslate"><span class="pre">usub.f</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elastic-mod-f"><code class="docutils literal notranslate"><span class="pre">elastic_mod.f</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-abaqus-with-modular-code">Running Abaqus with Modular Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-a-single-source-version">Generating a Single-Source Version</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section id="using-fortran-modules">
-<h1>Using Fortran Modules<a class="headerlink" href="#using-fortran-modules" title="Permalink to this headline">#</a></h1>
+<h1>Using Fortran Modules<a class="headerlink" href="#using-fortran-modules" title="Permalink to this heading">#</a></h1>
 <p>This guide explains how to organise your Abaqus user subroutine code using
 Fortran modules.</p>
 <section id="about-fortran-modules">
-<h2>About Fortran Modules<a class="headerlink" href="#about-fortran-modules" title="Permalink to this headline">#</a></h2>
+<h2>About Fortran Modules<a class="headerlink" href="#about-fortran-modules" title="Permalink to this heading">#</a></h2>
 <p>Fortran modules contain definitions that are made accessible to programs, procedures,
 and other modules through the <code class="docutils literal notranslate"><span class="pre">use</span></code> statement.
 They can contain parameters, variables, type definitions, procedures, and interfaces.</p>
@@ -478,7 +361,7 @@ the same.</p></li>
 </div>
 </section>
 <section id="modularising-your-user-subroutine">
-<h2>Modularising your User Subroutine<a class="headerlink" href="#modularising-your-user-subroutine" title="Permalink to this headline">#</a></h2>
+<h2>Modularising your User Subroutine<a class="headerlink" href="#modularising-your-user-subroutine" title="Permalink to this heading">#</a></h2>
 <p>Modularising a user subroutine entails breaking it up into functions or
 subroutines, and storing these in one or more modules where each module is kept
 in a separate source file.</p>
@@ -512,42 +395,42 @@ on Github which gives a complete working example of the concepts presented
 in this guide.</p>
 </div>
 <section id="usub-f">
-<h3><code class="docutils literal notranslate"><span class="pre">usub.f</span></code><a class="headerlink" href="#usub-f" title="Permalink to this headline">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">usub.f</span></code><a class="headerlink" href="#usub-f" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c">!DIR$ FREEFORM</span>
 <span class="linenos"> 2</span><span class="cp">#include &#39;elastic_mod.f&#39;</span>
 <span class="linenos"> 3</span>
-<span class="linenos"> 4</span><span class="k">subroutine </span><span class="n">umat</span><span class="p">(</span><span class="n">stress</span><span class="p">,</span><span class="n">statev</span><span class="p">,</span><span class="n">ddsdde</span><span class="p">,</span><span class="n">sse</span><span class="p">,</span><span class="n">spd</span><span class="p">,</span><span class="n">scd</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="linenos"> 5</span><span class="w">  </span><span class="n">rpl</span><span class="p">,</span><span class="n">ddsddt</span><span class="p">,</span><span class="n">drplde</span><span class="p">,</span><span class="n">drpldt</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="linenos"> 6</span><span class="w">  </span><span class="n">stran</span><span class="p">,</span><span class="n">dstran</span><span class="p">,</span><span class="nb">time</span><span class="p">,</span><span class="nb">dtime</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span><span class="n">dtemp</span><span class="p">,</span><span class="n">predef</span><span class="p">,</span><span class="n">dpred</span><span class="p">,</span><span class="n">cmname</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="linenos"> 7</span><span class="w">  </span><span class="n">ndi</span><span class="p">,</span><span class="n">nshr</span><span class="p">,</span><span class="n">ntens</span><span class="p">,</span><span class="n">nstatv</span><span class="p">,</span><span class="n">props</span><span class="p">,</span><span class="n">nprops</span><span class="p">,</span><span class="n">coords</span><span class="p">,</span><span class="n">drot</span><span class="p">,</span><span class="n">pnewdt</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="n">celent</span><span class="p">,</span><span class="n">dfgrd0</span><span class="p">,</span><span class="n">dfgrd1</span><span class="p">,</span><span class="n">noel</span><span class="p">,</span><span class="n">npt</span><span class="p">,</span><span class="n">layer</span><span class="p">,</span><span class="n">kspt</span><span class="p">,</span><span class="n">jstep</span><span class="p">,</span><span class="n">kinc</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="k">subroutine </span><span class="n">umat</span><span class="p">(</span><span class="n">stress</span><span class="p">,</span><span class="n">statev</span><span class="p">,</span><span class="n">ddsdde</span><span class="p">,</span><span class="n">sse</span><span class="p">,</span><span class="n">spd</span><span class="p">,</span><span class="n">scd</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="n">rpl</span><span class="p">,</span><span class="n">ddsddt</span><span class="p">,</span><span class="n">drplde</span><span class="p">,</span><span class="n">drpldt</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="n">stran</span><span class="p">,</span><span class="n">dstran</span><span class="p">,</span><span class="nb">time</span><span class="p">,</span><span class="nb">dtime</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span><span class="n">dtemp</span><span class="p">,</span><span class="n">predef</span><span class="p">,</span><span class="n">dpred</span><span class="p">,</span><span class="n">cmname</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="n">ndi</span><span class="p">,</span><span class="n">nshr</span><span class="p">,</span><span class="n">ntens</span><span class="p">,</span><span class="n">nstatv</span><span class="p">,</span><span class="n">props</span><span class="p">,</span><span class="n">nprops</span><span class="p">,</span><span class="n">coords</span><span class="p">,</span><span class="n">drot</span><span class="p">,</span><span class="n">pnewdt</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="n">celent</span><span class="p">,</span><span class="n">dfgrd0</span><span class="p">,</span><span class="n">dfgrd1</span><span class="p">,</span><span class="n">noel</span><span class="p">,</span><span class="n">npt</span><span class="p">,</span><span class="n">layer</span><span class="p">,</span><span class="n">kspt</span><span class="p">,</span><span class="n">jstep</span><span class="p">,</span><span class="n">kinc</span><span class="p">)</span>
 <span class="linenos"> 9</span>
-<span class="linenos">10</span><span class="w">  </span><span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span><span class="w"></span>
-<span class="linenos">11</span><span class="w">  </span><span class="k">use </span><span class="n">elastic_mod</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">get_properties</span><span class="p">,</span><span class="w"> </span><span class="n">plane_strain_jacobian</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="linenos">12</span><span class="w">                         </span><span class="n">update_stress</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">  </span><span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span>
+<span class="linenos">11</span><span class="w">  </span><span class="k">use </span><span class="n">elastic_mod</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">get_properties</span><span class="p">,</span><span class="w"> </span><span class="n">plane_strain_jacobian</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="linenos">12</span><span class="w">                         </span><span class="n">update_stress</span>
 <span class="linenos">13</span><span class="w">  </span><span class="k">implicit none</span>
 <span class="linenos">14</span>
-<span class="linenos">15</span><span class="k">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">stress</span><span class="p">(</span><span class="n">ntens</span><span class="p">),</span><span class="w"> </span><span class="n">statev</span><span class="p">(</span><span class="n">nstatv</span><span class="p">),</span><span class="w"> </span><span class="n">ddsdde</span><span class="p">(</span><span class="n">ntens</span><span class="p">,</span><span class="n">ntens</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">16</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sse</span><span class="p">,</span><span class="w"> </span><span class="n">spd</span><span class="p">,</span><span class="w"> </span><span class="n">scd</span><span class="p">,</span><span class="w"> </span><span class="n">rpl</span><span class="p">,</span><span class="w"> </span><span class="n">ddsddt</span><span class="p">(</span><span class="n">ntens</span><span class="p">),</span><span class="w"> </span><span class="n">drplde</span><span class="p">(</span><span class="n">ntens</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">17</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">drpldt</span><span class="w"></span>
-<span class="linenos">18</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">stran</span><span class="p">(</span><span class="n">ntens</span><span class="p">),</span><span class="w"> </span><span class="n">dstran</span><span class="p">(</span><span class="n">ntens</span><span class="p">),</span><span class="w"> </span><span class="nb">time</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="nb">dtime</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="w"></span>
-<span class="linenos">19</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dtemp</span><span class="p">,</span><span class="w"> </span><span class="n">predef</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">dpred</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">20</span><span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">80</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmname</span><span class="w"></span>
-<span class="linenos">21</span><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ndi</span><span class="p">,</span><span class="w"> </span><span class="n">nshr</span><span class="p">,</span><span class="w"> </span><span class="n">ntens</span><span class="p">,</span><span class="w"> </span><span class="n">nstatv</span><span class="p">,</span><span class="w"> </span><span class="n">nprops</span><span class="w"></span>
-<span class="linenos">22</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">props</span><span class="p">(</span><span class="n">nprops</span><span class="p">),</span><span class="w"> </span><span class="n">coords</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">drot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">pnewdt</span><span class="w"></span>
-<span class="linenos">23</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">celent</span><span class="p">,</span><span class="w"> </span><span class="n">dfgrd0</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">dfgrd1</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">24</span><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">noel</span><span class="p">,</span><span class="w"> </span><span class="n">npt</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="p">,</span><span class="w"> </span><span class="n">kspt</span><span class="p">,</span><span class="w"> </span><span class="n">jstep</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="n">kinc</span><span class="w"></span>
+<span class="linenos">15</span><span class="k">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">stress</span><span class="p">(</span><span class="n">ntens</span><span class="p">),</span><span class="w"> </span><span class="n">statev</span><span class="p">(</span><span class="n">nstatv</span><span class="p">),</span><span class="w"> </span><span class="n">ddsdde</span><span class="p">(</span><span class="n">ntens</span><span class="p">,</span><span class="n">ntens</span><span class="p">)</span>
+<span class="linenos">16</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sse</span><span class="p">,</span><span class="w"> </span><span class="n">spd</span><span class="p">,</span><span class="w"> </span><span class="n">scd</span><span class="p">,</span><span class="w"> </span><span class="n">rpl</span><span class="p">,</span><span class="w"> </span><span class="n">ddsddt</span><span class="p">(</span><span class="n">ntens</span><span class="p">),</span><span class="w"> </span><span class="n">drplde</span><span class="p">(</span><span class="n">ntens</span><span class="p">)</span>
+<span class="linenos">17</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">drpldt</span>
+<span class="linenos">18</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">stran</span><span class="p">(</span><span class="n">ntens</span><span class="p">),</span><span class="w"> </span><span class="n">dstran</span><span class="p">(</span><span class="n">ntens</span><span class="p">),</span><span class="w"> </span><span class="nb">time</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="nb">dtime</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span>
+<span class="linenos">19</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dtemp</span><span class="p">,</span><span class="w"> </span><span class="n">predef</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">dpred</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">20</span><span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">80</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmname</span>
+<span class="linenos">21</span><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ndi</span><span class="p">,</span><span class="w"> </span><span class="n">nshr</span><span class="p">,</span><span class="w"> </span><span class="n">ntens</span><span class="p">,</span><span class="w"> </span><span class="n">nstatv</span><span class="p">,</span><span class="w"> </span><span class="n">nprops</span>
+<span class="linenos">22</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">props</span><span class="p">(</span><span class="n">nprops</span><span class="p">),</span><span class="w"> </span><span class="n">coords</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">drot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">pnewdt</span>
+<span class="linenos">23</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">celent</span><span class="p">,</span><span class="w"> </span><span class="n">dfgrd0</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">dfgrd1</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos">24</span><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">noel</span><span class="p">,</span><span class="w"> </span><span class="n">npt</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="p">,</span><span class="w"> </span><span class="n">kspt</span><span class="p">,</span><span class="w"> </span><span class="n">jstep</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="n">kinc</span>
 <span class="linenos">25</span><span class="w">  </span>
-<span class="linenos">26</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="n">xnu</span><span class="w"></span>
-<span class="linenos">27</span><span class="w">  </span><span class="kt">integer </span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="n">xnu</span>
+<span class="linenos">27</span><span class="w">  </span><span class="kt">integer </span><span class="n">i</span><span class="p">,</span><span class="n">j</span>
 <span class="linenos">28</span>
-<span class="linenos">29</span><span class="w">  </span><span class="k">call </span><span class="n">get_properties</span><span class="p">(</span><span class="n">props</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">xnu</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">  </span><span class="k">call </span><span class="n">get_properties</span><span class="p">(</span><span class="n">props</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">xnu</span><span class="p">)</span>
 <span class="linenos">30</span>
-<span class="linenos">31</span><span class="w">  </span><span class="k">call </span><span class="n">plane_stress_jacobian</span><span class="p">(</span><span class="n">ddsdde</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">xnu</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">31</span><span class="w">  </span><span class="k">call </span><span class="n">plane_stress_jacobian</span><span class="p">(</span><span class="n">ddsdde</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">xnu</span><span class="p">)</span>
 <span class="linenos">32</span>
-<span class="linenos">33</span><span class="w">  </span><span class="k">call </span><span class="n">update_stress</span><span class="p">(</span><span class="n">dstran</span><span class="p">,</span><span class="n">ddsdde</span><span class="p">,</span><span class="n">stress</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">  </span><span class="k">call </span><span class="n">update_stress</span><span class="p">(</span><span class="n">dstran</span><span class="p">,</span><span class="n">ddsdde</span><span class="p">,</span><span class="n">stress</span><span class="p">)</span>
 <span class="linenos">34</span>
-<span class="linenos">35</span><span class="k">end subroutine </span><span class="n">umat</span><span class="w"></span>
+<span class="linenos">35</span><span class="k">end subroutine </span><span class="n">umat</span>
 </pre></div>
 </div>
 <p>Note how the top-level user subroutine does very little itself, but
@@ -586,47 +469,47 @@ we are going to use from the module.</em></p></li>
 </ul>
 </section>
 <section id="elastic-mod-f">
-<h3><code class="docutils literal notranslate"><span class="pre">elastic_mod.f</span></code><a class="headerlink" href="#elastic-mod-f" title="Permalink to this headline">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">elastic_mod.f</span></code><a class="headerlink" href="#elastic-mod-f" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c">!DIR$ FREEFORM</span>
-<span class="linenos"> 2</span><span class="k">module </span><span class="n">elastic_mod</span><span class="w"></span>
-<span class="linenos"> 3</span><span class="w">  </span><span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="k">module </span><span class="n">elastic_mod</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span>
 <span class="linenos"> 4</span><span class="w">  </span><span class="k">implicit none</span>
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span><span class="k">  contains</span>
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span><span class="k">  subroutine </span><span class="n">get_properties</span><span class="p">(</span><span class="n">props</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">xnu</span><span class="p">)</span><span class="w"></span>
-<span class="linenos"> 9</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">props</span><span class="p">(:)</span><span class="w"></span>
-<span class="linenos">10</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">xnu</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="k">  subroutine </span><span class="n">get_properties</span><span class="p">(</span><span class="n">props</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">xnu</span><span class="p">)</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">props</span><span class="p">(:)</span>
+<span class="linenos">10</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">xnu</span>
 <span class="linenos">11</span>
-<span class="linenos">12</span><span class="w">    </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">props</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">13</span><span class="w">    </span><span class="n">xnu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">props</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">14</span><span class="w">  </span><span class="k">end subroutine </span><span class="n">get_properties</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">    </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">props</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span><span class="w">    </span><span class="n">xnu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">props</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">14</span><span class="w">  </span><span class="k">end subroutine </span><span class="n">get_properties</span>
 <span class="linenos">15</span>
-<span class="linenos">16</span><span class="w">  </span><span class="k">subroutine </span><span class="n">plane_stress_jacobian</span><span class="p">(</span><span class="n">ddsdde</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">xnu</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">17</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ddsdde</span><span class="p">(:,:)</span><span class="w"></span>
-<span class="linenos">18</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">xnu</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">  </span><span class="k">subroutine </span><span class="n">plane_stress_jacobian</span><span class="p">(</span><span class="n">ddsdde</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">xnu</span><span class="p">)</span>
+<span class="linenos">17</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ddsdde</span><span class="p">(:,:)</span>
+<span class="linenos">18</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">xnu</span>
 <span class="linenos">19</span>
-<span class="linenos">20</span><span class="w">    </span><span class="n">ddsdde</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span><span class="w"></span>
-<span class="linenos">21</span><span class="w">    </span><span class="n">ddsdde</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xnu</span><span class="w"></span>
-<span class="linenos">22</span><span class="w">    </span><span class="n">ddsdde</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xnu</span><span class="w"></span>
-<span class="linenos">23</span><span class="w">    </span><span class="n">ddsdde</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span><span class="w"></span>
-<span class="linenos">24</span><span class="w">    </span><span class="n">ddsdde</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5d0</span><span class="o">*</span><span class="p">(</span><span class="mf">1.d0</span><span class="o">-</span><span class="n">xnu</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">25</span><span class="w">    </span><span class="n">ddsdde</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ddsdde</span><span class="o">*</span><span class="n">e</span><span class="o">/</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="mf">1.d0</span><span class="o">+</span><span class="n">xnu</span><span class="o">*</span><span class="n">xnu</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="linenos">26</span><span class="w">  </span><span class="k">end subroutine </span><span class="n">plane_stress_jacobian</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">    </span><span class="n">ddsdde</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">ddsdde</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xnu</span>
+<span class="linenos">22</span><span class="w">    </span><span class="n">ddsdde</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xnu</span>
+<span class="linenos">23</span><span class="w">    </span><span class="n">ddsdde</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">ddsdde</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5d0</span><span class="o">*</span><span class="p">(</span><span class="mf">1.d0</span><span class="o">-</span><span class="n">xnu</span><span class="p">)</span>
+<span class="linenos">25</span><span class="w">    </span><span class="n">ddsdde</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ddsdde</span><span class="o">*</span><span class="n">e</span><span class="o">/</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="mf">1.d0</span><span class="o">+</span><span class="n">xnu</span><span class="o">*</span><span class="n">xnu</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">26</span><span class="w">  </span><span class="k">end subroutine </span><span class="n">plane_stress_jacobian</span>
 <span class="linenos">27</span>
-<span class="linenos">28</span><span class="w">  </span><span class="k">subroutine </span><span class="n">update_stress</span><span class="p">(</span><span class="n">dstran</span><span class="p">,</span><span class="n">ddsdde</span><span class="p">,</span><span class="n">stress</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">29</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dstran</span><span class="p">(:)</span><span class="w"></span>
-<span class="linenos">30</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ddsdde</span><span class="p">(:,:)</span><span class="w"></span>
-<span class="linenos">31</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">stress</span><span class="p">(:)</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">  </span><span class="k">subroutine </span><span class="n">update_stress</span><span class="p">(</span><span class="n">dstran</span><span class="p">,</span><span class="n">ddsdde</span><span class="p">,</span><span class="n">stress</span><span class="p">)</span>
+<span class="linenos">29</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dstran</span><span class="p">(:)</span>
+<span class="linenos">30</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ddsdde</span><span class="p">(:,:)</span>
+<span class="linenos">31</span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">stress</span><span class="p">(:)</span>
 <span class="linenos">32</span><span class="w">    </span>
-<span class="linenos">33</span><span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">ddsdde</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">34</span><span class="w">      </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">ddsdde</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
-<span class="linenos">35</span><span class="w">        </span><span class="n">stress</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stress</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ddsdde</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="n">dstran</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">ddsdde</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">34</span><span class="w">      </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">ddsdde</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">35</span><span class="w">        </span><span class="n">stress</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stress</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ddsdde</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="n">dstran</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
 <span class="linenos">36</span><span class="w">      </span><span class="k">end do</span>
 <span class="linenos">37</span><span class="k">    end do</span>
-<span class="linenos">38</span><span class="k">  end subroutine </span><span class="n">update_stress</span><span class="w"></span>
+<span class="linenos">38</span><span class="k">  end subroutine </span><span class="n">update_stress</span>
 <span class="linenos">39</span>
-<span class="linenos">40</span><span class="k">end module </span><span class="n">elastic_mod</span><span class="w"></span>
+<span class="linenos">40</span><span class="k">end module </span><span class="n">elastic_mod</span>
 <span class="linenos">41</span><span class="c">!DIR$ NOFREEFORM</span>
 <span class="linenos">42</span><span class="c">!DIR$ FIXEDFORMLINESIZE:132</span>
 </pre></div>
@@ -640,7 +523,7 @@ subroutines in the module</p></li>
 (see <a class="reference internal" href="explicit-typing-abaqus.html"><span class="doc std std-doc">explicit typing with Abaqus</span></a>)</p></li>
 <li><p>Note how we don’t have to pass in the size of each arrays as separate
 arguments - this is one advantage of using module files, which is that they
-enable the use of assumed-shape array arguments<a class="footnote-reference brackets" href="#fortran90-assumed-shape" id="id1">1</a></p></li>
+enable the use of assumed-shape array arguments<a class="footnote-reference brackets" href="#fortran90-assumed-shape" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
 <li><p>This excerpt is cut-down for brevity; the
 <a class="reference internal" href="fortran-style-guidelines.html"><span class="doc std std-doc">Fortran Code Guidelines</span></a> would recommend extra
 line spacing for readability, as well as some comments to describe
@@ -649,7 +532,7 @@ each subroutine and their arguments.</p></li>
 </section>
 </section>
 <section id="running-abaqus-with-modular-code">
-<h2>Running Abaqus with Modular Code<a class="headerlink" href="#running-abaqus-with-modular-code" title="Permalink to this headline">#</a></h2>
+<h2>Running Abaqus with Modular Code<a class="headerlink" href="#running-abaqus-with-modular-code" title="Permalink to this heading">#</a></h2>
 <p>Running Abaqus with modularised code is no different to normal, simply make
 sure that the user subroutine file and the module files are in the same folder
 and pass the top-level (non-module) source file to Abaqus.</p>
@@ -662,19 +545,19 @@ code changes.</p>
 </div>
 <p>If the source files are in the same folder as a job file <code class="docutils literal notranslate"><span class="pre">job.inp</span></code> then,
 using the example above, you would run Abaqus with:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>abaqus <span class="nv">job</span><span class="o">=</span>job.inp <span class="nv">user</span><span class="o">=</span>usub.f double interactive
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>abaqus<span class="w"> </span><span class="nv">job</span><span class="o">=</span>job.inp<span class="w"> </span><span class="nv">user</span><span class="o">=</span>usub.f<span class="w"> </span>double<span class="w"> </span>interactive
 </pre></div>
 </div>
 <p>There is no need to list the module files for Abaqus since they are specified with the
 <code class="docutils literal notranslate"><span class="pre">#include</span></code> statements at the top of <code class="docutils literal notranslate"><span class="pre">usub.f</span></code>.</p>
 </section>
 <section id="generating-a-single-source-version">
-<h2>Generating a Single-Source Version<a class="headerlink" href="#generating-a-single-source-version" title="Permalink to this headline">#</a></h2>
+<h2>Generating a Single-Source Version<a class="headerlink" href="#generating-a-single-source-version" title="Permalink to this heading">#</a></h2>
 <p>If you require a self-contained single-source file to distribute, you can generate one by
 invoking the Intel Fortran preprocessor at the command line.</p>
 <p>First navigate to the directory containing your source files in your command
 window, then run the following command:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ifort -EP usub.f &gt; usub_single.f
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ifort<span class="w"> </span>-EP<span class="w"> </span>usub.f<span class="w"> </span>&gt;<span class="w"> </span>usub_single.f
 </pre></div>
 </div>
 <p>This will output <code class="docutils literal notranslate"><span class="pre">usub_single.f</span></code> which contains all the code, including
@@ -685,59 +568,122 @@ the modules, in one file.</p>
 include the modules and not <code class="docutils literal notranslate"><span class="pre">include</span></code>.</p>
 </div>
 <hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="fortran90-assumed-shape"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p><a class="reference external" href="https://www.fortran90.org/src/best-practices.html#arrays">https://www.fortran90.org/src/best-practices.html#arrays</a></p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="fortran90-assumed-shape" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://www.fortran90.org/src/best-practices.html#arrays">https://www.fortran90.org/src/best-practices.html#arrays</a></p>
+</aside>
+</aside>
 </section>
 </section>
 
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="fortran-style-guidelines.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Fortran Guidelines</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="fortran-style-guidelines.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Fortran Guidelines</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="free-form-fortran-abaqus.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="free-form-fortran-abaqus.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Free-form Fortran with Abaqus</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Bristol Composites Institute Research Software Engineering Team<br/>
-  
-      &copy; Copyright University of Bristol 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-fortran-modules">About Fortran Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modularising-your-user-subroutine">Modularising your User Subroutine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usub-f"><code class="docutils literal notranslate"><span class="pre">usub.f</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elastic-mod-f"><code class="docutils literal notranslate"><span class="pre">elastic_mod.f</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-abaqus-with-modular-code">Running Abaqus with Modular Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-a-single-source-version">Generating a Single-Source Version</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Bristol Composites Institute Research Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright University of Bristol 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
