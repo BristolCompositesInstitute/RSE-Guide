@@ -18,4 +18,5 @@ using-fortran-modules
 free-form-fortran-abaqus
 explicit-typing-abaqus
 using-named-variables
+namelist-material-properties
 ```

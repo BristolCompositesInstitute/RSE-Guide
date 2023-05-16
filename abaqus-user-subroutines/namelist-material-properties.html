@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Reading Material Properties from a Namelist File &#8212; BCI Research Software Engineering Guide</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-V4L9PZN5VH"></script>
+    <script src="../_static/ga-init.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'abaqus-user-subroutines/namelist-material-properties';</script>
+    <link rel="icon" href="../_static/BCI-RSE.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RSE Guides" href="../guides/index.html" />
+    <link rel="prev" title="Using Named State Variables" href="using-named-variables.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/BCI-RSE.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/BCI-RSE.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../best-practices/index.html">RSE Best Practices</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/code-for-readability.html">Write code for readability, maintainability, and clarity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/single-responsibility.html">Write small functions that do <em>one thing</em>, and do that <em>one thing</em> well</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/testing.html">Don’t assume your code does what you think - test it.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/IDEs-and-tools.html">IDEs and automatic tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/version-control.html">Version Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../best-practices/languages.html">Language Specific Styles</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Abaqus User Subroutines</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fortran-style-guidelines.html">Fortran Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-fortran-modules.html">Using Fortran Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="free-form-fortran-abaqus.html">Free-form Fortran with Abaqus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explicit-typing-abaqus.html">Explicit Typing with Abaqus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-named-variables.html">Using Named State Variables</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Reading Material Properties from a Namelist File</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/index.html">RSE Guides</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/getting-started-with-git.html">Getting started with Git</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/abaqus-user-subroutines/namelist-material-properties.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Reading Material Properties from a Namelist File</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fortran-namelist-format">The Fortran NameList Format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-a-namelist-file-in-fortran">Reading a NameList file in Fortran</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-detection">Error Detection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-namelist-files-for-user-subroutines">Using NameList Files for User Subroutines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-namelists-with-derived-types-structures">Advanced: NameLists with Derived Types (Structures)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="reading-material-properties-from-a-namelist-file">
+<h1>Reading Material Properties from a Namelist File<a class="headerlink" href="#reading-material-properties-from-a-namelist-file" title="Permalink to this heading">#</a></h1>
+<p>This guide describes an alternative approach to loading user subroutine material properties
+from a separate ‘namelist’ file, instead of defining them in the <code class="docutils literal notranslate"><span class="pre">inp</span></code> file.</p>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this heading">#</a></h2>
+<p>The standard approach to defining material properties variables for a <code class="docutils literal notranslate"><span class="pre">umat</span></code>/<code class="docutils literal notranslate"><span class="pre">vumat</span></code>
+is to define a list of floating-point numbers in the <code class="docutils literal notranslate"><span class="pre">inp</span></code> file.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">Material</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="n">UMAT</span>
+<span class="o">*</span><span class="n">Density</span>
+<span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span>
+<span class="o">*</span><span class="n">Depvar</span>
+<span class="w">     </span><span class="mi">10</span><span class="p">,</span>
+<span class="o">*</span><span class="n">User</span><span class="w"> </span><span class="n">Material</span><span class="p">,</span><span class="w"> </span><span class="n">constants</span><span class="o">=</span><span class="mi">8</span>
+<span class="w">    </span><span class="mf">0.2</span><span class="p">,</span><span class="w">    </span><span class="mf">1.0</span><span class="p">,</span><span class="w">    </span><span class="mi">6</span><span class="mf">0.</span><span class="p">,</span><span class="w">    </span><span class="mi">9</span><span class="mf">0.</span><span class="p">,</span><span class="w">  </span><span class="mi">10000</span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mi">10000</span><span class="mf">0.</span><span class="p">,</span><span class="w">    </span><span class="mf">1.</span><span class="p">,</span><span class="w">    </span><span class="mf">2.</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>This has several disadvantages:</p>
+<ol class="arabic simple">
+<li><p>Properties are limited to floating-point values - no proper support
+for integers, strings and booleans</p></li>
+<li><p>Limited support for arrays</p></li>
+<li><p>Poor readability - difficult to determine which value correponds to which property</p></li>
+<li><p>Poor maintainability - difficult to modify or redefine property array order</p></li>
+</ol>
+</section>
+<section id="the-fortran-namelist-format">
+<h2>The Fortran NameList Format<a class="headerlink" href="#the-fortran-namelist-format" title="Permalink to this heading">#</a></h2>
+<p><em>NameList</em> is an input format that is build into the Fortran language.
+It is therefore very portable, robust and simple to use.</p>
+<p><strong>Example:</strong> <em>namelist input file</em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="k">data</span>
+<span class="n">tolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="n">num_sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="n">check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">True</span><span class="p">.</span>
+<span class="n">data_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;data.csv&#39;</span>
+<span class="n">norm_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+<p>With namelist files, can use key-value pairs to associate a property to a <strong>named variable</strong>.</p>
+<p>The general format of a namelist file is</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&amp; &lt;group name&gt;
+&lt;var_name&gt; = &lt;value&gt;
+...
+/
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Line 1:</strong> an ampersand (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>) followed by the name of your namelist group</p></li>
+<li><p><strong>Definitions:</strong> a variable name followed by equals (<code class="docutils literal notranslate"><span class="pre">=</span></code>) followed by the intended value</p></li>
+<li><p><strong>Final line:</strong> a single forward slash (<code class="docutils literal notranslate"><span class="pre">/</span></code>) on its own to close the namelist group</p></li>
+</ul>
+<p>Variable names in the namelist file correspond to variables of the same name in the
+Fortran code that reads the namelist file (see next section).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Multiple namelist groups (with different names) can be stored in the same namelist file
+and read separately.</p>
+</div>
+</section>
+<section id="reading-a-namelist-file-in-fortran">
+<h2>Reading a NameList file in Fortran<a class="headerlink" href="#reading-a-namelist-file-in-fortran" title="Permalink to this heading">#</a></h2>
+<p>To read a namelist file in Fortran, you must first define which Fortran variables
+are part of the namelist group:</p>
+<p><strong>Example:</strong> <em>define a namelist group of variables</em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! Define variables to read in</span>
+<span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">tolerance</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">num_sample</span>
+<span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">check</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">data_file</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">norm_vec</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c">! Define the namelist group with name &#39;data&#39;</span>
+<span class="k">namelist</span><span class="w"> </span><span class="o">/</span><span class="k">data</span><span class="o">/</span><span class="w"> </span><span class="n">tolerance</span><span class="p">,</span><span class="w"> </span><span class="n">num_sample</span><span class="p">,</span><span class="w"> </span><span class="n">data_file</span><span class="p">,</span><span class="w"> </span><span class="n">norm_vec</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a variable is not part of the namelist definition, then it is not allowed
+in the namelist file - it will be rejected as an error.</p>
+</div>
+<p>Once the namelist has been defined with a specific name, then we can open the
+file and load the namelist data from it:</p>
+<p><strong>Example:</strong> <em>read a namelist file</em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fh</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span>
+<span class="p">...</span>
+
+<span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">fh</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s1">&#39;data.nml&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;read&#39;</span><span class="p">)</span>
+<span class="k">read</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span><span class="w"> </span><span class="n">nml</span><span class="o">=</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="p">)</span>
+<span class="k">close</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The variables defined in the namelist group will be populated with the values in the
+namelist file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a variable is absent from the namelist file, then its value will not be changed
+when the namelist file is read.</p>
+</div>
+</section>
+<section id="error-detection">
+<h2>Error Detection<a class="headerlink" href="#error-detection" title="Permalink to this heading">#</a></h2>
+<p>If a namelist file is incorrectly formatted, it will fail to load. In these situations
+it is useful to print a message identifying where the error occured.</p>
+<p><strong>Example:</strong> <em>check for read error</em><a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">read</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span><span class="w"> </span><span class="n">nml</span><span class="o">=</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="p">)</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">  backspace</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+<span class="w">  </span><span class="k">read</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">line</span>
+<span class="w">  </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39; Invalid line in namelist : &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="k">end if</span>
+</pre></div>
+</div>
+</section>
+<section id="using-namelist-files-for-user-subroutines">
+<h2>Using NameList Files for User Subroutines<a class="headerlink" href="#using-namelist-files-for-user-subroutines" title="Permalink to this heading">#</a></h2>
+<p>Material properties can be read into shared module variables once at the first increment</p>
+<p><strong>Example:</strong> <em>module to load and store material properties from a namelist input file</em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">Material_Properties</span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">props_loaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">False</span><span class="p">.</span><span class="w">   </span><span class="c">! Indicates if properties already loaded</span>
+
+<span class="w">  </span><span class="c">! Property variables to load</span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">tolerance</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">num_sample</span>
+<span class="w">  </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">check</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">data_file</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">norm_vec</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="w">  </span><span class="k">contains</span>
+
+<span class="k">  subroutine </span><span class="n">load_mat_props</span><span class="p">(</span><span class="n">mat_name</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mat_name</span>
+
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fh</span><span class="p">,</span><span class="w"> </span><span class="n">get_thread_id</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span>
+<span class="nb">    </span><span class="kt">character</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">jobdir</span><span class="p">,</span><span class="w"> </span><span class="n">line</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mat_props_file</span>
+
+<span class="w">    </span><span class="c">! Define the namelist group &#39;material&#39;</span>
+<span class="w">    </span><span class="k">namelist</span><span class="w"> </span><span class="o">/</span><span class="n">material</span><span class="o">/</span><span class="w"> </span><span class="n">tolerance</span><span class="p">,</span><span class="w"> </span><span class="n">num_sample</span><span class="p">,</span><span class="w"> </span><span class="n">check</span><span class="p">,</span><span class="w"> </span><span class="n">data_file</span><span class="p">,</span><span class="w"> </span><span class="n">norm_vec</span>
+
+<span class="w">    </span><span class="c">! Skip if already loaded or not on primary thread</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">props_loaded</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">get_thread_id</span><span class="p">()</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">! Look for namelist file in job output directory</span>
+<span class="w">    </span><span class="k">call </span><span class="n">vgetoutdir</span><span class="p">(</span><span class="n">jobdir</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">mat_props_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jobdir</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;/&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">mat_name</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;.nml&#39;</span>
+
+<span class="w">    </span><span class="c">! Load namelist data from file</span>
+<span class="w">    </span><span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">fh</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="n">mat_props_file</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;read&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">read</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span><span class="w"> </span><span class="n">nml</span><span class="o">=</span><span class="n">material</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c">! Handle IO error</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">        backspace</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+<span class="w">        </span><span class="k">read</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">line</span>
+<span class="w">        </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39; Invalid line in namelist : &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end if</span>
+
+<span class="k">    close</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">props_loaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">True</span><span class="p">.</span>
+
+<span class="w">  </span><span class="k">end subroutine </span><span class="n">load_mat_props</span>
+
+<span class="k">end module </span><span class="n">Material_Properties</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-namelists-with-derived-types-structures">
+<h2>Advanced: NameLists with Derived Types (Structures)<a class="headerlink" href="#advanced-namelists-with-derived-types-structures" title="Permalink to this heading">#</a></h2>
+<p>For complex user subroutines, with many properties or multiple different materials, Fortran derived types
+can be used to collect material variables into a single structured variable</p>
+<p>In this case, you must also define the derived type to contain the material properties:</p>
+<p><strong>Example:</strong> <em>custom derived type to encapsulate material properties</em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">Material_Properties</span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">props_loaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">False</span><span class="p">.</span><span class="w">   </span><span class="c">! Indicates if properties already loaded</span>
+
+<span class="w">  </span><span class="k">type </span><span class="n">mat_props_t</span>
+<span class="w">    </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">tolerance</span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">num_sample</span>
+<span class="w">    </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">check</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">data_file</span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">norm_vec</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end type </span><span class="n">mat_props_t</span>
+<span class="w">    </span>
+<span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">mat_props_t</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">props_cached</span>
+
+<span class="w">  </span><span class="k">contains</span>
+
+<span class="k">  subroutine </span><span class="n">load_mat_props</span><span class="p">(</span><span class="n">mat_name</span><span class="p">,</span><span class="w"> </span><span class="n">props</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mat_name</span>
+<span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mat_props_t</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">props</span>
+
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fh</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span>
+<span class="nb">    </span><span class="kt">character</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">jobdir</span><span class="p">,</span><span class="w"> </span><span class="n">line</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mat_props_file</span>
+
+<span class="w">    </span><span class="c">! Define the namelist group &#39;material&#39;</span>
+<span class="w">    </span><span class="k">namelist</span><span class="w"> </span><span class="o">/</span><span class="n">material</span><span class="o">/</span><span class="w"> </span><span class="n">props</span>
+
+<span class="w">    </span><span class="c">! Skip if already loaded or not on primary thread</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">props_loaded</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      </span><span class="n">props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">props_cached</span>
+<span class="w">      </span><span class="k">return</span>
+<span class="k">    end if</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">! Look for namelist file in job output directory</span>
+<span class="w">    </span><span class="k">call </span><span class="n">vgetoutdir</span><span class="p">(</span><span class="n">jobdir</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="w">    </span><span class="n">mat_props_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jobdir</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;/&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">mat_name</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;.nml&#39;</span>
+
+<span class="w">    </span><span class="c">! Load namelist data from file</span>
+<span class="w">    </span><span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">fh</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="n">mat_props_file</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;read&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">read</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span><span class="w"> </span><span class="n">nml</span><span class="o">=</span><span class="n">material</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c">! Handle IO error</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">        backspace</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+<span class="w">        </span><span class="k">read</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">line</span>
+<span class="w">        </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39; Invalid line in namelist : &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end if</span>
+
+<span class="k">    close</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">props_cached</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">props</span>
+<span class="w">    </span><span class="n">props_loaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">True</span><span class="p">.</span>
+
+<span class="w">  </span><span class="k">end subroutine </span><span class="n">load_mat_props</span>
+
+<span class="k">end module </span><span class="n">Material_Properties</span>
+</pre></div>
+</div>
+<p>Members of a Fortran derived type are accessed using the percent operator (<code class="docutils literal notranslate"><span class="pre">%</span></code>) in
+both the Fortran code and namelist files that use the type:</p>
+<p><strong>Example:</strong> <em>namelist input file with derived type</em></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="k">data</span>
+<span class="n">props</span><span class="w"> </span><span class="p">%</span><span class="w"> </span><span class="n">tolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="n">props</span><span class="w"> </span><span class="p">%</span><span class="w"> </span><span class="n">num_sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="n">props</span><span class="w"> </span><span class="p">%</span><span class="w"> </span><span class="n">check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">True</span><span class="p">.</span>
+<span class="n">props</span><span class="w"> </span><span class="p">%</span><span class="w"> </span><span class="n">data_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;data.csv&#39;</span>
+<span class="n">props</span><span class="w"> </span><span class="p">%</span><span class="w"> </span><span class="n">norm_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="http://degenerateconic.com/namelist-error-checking.html">http://degenerateconic.com/namelist-error-checking.html</a></p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="using-named-variables.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Using Named State Variables</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../guides/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">RSE Guides</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fortran-namelist-format">The Fortran NameList Format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-a-namelist-file-in-fortran">Reading a NameList file in Fortran</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-detection">Error Detection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-namelist-files-for-user-subroutines">Using NameList Files for User Subroutines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-namelists-with-derived-types-structures">Advanced: NameLists with Derived Types (Structures)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Bristol Composites Institute Research Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright University of Bristol 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
