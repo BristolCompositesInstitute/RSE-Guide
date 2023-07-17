@@ -11,6 +11,7 @@ caption: "Contents:"
 code-for-readability
 single-responsibility
 testing
+user-documentation
 IDEs-and-tools
 version-control
 languages
