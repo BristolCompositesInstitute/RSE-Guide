@@ -108,6 +108,29 @@ with the RSE team ([ask-rse@bristol.ac.uk](mailto:ask-rse@bristol.ac.uk))
 Use test frameworks to make testing code easier.
 ```
 
+
+## Compiled code
+
+If you are writing code in a compiled language such as `C`, `C++` or `Fortran`,
+it is vitally important that you perform extra runtime checks on your
+code to identify possible memory errors or undefined behaviour.
+
+```{caution}
+Even if your code compiles and runs, this is __no guarantee__ that your code is correct.
+Memory errors and undefined behaviour can easily hide in your code without symptom
+if you're not using extra checks and testing.
+```
+
+For Fortran, see the [Fortran Guidelines](../abaqus-user-subroutines/fortran-style-guidelines.md#checking-code-correctness)
+for specific instructions on how to enable extra runtime checks.
+
+For `C` and `C++`, it is recommened that you use the [`address sanitizer`](https://www.osc.edu/resources/getting_started/howto/howto_use_address_sanitizer)
+to identify any memory errors. Additionally, for multithreaded code, it is recommended to use the
+Clang `thread sanitizer` to identify possible race conditions in your code.
+
+
+
+
 ## Other benefits of testing
 Test frameworks and [Version Control](version-control.md) work exceptionally 
 well together, and are the key componenents of the popular software engineering
