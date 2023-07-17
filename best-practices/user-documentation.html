@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Abaqus User Subroutines &#8212; BCI Research Software Engineering Guide</title>
+    <title>Help other users and developers with good documentation &#8212; BCI Research Software Engineering Guide</title>
   
   
   
@@ -42,12 +42,12 @@
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-V4L9PZN5VH"></script>
     <script src="../_static/ga-init.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'abaqus-user-subroutines/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'best-practices/user-documentation';</script>
     <link rel="icon" href="../_static/BCI-RSE.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fortran Guidelines" href="fortran-style-guidelines.html" />
-    <link rel="prev" title="Language Specific Styles" href="../best-practices/languages.html" />
+    <link rel="next" title="IDEs and automatic tools" href="IDEs-and-tools.html" />
+    <link rel="prev" title="Don’t assume your code does what you think - test it." href="testing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -132,23 +132,23 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../best-practices/index.html">RSE Best Practices</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../best-practices/code-for-readability.html">Write code for readability, maintainability, and clarity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../best-practices/single-responsibility.html">Write small functions that do <em>one thing</em>, and do that <em>one thing</em> well</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../best-practices/testing.html">Don’t assume your code does what you think - test it.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../best-practices/user-documentation.html">Help other users and developers with good documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../best-practices/IDEs-and-tools.html">IDEs and automatic tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../best-practices/version-control.html">Version Control</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../best-practices/languages.html">Language Specific Styles</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">RSE Best Practices</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="code-for-readability.html">Write code for readability, maintainability, and clarity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single-responsibility.html">Write small functions that do <em>one thing</em>, and do that <em>one thing</em> well</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Don’t assume your code does what you think - test it.</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Help other users and developers with good documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="IDEs-and-tools.html">IDEs and automatic tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version-control.html">Version Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="languages.html">Language Specific Styles</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Abaqus User Subroutines</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="fortran-style-guidelines.html">Fortran Guidelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-fortran-modules.html">Using Fortran Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="free-form-fortran-abaqus.html">Free-form Fortran with Abaqus</a></li>
-<li class="toctree-l2"><a class="reference internal" href="explicit-typing-abaqus.html">Explicit Typing with Abaqus</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-named-variables.html">Using Named State Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="namelist-material-properties.html">Reading Material Properties from a Namelist File</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../abaqus-user-subroutines/index.html">Abaqus User Subroutines</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../abaqus-user-subroutines/fortran-style-guidelines.html">Fortran Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../abaqus-user-subroutines/using-fortran-modules.html">Using Fortran Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../abaqus-user-subroutines/free-form-fortran-abaqus.html">Free-form Fortran with Abaqus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../abaqus-user-subroutines/explicit-typing-abaqus.html">Explicit Typing with Abaqus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../abaqus-user-subroutines/using-named-variables.html">Using Named State Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../abaqus-user-subroutines/namelist-material-properties.html">Reading Material Properties from a Namelist File</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../guides/index.html">RSE Guides</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -209,7 +209,7 @@
       
       
       
-      <li><a href="../_sources/abaqus-user-subroutines/index.md" target="_blank"
+      <li><a href="../_sources/best-practices/user-documentation.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -278,7 +278,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -289,11 +291,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Abaqus User Subroutines</h1>
+    <h1>Help other users and developers with good documentation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readmes">READMEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-documentation">User Documentation</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -303,58 +314,60 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="abaqus-user-subroutines">
-<h1>Abaqus User Subroutines<a class="headerlink" href="#abaqus-user-subroutines" title="Permalink to this heading">#</a></h1>
-<p>This section contains a number of guides for developing user subroutines with
-Abaqus. Developers of user subroutines are strongly recommended to review
-the Guidelines for Fortran code, regardless of their experience level.</p>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+  <section id="help-other-users-and-developers-with-good-documentation">
+<h1>Help other users and developers with good documentation<a class="headerlink" href="#help-other-users-and-developers-with-good-documentation" title="Permalink to this heading">#</a></h1>
+<p>Writing good user documentation to help others get started with your code is more
+useful than writing lots of comments in your code.</p>
+<section id="readmes">
+<h2>READMEs<a class="headerlink" href="#readmes" title="Permalink to this heading">#</a></h2>
+<p>If you are publishing your code on an internal or public Git repository,
+you should always include a README document with at least the following information:</p>
+<ul class="simple">
+<li><p>A brief (one sentence) description of what the code does</p></li>
+<li><p>A list of the code author(s)</p></li>
+<li><p>An email address for someone who is currently responsible for the code (maintainer)</p></li>
+<li><p>What dependencies the code has (python libraries, conda, abaqus, gcc etc.)</p></li>
+<li><p>A ‘Quickstart’ guide for how to get the code running on a simple example</p></li>
+</ul>
+<p>Additional information that is good to include:</p>
+<ul class="simple">
+<li><p>Which operating systems are supported (Windows, Linux)</p></li>
+<li><p>References to relevant academic papers (if any)</p></li>
+<li><p>Detail on any user inputs (input files, material card etc.)</p></li>
+<li><p>Project status</p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fortran-style-guidelines.html">Fortran Guidelines</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fortran-style-guidelines.html#visual-layout">Visual Layout</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fortran-style-guidelines.html#style">Style</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fortran-style-guidelines.html#numerical">Numerical</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fortran-style-guidelines.html#program-units">Program Units</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fortran-style-guidelines.html#checking-code-correctness">Checking Code Correctness</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fortran-style-guidelines.html#banned-features">Banned Features</a></li>
+<li><p><em>Alpha</em> - core functionality not yet completed</p></li>
+<li><p><em>Beta</em> - feature-complete (core functionality), still undergoing testing and documentation</p></li>
+<li><p><em>Released, active development</em> - feature-complete, stable interface, new features in development</p></li>
+<li><p><em>Released, maintenance only</em> - no new features in development, a maintainer is contactable for support and bug fixes</p></li>
+<li><p><em>Archived/legacy</em> - not under active development and no maintainer available to contact</p></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="using-fortran-modules.html">Using Fortran Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="using-fortran-modules.html#about-fortran-modules">About Fortran Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-fortran-modules.html#modularising-your-user-subroutine">Modularising your User Subroutine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-fortran-modules.html#running-abaqus-with-modular-code">Running Abaqus with Modular Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-fortran-modules.html#generating-a-single-source-version">Generating a Single-Source Version</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="free-form-fortran-abaqus.html">Free-form Fortran with Abaqus</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="free-form-fortran-abaqus.html#free-form-vs-fixed-form">Free form vs. Fixed-form</a></li>
-<li class="toctree-l2"><a class="reference internal" href="free-form-fortran-abaqus.html#using-free-form-with-abaqus">Using Free-form with Abaqus</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="explicit-typing-abaqus.html">Explicit Typing with Abaqus</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="explicit-typing-abaqus.html#implicit-typing">Implicit Typing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="explicit-typing-abaqus.html#explicit-typing">Explicit Typing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="explicit-typing-abaqus.html#id1">Explicit Typing with Abaqus</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="using-named-variables.html">Using Named State Variables</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="using-named-variables.html#motivation">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-named-variables.html#using-named-state-pointer-variables">Using Named State Pointer Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-named-variables.html#organising-state-pointers-into-a-type-structure">Organising State Pointers into a Type (structure)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="namelist-material-properties.html">Reading Material Properties from a Namelist File</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="namelist-material-properties.html#motivation">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="namelist-material-properties.html#the-fortran-namelist-format">The Fortran NameList Format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="namelist-material-properties.html#reading-a-namelist-file-in-fortran">Reading a NameList file in Fortran</a></li>
-<li class="toctree-l2"><a class="reference internal" href="namelist-material-properties.html#error-detection">Error Detection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="namelist-material-properties.html#using-namelist-files-for-user-subroutines">Using NameList Files for User Subroutines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="namelist-material-properties.html#advanced-namelists-with-derived-types-structures">Advanced: NameLists with Derived Types (Structures)</a></li>
-</ul>
-</li>
+</section>
+<section id="user-documentation">
+<h2>User Documentation<a class="headerlink" href="#user-documentation" title="Permalink to this heading">#</a></h2>
+<p>For larger projects with multiple users, it is recommended to write dedicated user documentation
+in a separate place to the main README file. In this case it is better to keep the README short
+and instead add links to key parts of the separate user documentation.</p>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>We recommend using the <a class="reference external" href="https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html">Sphinx</a>
+generator to write dedicated user documentation.</p>
+<ul class="simple">
+<li><p>See the <a class="reference external" href="https://bristolcompositesinstitute.github.io/abaci/">Abaci online documentation</a>
+for an example of documentation generated with Sphinx.</p></li>
 </ul>
 </div>
+<p>When writing dedicated user documentation, it is recommended to have the following:</p>
+<ul class="simple">
+<li><p><strong>Quickstart tutorial:</strong> a tutorial covering how to get started from scratch, including
+installing, configuring and running the code</p></li>
+<li><p><strong>How-to guides:</strong> dedicated guides, with examples, for how to perform specific tasks</p></li>
+<li><p><strong>Reference documentation:</strong> complete and detailed documentation for all user inputs such as
+input files and command-line flags</p></li>
+</ul>
+</section>
 </section>
 
 
@@ -370,20 +383,20 @@ the Guidelines for Fortran code, regardless of their experience level.</p>
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../best-practices/languages.html"
+       href="testing.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Language Specific Styles</p>
+        <p class="prev-next-title">Don’t assume your code does what you think - test it.</p>
       </div>
     </a>
     <a class="right-next"
-       href="fortran-style-guidelines.html"
+       href="IDEs-and-tools.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fortran Guidelines</p>
+        <p class="prev-next-title">IDEs and automatic tools</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -396,6 +409,21 @@ the Guidelines for Fortran code, regardless of their experience level.</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readmes">READMEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-documentation">User Documentation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
