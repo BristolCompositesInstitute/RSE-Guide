@@ -121,7 +121,7 @@ Memory errors and undefined behaviour can easily hide in your code without sympt
 if you're not using extra checks and testing.
 ```
 
-For Fortran, see the [Fortran Guidelines](../abaqus-user-subroutines/fortran-style-guidelines.md#checking-code-correctness)
+For Fortran, see the [Fortran Guidelines](https://bristolcompositesinstitute.github.io/RSE-Guide/abaqus-user-subroutines/fortran-style-guidelines#checking-code-correctness)
 for specific instructions on how to enable extra runtime checks.
 
 For `C` and `C++`, it is recommened that you use the [`address sanitizer`](https://www.osc.edu/resources/getting_started/howto/howto_use_address_sanitizer)
