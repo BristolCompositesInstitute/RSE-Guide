@@ -97,12 +97,39 @@ Framework examples:
 For an example of how to use PyTest, see the 
 [UoB RSE course](https://milliams.com/courses/software_engineering_best_practices/)
 
+__For Abaqus user subroutines:__ is is strongly recommended that you use
+[__Abaci__](https://bristolcompositesinstitute.github.io/abaci/) for testing
+and debugging your Fortran code.
+
 If you need help getting started with a test framework, please get in touch 
 with the RSE team ([ask-rse@bristol.ac.uk](mailto:ask-rse@bristol.ac.uk))
 
 ```{admonition} Best Practice
 Use test frameworks to make testing code easier.
 ```
+
+
+## Compiled code
+
+If you are writing code in a compiled language such as `C`, `C++` or `Fortran`,
+it is vitally important that you perform extra runtime checks on your
+code to identify possible memory errors or undefined behaviour.
+
+```{caution}
+Even if your code compiles and runs, this is __no guarantee__ that your code is correct.
+Memory errors and undefined behaviour can easily hide in your code without symptom
+if you're not using extra checks and testing.
+```
+
+For Fortran, see the [Fortran Guidelines](https://bristolcompositesinstitute.github.io/RSE-Guide/abaqus-user-subroutines/fortran-style-guidelines#checking-code-correctness)
+for specific instructions on how to enable extra runtime checks.
+
+For `C` and `C++`, it is recommened that you use the [`address sanitizer`](https://www.osc.edu/resources/getting_started/howto/howto_use_address_sanitizer)
+to identify any memory errors. Additionally, for multithreaded code, it is recommended to use the
+Clang `thread sanitizer` to identify possible race conditions in your code.
+
+
+
 
 ## Other benefits of testing
 Test frameworks and [Version Control](version-control.md) work exceptionally 

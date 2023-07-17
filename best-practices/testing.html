@@ -303,6 +303,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-validation-and-tests-easy-to-run">Make validation and tests easy to run</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-small-bits-of-code-at-a-time">Test small bits of code at a time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-test-frameworks-to-simplify-the-process">Use test frameworks to simplify the process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiled-code">Compiled code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-benefits-of-testing">Other benefits of testing</a></li>
 </ul>
             </nav>
@@ -399,12 +400,32 @@ something we had forgotten about.</p>
 <a class="reference external" href="https://uk.mathworks.com/help/matlab/matlab-unit-test-framework.html">MATLAB test framework</a></p>
 <p>For an example of how to use PyTest, see the
 <a class="reference external" href="https://milliams.com/courses/software_engineering_best_practices/">UoB RSE course</a></p>
+<p><strong>For Abaqus user subroutines:</strong> is is strongly recommended that you use
+<a class="reference external" href="https://bristolcompositesinstitute.github.io/abaci/"><strong>Abaci</strong></a> for testing
+and debugging your Fortran code.</p>
 <p>If you need help getting started with a test framework, please get in touch
 with the RSE team (<a class="reference external" href="mailto:ask-rse&#37;&#52;&#48;bristol&#46;ac&#46;uk">ask-rse<span>&#64;</span>bristol<span>&#46;</span>ac<span>&#46;</span>uk</a>)</p>
 <div class="admonition-best-practice admonition">
 <p class="admonition-title">Best Practice</p>
 <p>Use test frameworks to make testing code easier.</p>
 </div>
+</section>
+<section id="compiled-code">
+<h2>Compiled code<a class="headerlink" href="#compiled-code" title="Permalink to this heading">#</a></h2>
+<p>If you are writing code in a compiled language such as <code class="docutils literal notranslate"><span class="pre">C</span></code>, <code class="docutils literal notranslate"><span class="pre">C++</span></code> or <code class="docutils literal notranslate"><span class="pre">Fortran</span></code>,
+it is vitally important that you perform extra runtime checks on your
+code to identify possible memory errors or undefined behaviour.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Even if your code compiles and runs, this is <strong>no guarantee</strong> that your code is correct.
+Memory errors and undefined behaviour can easily hide in your code without symptom
+if you’re not using extra checks and testing.</p>
+</div>
+<p>For Fortran, see the <a class="reference external" href="https://bristolcompositesinstitute.github.io/RSE-Guide/abaqus-user-subroutines/fortran-style-guidelines#checking-code-correctness">Fortran Guidelines</a>
+for specific instructions on how to enable extra runtime checks.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">C</span></code> and <code class="docutils literal notranslate"><span class="pre">C++</span></code>, it is recommened that you use the <a class="reference external" href="https://www.osc.edu/resources/getting_started/howto/howto_use_address_sanitizer"><code class="docutils literal notranslate"><span class="pre">address</span> <span class="pre">sanitizer</span></code></a>
+to identify any memory errors. Additionally, for multithreaded code, it is recommended to use the
+Clang <code class="docutils literal notranslate"><span class="pre">thread</span> <span class="pre">sanitizer</span></code> to identify possible race conditions in your code.</p>
 </section>
 <section id="other-benefits-of-testing">
 <h2>Other benefits of testing<a class="headerlink" href="#other-benefits-of-testing" title="Permalink to this heading">#</a></h2>
@@ -470,6 +491,7 @@ breaks previous functionality.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-validation-and-tests-easy-to-run">Make validation and tests easy to run</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-small-bits-of-code-at-a-time">Test small bits of code at a time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-test-frameworks-to-simplify-the-process">Use test frameworks to simplify the process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiled-code">Compiled code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-benefits-of-testing">Other benefits of testing</a></li>
 </ul>
   </nav></div>

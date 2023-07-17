@@ -325,6 +325,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#end-statements">End Statements</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-code-correctness">Checking Code Correctness</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#banned-features">Banned Features</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goto-statement"><code class="docutils literal notranslate"><span class="pre">goto</span></code> statement</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-block"><code class="docutils literal notranslate"><span class="pre">common</span></code> block</a></li>
@@ -383,12 +384,13 @@ projects.</p>
 <li><p><a class="reference internal" href="#end-statements" id="id21">End Statements</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#banned-features" id="id22">Banned Features</a></p>
+<li><p><a class="reference internal" href="#checking-code-correctness" id="id22">Checking Code Correctness</a></p></li>
+<li><p><a class="reference internal" href="#banned-features" id="id23">Banned Features</a></p>
 <ul>
-<li><p><a class="reference internal" href="#goto-statement" id="id23"><code class="docutils literal notranslate"><span class="pre">goto</span></code> statement</a></p></li>
-<li><p><a class="reference internal" href="#common-block" id="id24"><code class="docutils literal notranslate"><span class="pre">common</span></code> block</a></p></li>
-<li><p><a class="reference internal" href="#equivalence-statement" id="id25"><code class="docutils literal notranslate"><span class="pre">equivalence</span></code> statement</a></p></li>
-<li><p><a class="reference internal" href="#labelled-do-loop" id="id26">Labelled <code class="docutils literal notranslate"><span class="pre">do</span></code> loop</a></p></li>
+<li><p><a class="reference internal" href="#goto-statement" id="id24"><code class="docutils literal notranslate"><span class="pre">goto</span></code> statement</a></p></li>
+<li><p><a class="reference internal" href="#common-block" id="id25"><code class="docutils literal notranslate"><span class="pre">common</span></code> block</a></p></li>
+<li><p><a class="reference internal" href="#equivalence-statement" id="id26"><code class="docutils literal notranslate"><span class="pre">equivalence</span></code> statement</a></p></li>
+<li><p><a class="reference internal" href="#labelled-do-loop" id="id27">Labelled <code class="docutils literal notranslate"><span class="pre">do</span></code> loop</a></p></li>
 </ul>
 </li>
 </ul>
@@ -775,6 +777,18 @@ complex functionality and clarify code structure and intent.</p></li>
 <p>There is no need to place <code class="docutils literal notranslate"><span class="pre">return</span></code> at the end of a function or subroutine.
 It serves no purpose, except to increase the number of lines of code.</p>
 </div>
+<p>As a general rule, it is recommended to choose between subroutines and functions based on the following:</p>
+<p><strong>Use a function:</strong></p>
+<ul class="simple">
+<li><p>if your procedure calculates and returns a single scalar, or a small fixed-size array <strong>and</strong>;</p></li>
+<li><p>if your procedure does not modify its input arguments</p></li>
+</ul>
+<p><strong>Use a subroutine:</strong></p>
+<ul class="simple">
+<li><p>if your procedure calculates and returns multiple values and/or;</p></li>
+<li><p>if your procedure returns a large or variable-sized array and/or;</p></li>
+<li><p>if your procedure modifies its input arguments</p></li>
+</ul>
 </section>
 <section id="procedure-arguments">
 <h3><a class="toc-backref" href="#id20" role="doc-backlink">Procedure Arguments</a><a class="headerlink" href="#procedure-arguments" title="Permalink to this heading">#</a></h3>
@@ -842,8 +856,58 @@ Using the full end statement makes it easier to navigate files with many procedu
 </div>
 </section>
 </section>
+<section id="checking-code-correctness">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Checking Code Correctness</a><a class="headerlink" href="#checking-code-correctness" title="Permalink to this heading">#</a></h2>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Even if your code compiles and runs, this is <strong>no guarantee</strong> that your code is correct.
+Memory errors and undefined behaviour can easily hide in your code without symptom
+if you’re not using extra checks and testing.</p>
+<ul class="simple">
+<li><p>Always use testing and compiler checks to ensure there are no errors</p></li>
+</ul>
+</div>
+<p>Most Fortran compilers can enable additional compile-time and runtime checks to
+ensure the correctness of the code you have written.</p>
+<div class="admonition-recommendation admonition">
+<p class="admonition-title">Recommendation</p>
+<p>If you are developing Abaqus user subroutines, you can easily enable these extra code checks
+using the <a class="reference external" href="https://bristolcompositesinstitute.github.io/abaci/">Abaci</a> tool with the
+<code class="docutils literal notranslate"><span class="pre">--debug</span></code> option.</p>
+</div>
+<p>The following compiler options are recommended for enabling extra checks:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Compiler</p></th>
+<th class="head"><p>Compiler Options for Extra Checks</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Intel Fortran (Linux)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-g</span> <span class="pre">-check</span> <span class="pre">all</span> <span class="pre">-gen-interfaces</span> <span class="pre">-warn</span> <span class="pre">interfaces</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Intel Fortran (Windows)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/Z7</span> <span class="pre">/check:all</span> <span class="pre">/gen-interfaces</span> <span class="pre">/warn:interfaces</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>gfortran</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-g</span> <span class="pre">-fbacktrace</span> <span class="pre">-Wall</span> <span class="pre">-fcheck=bounds</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>These options will:</p>
+<ul class="simple">
+<li><p>Check for out-of-bounds array accesses</p></li>
+<li><p>Check if a variable is used before it is defined or allocated</p></li>
+<li><p>Check that argument types match between interface definitions and routine calls (Intel compiler only)</p></li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Always use compiler checks when you are writing and testing new code, but don’t
+forget to disable them when you’re finished since the added checks slow down code execution.</p>
+</div>
+</section>
 <section id="banned-features">
-<h2><a class="toc-backref" href="#id22" role="doc-backlink">Banned Features</a><a class="headerlink" href="#banned-features" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Banned Features</a><a class="headerlink" href="#banned-features" title="Permalink to this heading">#</a></h2>
 <div class="admonition-background admonition">
 <p class="admonition-title">Background</p>
 <p>Backwards-compatibility is very important for the Fortran standard due to the
@@ -853,7 +917,7 @@ their use being strongly discouraged or them being made obsolete.</p>
 </div>
 <p>The following features of Fortran <strong>should not be used:</strong></p>
 <section id="goto-statement">
-<h3><a class="toc-backref" href="#id23" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">goto</span></code> statement</a><a class="headerlink" href="#goto-statement" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">goto</span></code> statement</a><a class="headerlink" href="#goto-statement" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">goto</span></code> statements are universally acknowledged as bad programming practice
 since they obscure the control flow of the program and are highly error-prone.
 Moreover, they have been entirely superseded by
@@ -871,7 +935,7 @@ and functions.</p>
 </div>
 </section>
 <section id="common-block">
-<h3><a class="toc-backref" href="#id24" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">common</span></code> block</a><a class="headerlink" href="#common-block" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">common</span></code> block</a><a class="headerlink" href="#common-block" title="Permalink to this heading">#</a></h3>
 <p>A common block defines an area of memory which is globally accessible by all
 functions and subroutines and which persists between invocations thereof.</p>
 <p>Commmon blocks <strong>should not be used</strong> since their definition is allowed to
@@ -884,12 +948,12 @@ functions.</p>
 </div>
 </section>
 <section id="equivalence-statement">
-<h3><a class="toc-backref" href="#id25" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">equivalence</span></code> statement</a><a class="headerlink" href="#equivalence-statement" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id26" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">equivalence</span></code> statement</a><a class="headerlink" href="#equivalence-statement" title="Permalink to this heading">#</a></h3>
 <p>Equivalence statements <strong>should not be used</strong>, they are complex and error-prone.
 Pointers or derived types should be used instead.</p>
 </section>
 <section id="labelled-do-loop">
-<h3><a class="toc-backref" href="#id26" role="doc-backlink">Labelled <code class="docutils literal notranslate"><span class="pre">do</span></code> loop</a><a class="headerlink" href="#labelled-do-loop" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Labelled <code class="docutils literal notranslate"><span class="pre">do</span></code> loop</a><a class="headerlink" href="#labelled-do-loop" title="Permalink to this heading">#</a></h3>
 <p>Use an <code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">do</span></code> statement instead.</p>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
@@ -983,6 +1047,7 @@ Pointers or derived types should be used instead.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#end-statements">End Statements</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-code-correctness">Checking Code Correctness</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#banned-features">Banned Features</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goto-statement"><code class="docutils literal notranslate"><span class="pre">goto</span></code> statement</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-block"><code class="docutils literal notranslate"><span class="pre">common</span></code> block</a></li>

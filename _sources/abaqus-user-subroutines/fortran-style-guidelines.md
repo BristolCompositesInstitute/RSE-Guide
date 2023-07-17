@@ -391,6 +391,18 @@ There is no need to place `return` at the end of a function or subroutine.
 It serves no purpose, except to increase the number of lines of code.
 ```
 
+As a general rule, it is recommended to choose between subroutines and functions based on the following:
+
+__Use a function:__ 
+ - if your procedure calculates and returns a single scalar, or a small fixed-size array __and__;
+ - if your procedure does not modify its input arguments
+
+__Use a subroutine:__ 
+ - if your procedure calculates and returns multiple values and/or;
+ - if your procedure returns a large or variable-sized array and/or;
+ - if your procedure modifies its input arguments
+
+
 
 ### Procedure Arguments
 
@@ -460,6 +472,47 @@ Using the full end statement makes it easier to navigate files with many procedu
 
 ```
 
+
+
+## Checking Code Correctness
+
+```{caution}
+Even if your code compiles and runs, this is __no guarantee__ that your code is correct.
+Memory errors and undefined behaviour can easily hide in your code without symptom
+if you're not using extra checks and testing.
+ - Always use testing and compiler checks to ensure there are no errors
+```
+
+Most Fortran compilers can enable additional compile-time and runtime checks to
+ensure the correctness of the code you have written.
+
+```{admonition} Recommendation
+If you are developing Abaqus user subroutines, you can easily enable these extra code checks
+using the [Abaci](https://bristolcompositesinstitute.github.io/abaci/) tool with the
+`--debug` option.
+```
+
+The following compiler options are recommended for enabling extra checks:
+
+
+| Compiler                | Compiler Options for Extra Checks                 |
+|-------------------------|---------------------------------------------------|
+| Intel Fortran (Linux)   | `-g -check all -gen-interfaces -warn interfaces`  |
+| Intel Fortran (Windows) | `/Z7 /check:all /gen-interfaces /warn:interfaces` |
+| gfortran                | `-g -fbacktrace -Wall -fcheck=bounds`             |
+
+
+These options will:
+
+- Check for out-of-bounds array accesses
+- Check if a variable is used before it is defined or allocated
+- Check that argument types match between interface definitions and routine calls (Intel compiler only)
+
+
+```{hint}
+Always use compiler checks when you are writing and testing new code, but don't
+forget to disable them when you're finished since the added checks slow down code execution.
+```
 
 
 ## Banned Features
