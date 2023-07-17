@@ -97,6 +97,10 @@ Framework examples:
 For an example of how to use PyTest, see the 
 [UoB RSE course](https://milliams.com/courses/software_engineering_best_practices/)
 
+__For Abaqus user subroutines:__ is is strongly recommended that you use
+[__Abaci__](https://bristolcompositesinstitute.github.io/abaci/) for testing
+and debugging your Fortran code.
+
 If you need help getting started with a test framework, please get in touch 
 with the RSE team ([ask-rse@bristol.ac.uk](mailto:ask-rse@bristol.ac.uk))
 
