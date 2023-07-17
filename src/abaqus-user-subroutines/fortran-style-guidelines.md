@@ -391,6 +391,18 @@ There is no need to place `return` at the end of a function or subroutine.
 It serves no purpose, except to increase the number of lines of code.
 ```
 
+As a general rule, it is recommended to choose between subroutines and functions based on the following:
+
+__Use a function:__ 
+ - if your procedure calculates and returns a single scalar, or a small fixed-size array __and__;
+ - if your procedure does not modify its input arguments
+
+__Use a subroutine:__ 
+ - if your procedure calculates and returns multiple values and/or;
+ - if your procedure returns a large or variable-sized array and/or;
+ - if your procedure modifies its input arguments
+
+
 
 ### Procedure Arguments
 
