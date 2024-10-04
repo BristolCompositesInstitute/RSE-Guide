@@ -23,3 +23,6 @@ codekit-config.json
 
 # Sphinx output
 build
+
+# VScode
+.vscode

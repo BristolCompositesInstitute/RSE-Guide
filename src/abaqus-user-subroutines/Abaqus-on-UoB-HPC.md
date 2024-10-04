@@ -76,7 +76,7 @@ to Slurm with the
 
 ## User Guides
 
-- [Single-node submission scripts](HPC-include/single-node'md)
+- [Single-node submission scripts](HPC-include/single-node.md)
 - [Mulit-node submission scripts](HPC-include/multi-node.md)
 - [Troubleshooting](HPC-include/troubleshooting.md)
 
