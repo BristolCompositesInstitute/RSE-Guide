@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Fortran Guidelines &#8212; BCI Research Software Engineering Guide</title>
   
@@ -15,34 +14,35 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-V4L9PZN5VH"></script>
-    <script src="../_static/ga-init.js"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'abaqus-user-subroutines/fortran-style-guidelines';</script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-V4L9PZN5VH"></script>
+    <script src="../_static/ga-init.js?v=384a4a76"></script>
     <link rel="icon" href="../_static/BCI-RSE.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -57,19 +57,23 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -91,12 +95,20 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -111,9 +123,13 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -123,16 +139,27 @@
       
     
     
-    <img src="../_static/BCI-RSE.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/BCI-RSE.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/BCI-RSE.png" class="logo__image only-light" alt="BCI Research Software Engineering Guide - Home"/>
+    <script>document.write(`<img src="../_static/BCI-RSE.png" class="logo__image only-dark" alt="BCI Research Software Engineering Guide - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../best-practices/index.html">RSE Best Practices</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../best-practices/index.html">RSE Best Practices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../best-practices/code-for-readability.html">Write code for readability, maintainability, and clarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../best-practices/single-responsibility.html">Write small functions that do <em>one thing</em>, and do that <em>one thing</em> well</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../best-practices/testing.html">Don’t assume your code does what you think - test it.</a></li>
@@ -141,21 +168,27 @@
 <li class="toctree-l2"><a class="reference internal" href="../best-practices/version-control.html">Version Control</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../best-practices/languages.html">Language Specific Styles</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Abaqus User Subroutines</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Abaqus User Subroutines</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Fortran Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-fortran-modules.html">Using Fortran Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-form-fortran-abaqus.html">Free-form Fortran with Abaqus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="explicit-typing-abaqus.html">Explicit Typing with Abaqus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-named-variables.html">Using Named State Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="namelist-material-properties.html">Reading Material Properties from a Namelist File</a></li>
-<li class="toctree-l2"><a class="reference external" href="https://acrc.github.io/HPC-community-docs/engineering/abaqus/index.html">Running Abaqus on HPC</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="Abaqus-on-UoB-HPC.html">Using Abaqus on UoB HPC clusters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="HPC-include/single-node.html">Single-Node Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HPC-include/multi-node.html">Multi-Node Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HPC-include/troubleshooting.html">Troubleshooting</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/index.html">RSE Guides</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/index.html">RSE Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../guides/getting-started-with-git.html">Getting started with Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/Installing-Abaqus.html">Installing Abaqus on your University of Bristol (UoB) machine</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -171,7 +204,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -180,14 +213,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -262,26 +295,28 @@
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -344,10 +379,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="fortran-guidelines">
-<h1><a class="toc-backref" href="#id4" role="doc-backlink">Fortran Guidelines</a><a class="headerlink" href="#fortran-guidelines" title="Permalink to this heading">#</a></h1>
+<h1><a class="toc-backref" href="#id4" role="doc-backlink">Fortran Guidelines</a><a class="headerlink" href="#fortran-guidelines" title="Link to this heading">#</a></h1>
 <p>This section provides general guidelines for Fortran code developed in the
 Bristol Composites Institute. These guidelines have been developed to encourage
 best-practices that avoid common pitfalls and to ensure consistency across all
@@ -400,7 +435,7 @@ projects.</p>
 </ul>
 </nav>
 <section id="visual-layout">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Visual Layout</a><a class="headerlink" href="#visual-layout" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Visual Layout</a><a class="headerlink" href="#visual-layout" title="Link to this heading">#</a></h2>
 <p>The visual layout of code heavily influences how easy it is to read by those
 unfamiliar with it. Code with a good layout allows you to quickly recognise
 familiar constructs such as functions, loops, if/else blocks, <em>etc.</em>, and where
@@ -412,7 +447,7 @@ they start and end. Code layout is largely governed by whitespace, specifically:
 <li><p>Line length</p></li>
 </ul>
 <section id="format">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Format</a><a class="headerlink" href="#format" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Format</a><a class="headerlink" href="#format" title="Link to this heading">#</a></h3>
 <p>Fortran has two standard formats for code layout:</p>
 <ul class="simple">
 <li><p>Fixed-form (legacy)</p></li>
@@ -435,7 +470,7 @@ it permits ambiguities that lead to obscure errors.
 </div>
 </section>
 <section id="indentation">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Indentation</a><a class="headerlink" href="#indentation" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Indentation</a><a class="headerlink" href="#indentation" title="Link to this heading">#</a></h3>
 <div class="admonition-recommendation admonition">
 <p class="admonition-title">Recommendation</p>
 <p>Always indent the body of functions, subroutines, loops,
@@ -481,7 +516,7 @@ consistent throughout your code. Most code editors let you configure how many
 spaces to indent when the TAB key is pressed.</p>
 </section>
 <section id="blank-lines">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Blank lines</a><a class="headerlink" href="#blank-lines" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Blank lines</a><a class="headerlink" href="#blank-lines" title="Link to this heading">#</a></h3>
 <div class="admonition-recommendation admonition">
 <p class="admonition-title">Recommendation</p>
 <ul class="simple">
@@ -495,7 +530,7 @@ Spacing out code with blank lines improves readability
 </div>
 </section>
 <section id="line-length">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Line Length</a><a class="headerlink" href="#line-length" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Line Length</a><a class="headerlink" href="#line-length" title="Link to this heading">#</a></h3>
 <div class="admonition-recommendation admonition">
 <p class="admonition-title">Recommendation</p>
 <p>Continue long statements onto newlines. Lines should not exceed 100 characters.</p>
@@ -535,9 +570,9 @@ visible upon reading through.
 </section>
 </section>
 <section id="style">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Style</a><a class="headerlink" href="#style" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Style</a><a class="headerlink" href="#style" title="Link to this heading">#</a></h2>
 <section id="naming-capitalisation">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Naming &amp; Capitalisation</a><a class="headerlink" href="#naming-capitalisation" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Naming &amp; Capitalisation</a><a class="headerlink" href="#naming-capitalisation" title="Link to this heading">#</a></h3>
 <p>The naming of variables and procedures is important for conveying the
 purpose and functionality of your code to those not familiar with it.</p>
 <p>It is therefore important that your names are meaningful and accurately
@@ -577,7 +612,7 @@ proper syntax highlighting.
 </div>
 </section>
 <section id="comments">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">Comments</a><a class="headerlink" href="#comments" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Comments</a><a class="headerlink" href="#comments" title="Link to this heading">#</a></h3>
 <p>Code should ideally be as self-documenting as possible, not requiring
 excessive comments to explain it. This means:</p>
 <ul class="simple">
@@ -604,7 +639,7 @@ obvious interpretation alone</p></li>
 </ul>
 </section>
 <section id="variable-declarations">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Variable Declarations</a><a class="headerlink" href="#variable-declarations" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Variable Declarations</a><a class="headerlink" href="#variable-declarations" title="Link to this heading">#</a></h3>
 <div class="admonition-recommendation admonition">
 <p class="admonition-title">Recommendation</p>
 <p>Use the full double-colon syntax for all parameter and variable declarations.</p>
@@ -643,9 +678,9 @@ means that the variable retains its value between procedure calls.</p>
 </section>
 </section>
 <section id="numerical">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">Numerical</a><a class="headerlink" href="#numerical" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Numerical</a><a class="headerlink" href="#numerical" title="Link to this heading">#</a></h2>
 <section id="declaring-double-precision-reals">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Declaring Double Precision Reals</a><a class="headerlink" href="#declaring-double-precision-reals" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Declaring Double Precision Reals</a><a class="headerlink" href="#declaring-double-precision-reals" title="Link to this heading">#</a></h3>
 <div class="admonition-recommendation admonition">
 <p class="admonition-title">Recommendation</p>
 <p>Define a parameter <code class="docutils literal notranslate"><span class="pre">dp</span></code> at the top of your module and use it
@@ -684,7 +719,7 @@ anywhere within your code, otherwise they will be truncated to single precision.
 <p><strong>Further reading:</strong> Learn more about Fortran variable kinds in <em>“It Takes All KINDS”</em><a class="footnote-reference brackets" href="#dr-fortran-kinds" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
 </section>
 <section id="integer-division">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">Integer Division</a><a class="headerlink" href="#integer-division" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Integer Division</a><a class="headerlink" href="#integer-division" title="Link to this heading">#</a></h3>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>Be careful when performing division with integer variables:</p>
@@ -701,9 +736,9 @@ expression is a <code class="docutils literal notranslate"><span class="pre">rea
 </section>
 </section>
 <section id="program-units">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">Program Units</a><a class="headerlink" href="#program-units" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Program Units</a><a class="headerlink" href="#program-units" title="Link to this heading">#</a></h2>
 <section id="modules">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">Modules</a><a class="headerlink" href="#modules" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Modules</a><a class="headerlink" href="#modules" title="Link to this heading">#</a></h3>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p>See the <a class="reference internal" href="using-fortran-modules.html"><span class="doc std std-doc">Using Fortran Modules</span></a> for more information
@@ -746,7 +781,7 @@ the same.</p></li>
 </div>
 </section>
 <section id="subroutines-and-functions">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink">Subroutines and Functions</a><a class="headerlink" href="#subroutines-and-functions" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Subroutines and Functions</a><a class="headerlink" href="#subroutines-and-functions" title="Link to this heading">#</a></h3>
 <div class="admonition-recommendation admonition">
 <p class="admonition-title">Recommendation</p>
 <p>It is <strong>strongly recommended</strong> that complex procedures are broken
@@ -793,7 +828,7 @@ It serves no purpose, except to increase the number of lines of code.</p>
 </ul>
 </section>
 <section id="procedure-arguments">
-<h3><a class="toc-backref" href="#id20" role="doc-backlink">Procedure Arguments</a><a class="headerlink" href="#procedure-arguments" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Procedure Arguments</a><a class="headerlink" href="#procedure-arguments" title="Link to this heading">#</a></h3>
 <div class="admonition-recommendation admonition">
 <p class="admonition-title">Recommendation</p>
 <p>Always specify the <code class="docutils literal notranslate"><span class="pre">intent</span></code> of procedure arguments:</p>
@@ -829,7 +864,7 @@ Specifying argument intent has two important benefits:</p>
 </div>
 </section>
 <section id="end-statements">
-<h3><a class="toc-backref" href="#id21" role="doc-backlink">End Statements</a><a class="headerlink" href="#end-statements" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">End Statements</a><a class="headerlink" href="#end-statements" title="Link to this heading">#</a></h3>
 <div class="admonition-recommendation admonition">
 <p class="admonition-title">Recommendation</p>
 <p>Always use the full end statement for a block instead of just <code class="docutils literal notranslate"><span class="pre">end</span></code> on its own</p>
@@ -859,7 +894,7 @@ Using the full end statement makes it easier to navigate files with many procedu
 </section>
 </section>
 <section id="checking-code-correctness">
-<h2><a class="toc-backref" href="#id22" role="doc-backlink">Checking Code Correctness</a><a class="headerlink" href="#checking-code-correctness" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Checking Code Correctness</a><a class="headerlink" href="#checking-code-correctness" title="Link to this heading">#</a></h2>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>Even if your code compiles and runs, this is <strong>no guarantee</strong> that your code is correct.
@@ -878,7 +913,7 @@ using the <a class="reference external" href="https://bristolcompositesinstitute
 <code class="docutils literal notranslate"><span class="pre">--debug</span></code> option.</p>
 </div>
 <p>The following compiler options are recommended for enabling extra checks:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Compiler</p></th>
 <th class="head"><p>Compiler Options for Extra Checks</p></th>
@@ -896,6 +931,7 @@ using the <a class="reference external" href="https://bristolcompositesinstitute
 </tr>
 </tbody>
 </table>
+</div>
 <p>These options will:</p>
 <ul class="simple">
 <li><p>Check for out-of-bounds array accesses</p></li>
@@ -909,7 +945,7 @@ forget to disable them when you’re finished since the added checks slow down c
 </div>
 </section>
 <section id="banned-features">
-<h2><a class="toc-backref" href="#id23" role="doc-backlink">Banned Features</a><a class="headerlink" href="#banned-features" title="Permalink to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Banned Features</a><a class="headerlink" href="#banned-features" title="Link to this heading">#</a></h2>
 <div class="admonition-background admonition">
 <p class="admonition-title">Background</p>
 <p>Backwards-compatibility is very important for the Fortran standard due to the
@@ -919,7 +955,7 @@ their use being strongly discouraged or them being made obsolete.</p>
 </div>
 <p>The following features of Fortran <strong>should not be used:</strong></p>
 <section id="goto-statement">
-<h3><a class="toc-backref" href="#id24" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">goto</span></code> statement</a><a class="headerlink" href="#goto-statement" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">goto</span></code> statement</a><a class="headerlink" href="#goto-statement" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">goto</span></code> statements are universally acknowledged as bad programming practice
 since they obscure the control flow of the program and are highly error-prone.
 Moreover, they have been entirely superseded by
@@ -937,7 +973,7 @@ and functions.</p>
 </div>
 </section>
 <section id="common-block">
-<h3><a class="toc-backref" href="#id25" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">common</span></code> block</a><a class="headerlink" href="#common-block" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">common</span></code> block</a><a class="headerlink" href="#common-block" title="Link to this heading">#</a></h3>
 <p>A common block defines an area of memory which is globally accessible by all
 functions and subroutines and which persists between invocations thereof.</p>
 <p>Commmon blocks <strong>should not be used</strong> since their definition is allowed to
@@ -950,31 +986,31 @@ functions.</p>
 </div>
 </section>
 <section id="equivalence-statement">
-<h3><a class="toc-backref" href="#id26" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">equivalence</span></code> statement</a><a class="headerlink" href="#equivalence-statement" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id26" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">equivalence</span></code> statement</a><a class="headerlink" href="#equivalence-statement" title="Link to this heading">#</a></h3>
 <p>Equivalence statements <strong>should not be used</strong>, they are complex and error-prone.
 Pointers or derived types should be used instead.</p>
 </section>
 <section id="labelled-do-loop">
-<h3><a class="toc-backref" href="#id27" role="doc-backlink">Labelled <code class="docutils literal notranslate"><span class="pre">do</span></code> loop</a><a class="headerlink" href="#labelled-do-loop" title="Permalink to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Labelled <code class="docutils literal notranslate"><span class="pre">do</span></code> loop</a><a class="headerlink" href="#labelled-do-loop" title="Link to this heading">#</a></h3>
 <p>Use an <code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">do</span></code> statement instead.</p>
+</section>
+</section>
+</section>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="all-caps-readability" role="note">
+<aside class="footnote brackets" id="all-caps-readability" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/All_caps#Readability">https://en.wikipedia.org/wiki/All_caps#Readability</a></p>
 </aside>
-<aside class="footnote brackets" id="dr-fortran-kinds" role="note">
+<aside class="footnote brackets" id="dr-fortran-kinds" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://stevelionel.com/drfortran/2017/03/27/doctor-fortran-in-it-takes-all-kinds/">https://stevelionel.com/drfortran/2017/03/27/doctor-fortran-in-it-takes-all-kinds/</a></p>
 </aside>
-<aside class="footnote brackets" id="structured-programming" role="note">
+<aside class="footnote brackets" id="structured-programming" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Structured_programming">https://en.wikipedia.org/wiki/Structured_programming</a></p>
 </aside>
 </aside>
-</section>
-</section>
-</section>
 
 
                 </article>
@@ -982,11 +1018,10 @@ Pointers or derived types should be used instead.</p>
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="index.html"
@@ -1006,10 +1041,7 @@ Pointers or derived types should be used instead.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1017,6 +1049,7 @@ Pointers or derived types should be used instead.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1078,6 +1111,7 @@ By Bristol Composites Institute Research Software Engineering Team
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright University of Bristol 2022.
@@ -1104,8 +1138,8 @@ By Bristol Composites Institute Research Software Engineering Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

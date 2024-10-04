@@ -1,0 +1,533 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Troubleshooting &#8212; BCI Research Software Engineering Guide</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'abaqus-user-subroutines/HPC-include/troubleshooting';</script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-V4L9PZN5VH"></script>
+    <script src="../../_static/ga-init.js?v=384a4a76"></script>
+    <link rel="icon" href="../../_static/BCI-RSE.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="RSE Guides" href="../../guides/index.html" />
+    <link rel="prev" title="Multi-Node Jobs" href="multi-node.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/BCI-RSE.png" class="logo__image only-light" alt="BCI Research Software Engineering Guide - Home"/>
+    <script>document.write(`<img src="../../_static/BCI-RSE.png" class="logo__image only-dark" alt="BCI Research Software Engineering Guide - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../best-practices/index.html">RSE Best Practices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../best-practices/code-for-readability.html">Write code for readability, maintainability, and clarity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best-practices/single-responsibility.html">Write small functions that do <em>one thing</em>, and do that <em>one thing</em> well</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best-practices/testing.html">Don’t assume your code does what you think - test it.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best-practices/user-documentation.html">Help other users and developers with good documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best-practices/IDEs-and-tools.html">IDEs and automatic tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best-practices/version-control.html">Version Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best-practices/languages.html">Language Specific Styles</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Abaqus User Subroutines</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fortran-style-guidelines.html">Fortran Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../using-fortran-modules.html">Using Fortran Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../free-form-fortran-abaqus.html">Free-form Fortran with Abaqus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../explicit-typing-abaqus.html">Explicit Typing with Abaqus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../using-named-variables.html">Using Named State Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../namelist-material-properties.html">Reading Material Properties from a Namelist File</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../Abaqus-on-UoB-HPC.html">Using Abaqus on UoB HPC clusters</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="single-node.html">Single-Node Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multi-node.html">Multi-Node Jobs</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Troubleshooting</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../guides/index.html">RSE Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/getting-started-with-git.html">Getting started with Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/Installing-Abaqus.html">Installing Abaqus on your University of Bristol (UoB) machine</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/abaqus-user-subroutines/HPC-include/troubleshooting.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Troubleshooting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-not-authorized-for-user">License not Authorized for User</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#out-of-memory">Out of Memory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-during-linking">Problem During Linking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-configuration-not-available">Node Configuration not Available</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-terminates-immediately">Job Terminates Immediately</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-terminates-unexpectedly">Job Terminates Unexpectedly</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h1>
+<section id="license-not-authorized-for-user">
+<h2>License not Authorized for User<a class="headerlink" href="#license-not-authorized-for-user" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Failed to checkout DSLS license for: QAE
+ERROR 1A000035: License not authorized for this user
+...
+</pre></div>
+</div>
+<p>If you receive this error when trying to run Abaqus, then you first need to
+register for a university Abaqus license - speak to your supervisor about
+how to do this.</p>
+</section>
+<section id="out-of-memory">
+<h2>Out of Memory<a class="headerlink" href="#out-of-memory" title="Link to this heading">#</a></h2>
+<p>If you do not request sufficient memory for your job, then it may be terminated by
+the job scheduler with the following error message (check the log output files):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>slurmstepd: error: Detect 1 oom-kill event(s) in StepId=xxxxxx.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
+</pre></div>
+</div>
+<p>This may also be accompanied by the following Abaqus error message (or similar):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Abaqus Error: The executable explicit_dp
+aborted with system error &quot;Termination signal&quot; (signal 9)
+</pre></div>
+</div>
+<p>You can address this issue by increasing the requested <code class="docutils literal notranslate"><span class="pre">--mem-per-cpu</span></code> in your job submission script.</p>
+</section>
+<section id="problem-during-linking">
+<h2>Problem During Linking<a class="headerlink" href="#problem-during-linking" title="Link to this heading">#</a></h2>
+<p>The compilation and linking of large complex user subroutines may require much more memory
+than the actual Abaqus job that you intend to run.</p>
+<p>If you encounter an error similar to the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ifort: error #10106: Fatal error in ld
+Abaqus Error: Problem during Linking ...
+</pre></div>
+</div>
+<p>Then you should check that your requested memory limit is not too low (&lt;500M) and try increasing it.</p>
+</section>
+<section id="node-configuration-not-available">
+<h2>Node Configuration not Available<a class="headerlink" href="#node-configuration-not-available" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sbatch: error: Batch job submission failed: Requested node configuration is not available
+</pre></div>
+</div>
+<p>This error message can occur when you request too many resources (<em>e.g.</em> cpus, memory) than is available
+on the cluster nodes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your total memory request is the <code class="docutils literal notranslate"><span class="pre">--mem-per-cpu</span></code> parameter multiplied by
+the number of cpus you have requested.
+You can find out how much RAM is available per node in the ACRC HPC documentation
+<a class="reference external" href="https://www.acrc.bris.ac.uk/protected/hpc-docs/training/intro-to-hpc-slurm/acrc_systems.html">here (UoB only)</a>.</p>
+</div>
+</section>
+<section id="job-terminates-immediately">
+<h2>Job Terminates Immediately<a class="headerlink" href="#job-terminates-immediately" title="Link to this heading">#</a></h2>
+<p>If your job ends immediately after starting, make sure you have specified the <code class="docutils literal notranslate"><span class="pre">interactive</span></code>
+keyword for Abaqus in your job script.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>abaqus<span class="w"> </span><span class="nv">job</span><span class="o">=</span>&lt;job-name&gt;<span class="w"> </span><span class="nv">cpus</span><span class="o">=</span><span class="si">${</span><span class="nv">SLURM_NTASKS</span><span class="si">}</span><span class="w"> </span><span class="nv">user</span><span class="o">=</span>&lt;usub-file&gt;<span class="w"> </span><span class="nv">mp_mode</span><span class="o">=</span>threads<span class="w"> </span><span class="nv">double</span><span class="o">=</span>both<span class="w"> </span>interactive
+</pre></div>
+</div>
+</section>
+<section id="job-terminates-unexpectedly">
+<h2>Job Terminates Unexpectedly<a class="headerlink" href="#job-terminates-unexpectedly" title="Link to this heading">#</a></h2>
+<p>If your jobs ends before the allotted maximum time, make sure you are running the job
+in your <em>scratch</em> space (<code class="docutils literal notranslate"><span class="pre">/user/work/&lt;username&gt;</span></code>) and not your <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> space (<code class="docutils literal notranslate"><span class="pre">/user/home/&lt;username&gt;</span></code>).</p>
+<p>Make sure also that you have enough space remaining in your scratch space;
+you can check with the <code class="docutils literal notranslate"><span class="pre">user-quota</span></code> command.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="multi-node.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Multi-Node Jobs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../guides/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">RSE Guides</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-not-authorized-for-user">License not Authorized for User</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#out-of-memory">Out of Memory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-during-linking">Problem During Linking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-configuration-not-available">Node Configuration not Available</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-terminates-immediately">Job Terminates Immediately</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-terminates-unexpectedly">Job Terminates Unexpectedly</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Bristol Composites Institute Research Software Engineering Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright University of Bristol 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
