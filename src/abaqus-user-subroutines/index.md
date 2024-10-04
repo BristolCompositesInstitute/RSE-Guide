@@ -19,5 +19,5 @@ free-form-fortran-abaqus
 explicit-typing-abaqus
 using-named-variables
 namelist-material-properties
-Running Abaqus on HPC <https://acrc.github.io/HPC-community-docs/engineering/abaqus/index.html>
+Abaqus-on-UoB-HPC
 ```
