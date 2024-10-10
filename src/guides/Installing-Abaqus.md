@@ -16,7 +16,7 @@ The installation process on a Windows managed machine uses the UoB Company Porta
 
 Follows these steps for installing Abaqus 2023 with Intel OneAPI 2022:
 
-0. Back up you device and uninstall all previous versions of Abaqus and Intel from you machine to ensure no conflicts.
+0. Back up you device and uninstall all previous versions of Abaqus and Intel from you machine to ensure no conflicts. This includes removing all Abaqus and Intel media (this includes Visual Studio but not VS Code) from your device and any related environment variables. IT services can be contacted to help with this if you are unsure about this.
 1. Install the Intel OneAPI 2022 via the UoB Company Portal.
 2. Install Abaqus 2023 via the UoB Company Portal.
 3. Use Abaqus 2023 with Intel OneAPI 2022 (iFort) with the Abaqus 2023 CAE and Abaqus Command shortcuts located within `start -> Intel oneAPI 2022`. The Abaqus executables within the DassaultSystems startup folder are not be linked with Intel oneAPI.
