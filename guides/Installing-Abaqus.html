@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -37,7 +37,7 @@
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'guides/Installing-Abaqus';</script>
@@ -374,6 +374,10 @@ document.write(`
 <li><p>Install Abaqus 2023 via the UoB Company Portal.</p></li>
 <li><p>Use Abaqus 2023 with Intel OneAPI 2022 (iFort) with the Abaqus 2023 CAE and Abaqus Command shortcuts located within <code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">-&gt;</span> <span class="pre">Intel</span> <span class="pre">oneAPI</span> <span class="pre">2022</span></code>. The Abaqus executables within the DassaultSystems startup folder are not be linked with Intel oneAPI.</p></li>
 </ol>
+<p><strong>Notes on the installation through UoB Company Portal</strong></p>
+<p>Please ensure you have at least 40 GB free on your UoB computer for the installation of Abaqus and Intel OneAPI 2022. The time it takes to download and install Abaqus and/or Intel OneAPI 2022 through Company Portal can vary significantly for several reasons, from slow/unstable network connections to the time it takes for the computer to install the software. It is recommended to use a stable network connection with decent download speed.</p>
+<p>Unfortunately, Company Portal does not give a clear indication of the progress of the installation of these software. After about 1 hour and 30 mins, the installation of either Abaqus or OneAPI through Company Portal will likely have failed due to timeout. In this scenario, please restart the computer and you should then be able to attempt to reinstall the software again (it can take 10 minutes or so before you are able to reattempt the install). Also, if the install failed, you can go into Settings within Company Portal and then click Sync and wait for 20 minutes or so. After this time, you should be able to attempt to reinstall as well. In both cases, the delay is due to the computer needing to update Intune that it has failed to then get the ‘OK’ to attempt the install again.</p>
+<p>If you are struggling to install either Abaqus or Intel OneAPI 2022 through UoB Company Portal, please contact the IT services (or the BCI-RSE Team for those within the BCI).</p>
 </section>
 <section id="linux">
 <h4>Linux<a class="headerlink" href="#linux" title="Link to this heading">#</a></h4>
