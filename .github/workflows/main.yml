@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create Conda environment
         run: conda env create --file environment.yml
@@ -20,7 +20,7 @@ jobs:
         run: conda run --name rse-guide sphinx-build -M html src build -W --keep-going
 
       - name: Upload built HTML documentation artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: rse-guide-html
           path: build/html/
@@ -43,7 +43,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Ubuntu Dependencies
         run: sudo apt update && sudo apt install ${{ env.APT_DEPS }}
@@ -55,7 +55,7 @@ jobs:
         run: conda run --name rse-guide sphinx-build -M latexpdf src build -W --keep-going
 
       - name: Upload built pdf documentation artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: rse-guide-pdf
           path: build/latex/
